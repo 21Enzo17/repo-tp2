@@ -27,3 +27,6 @@ section: incluye un subtítulo y varios <article> describiendo el objetivo de la
 aside: Incluir contenido adicional que mantenga relación con el sitio.<br>
 footer: incluye un párrafo p mostrando texto que incluya, por ejemplo:<br>
 Copyright 2023 - Mascotas Barn - Diseñado por Grupo 11 – Jujuy – República Argentina
+# Trabajo Practico N°3
+- CSS
+Se le agrego estilo a todas las paginas.
