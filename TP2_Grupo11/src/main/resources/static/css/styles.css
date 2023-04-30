@@ -6,3 +6,49 @@
 body{
     font-family:  'Poppins', sans-serif;
 }
+
+/*Consulta de Salud */
+#content{
+	width: 80%;
+	min-height: 500px;
+	background: green;
+	text-align: center;
+}
+#articulos{
+	display: grid;
+	justify-content: center;
+	gap: 15px;
+}
+.articulo0{
+	border-radius: 10px;
+	text-align:justify;
+	width: 20%;
+	color: black;
+	background: purple;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	padding-bottom: 60px;
+	border: 3px solid black;
+}
+.articulo1{
+	border-radius: 10px;
+	text-align:justify;
+	width: 20%;
+	color: black;
+	background: blue;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	padding-bottom: 60px;
+	border: 3px solid black;
+}
+.articulo2{
+	border-radius: 10px;
+	text-align:justify;
+	width: 20%;
+	color: black;
+	background: orange;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	padding-bottom: 60px;
+	border: 3px solid black;
+}
