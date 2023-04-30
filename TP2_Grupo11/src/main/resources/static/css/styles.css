@@ -33,15 +33,24 @@ body {
 	padding: 20px;
 	border-radius: 5px;
 }
+fieldset ul {
+	list-style: none;
+}
 #seccion{
 	display:flex;
-	justify-content: space-between;
+	margin: 0 auto;
 	padding: 20px;
+	width: fit-content;
+	justify-content: center;
 }
+
+
 
 input {
 	width: 350px;
 	height: 30px;
+	right: 0;
+
 }
 button {
 	width: 250px;
