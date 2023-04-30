@@ -12,49 +12,39 @@ body {
   	margin: 0 auto;
    }
 /*Consulta de Salud */
+#contenedor-consejos{
+	display: flex;
+	margin:20px auto;
+	
+}
 #content{
+	font-family: "Poppins", "sans-serif";
+	display:block;
 	width: 80%;
 	min-height: 500px;
-	background: green;
+		box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
+-webkit-box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
+-moz-box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
+	background: #fafafa;
 	text-align: center;
+	padding: 20px;
+	border-radius: 10px;
 }
 #articulos{
-	display: grid;
+	display: block
 	justify-content: center;
-	gap: 15px;
 }
-.articulo0{
-	border-radius: 10px;
+.articulo{
 	text-align:justify;
-	width: 20%;
-	color: black;
-	background: purple;
+	max-width: 100%;
+	color:	#000;
 	margin-bottom: 15px;
 	margin-top: 15px;
-	padding-bottom: 60px;
-	border: 3px solid black;
+	padding: 25px;
+	border-left: 10px solid #3F7373;
 }
-.articulo1{
-	border-radius: 10px;
-	text-align:justify;
-	width: 20%;
-	color: black;
-	background: blue;
-	margin-bottom: 15px;
-	margin-top: 15px;
-	padding-bottom: 60px;
-	border: 3px solid black;
-}
-.articulo2{
-	border-radius: 10px;
-	text-align:justify;
-	width: 20%;
-	color: black;
-	background: orange;
-	margin-bottom: 15px;
-	margin-top: 15px;
-	padding-bottom: 60px;
-	border: 3px solid black;
+.articulo ul, .articulo ol{
+	padding: 20px;
 }
 
 /* Nav y footer*/
@@ -349,6 +339,7 @@ aside {
     width:35%;
     border-radius: 10px;
     margin-left: 20px;
+    height: fit-content;
 }
 
 aside ul{
