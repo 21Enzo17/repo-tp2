@@ -14,53 +14,6 @@ body {
 /* Contacto */
 /*--------------------------------------------------------------------*/
 
-#front-page{
-	width: 100%;
-  height: 400px;
-  object-fit: cover;
-}
-
-#title{
-    font-family: "Poppins";
-    position: absolute;
-    bottom: 0;
-    left: -10;
-    color: white;
-    z-index: 1;
-}
-#fieldset-form{
-	width: fit-content;
-	display: in-line;
-	font-family: "Poppins";
-	padding: 20px;
-	border-radius: 5px;
-}
-fieldset ul {
-	list-style: none;
-}
-#seccion{
-	display:flex;
-	margin: 0 auto;
-	padding: 20px;
-	width: fit-content;
-	justify-content: center;
-}
-
-
-
-input {
-	width: 350px;
-	height: 30px;
-	right: 0;
-
-}
-button {
-	width: 250px;
-	height: 40px;
-	font-family: "Poppins";
-	background: radial-gradient(#025159 0%,#35402D 100%);
-	color: #fff;
-}
 /*-----------------------------------------------------------------------------------*/
 /* Nav y footer*/
 #container{
@@ -113,36 +66,56 @@ nav li a {
 	padding: 14px 16px;
 	text-decoration: inherit;
 }
-#horarios{
-	display:flex;
-	justify-content: space-between;
-	width:95%;
-	padding:20px;
-	border-radius: 10px;
-}
-#container2{
-    display: flex;
-    flex-direction: column;
-    float:left;
-    width:60%;
-}
-#paseo{
-	height: 150px;
-	border-radius: 10px;
-}
-#paseo2{
-	height: 150px;
-	border-radius: 10px;
-}
-@font-face {
-  font-family: "MiFuente";
-  src: url("../../static/images/Knip.otf");
-}
-@font-face {
-  font-family: "MiFuente2";
-  src: url("../../static/images/Hind.ttf");
-}
+
 /* Contacto*/
+
+#front-page{
+	width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+#title{
+    font-family: "Poppins";
+    position: absolute;
+    bottom: 0;
+    left: -10;
+    color: white;
+    z-index: 1;
+}
+#fieldset-form{
+	width: fit-content;
+	display: in-line;
+	font-family: "Poppins";
+	padding: 20px;
+	border-radius: 5px;
+}
+fieldset ul {
+	list-style: none;
+}
+#seccion{
+	display:flex;
+	margin: 0 auto;
+	padding: 20px;
+	width: fit-content;
+	justify-content: center;
+}
+
+
+
+input {
+	width: 350px;
+	height: 30px;
+	right: 0;
+
+}
+button {
+	width: 250px;
+	height: 40px;
+	font-family: "Poppins";
+	background: radial-gradient(#025159 0%,#35402D 100%);
+	color: #fff;
+}
 
 .seccion-sucursales {
 	width: 100%;
@@ -173,21 +146,35 @@ nav li a {
 }
 
 /* Paseos */
-aside {
-	font-family:"Poppins";
-	text-align: justify;
-	float:left;
-    font-size: 15px;
-    color:white;
-    padding: 30px;
-    background: radial-gradient(#025159 0%,#35402D 100%);
-    width:35%;
-    border-radius: 10px;
-    margin-left: 20px;
+#horarios{
+	display:flex;
+	justify-content: space-between;
+	width:1200px;
+	padding:20px;
+	border-radius: 10px;
+	margin: 0 auto;
 }
-
-aside ul{
-	list-style-type:circle;
+#container2{
+    display: flex;
+    flex-direction: column;
+    float:left;
+    width:60%;
+}
+#paseo{
+	height: 150px;
+	border-radius: 10px;
+}
+#paseo2{
+	height: 150px;
+	border-radius: 10px;
+}
+@font-face {
+  font-family: "MiFuente";
+  src: url("../../static/images/Knip.otf");
+}
+@font-face {
+  font-family: "MiFuente2";
+  src: url("../../static/images/Hind.ttf");
 }
 table {
 	font-family: "MiFuente2";
@@ -308,10 +295,27 @@ td {
 	cursor: pointer;
 	
 }
+/* Aside */
+aside {
+	font-family:"Poppins";
+	text-align: justify;
+	float:left;
+    font-size: 15px;
+    color:white;
+    padding: 30px;
+    background: radial-gradient(#025159 0%,#35402D 100%);
+    width:35%;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+aside ul{
+	list-style-type:circle;
+}
 /* Footer */
 footer {
 	/* Esta fuente deberia ser poppins*/
-  font-family: "MiFuente1";
+  font-family: "poppins" , "sans-serif";
   background-color: rgb(32, 36, 38);
   color: white;
   padding: 10px;
