@@ -1,4 +1,5 @@
 /*@charset "ISO-8859-1";*/
+/* Gobal */
 *{
     margin: 0px;
     padding: 0px;
@@ -88,6 +89,7 @@ button {
   height: 40%;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 nav ul {
   display: flex;
   justify-content: space-between;
@@ -208,7 +210,107 @@ td {
 	border-color:#BABDBF;
 	background-color: rgb(255, 255, 240);
 }
+/* Index */
+#index-container{
+	display: flex;
+	max-width: 1200px;
+	margin: 20px auto 20px auto;
+	font-family: "Poppins" , "sans-serif";
+}
+#index-articles{
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	max-width: 55.5%;
+	text-align: justify;
+	height: 500px;
+}
+#index-articles h2{
+	padding:10px;
+	background:radial-gradient(#025159 0%,#35402D 100%);
+	border-radius:5px;
+	color: white;
+	text-align:center;
+	left:0;
+	position:relative;
+}
+#index-articles article{
+	margin-top:10px;
+}
+/* Productos */
+#productos-container{
+	display: flex;
+	max-width:1200px;
+	margin: 20px auto;
+}
+#productos-container ol{
+	list-style: none;
+	width: 55.5%;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: 500px 500px;
+	gap: 15px;
+	margin: 0 auto;
+}
+.tarjeta{
+	font-family: "poppins" , "sans-serif";
+	box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
+-webkit-box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
+-moz-box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
+	background: #fafafa;
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+}
+.tarjeta img:hover{
+	max-width: 110%;
+	max-height: 110%;
+	transition: all .5s;
+}
+.tarjeta img{
+	max-width: 100%;
+	max-height: 100%;
+}
+.img-prod{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: #f0f0f0;
+	height: 250px;
+}
+.descripcion{
+	margin: auto;
+	text-align: left;
+	min-width: 250px;
+	
+}
+.descripcion h2{
+	font-family: "poppins" , "sans-serif";
+	margin: auto;
+	width:100%;
+	text-align: center;
+	color: white;
+	padding: 10px;
+	background: radial-gradient(#025159 0%,#35402D 100%);
+}
+.descripcion p{
+	margin: 10px 0;
+	margin-left: 20px;
+}
+.tarjeta button{
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	background: radial-gradient(#025159 0%,#35402D 100%);
+	border-radius: 5px;
+	margin-left:20px;
+	cursor: pointer;
+	
+}
+/* Footer */
 footer {
+	/* Esta fuente deberia ser poppins*/
   font-family: "MiFuente1";
   background-color: rgb(32, 36, 38);
   color: white;
