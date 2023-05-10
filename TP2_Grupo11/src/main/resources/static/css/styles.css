@@ -1,97 +1,64 @@
 /*@charset "ISO-8859-1";*/
-/* Gobal */
-*{
-    margin: 0px;
-    padding: 0px;
-}
-body {
-	padding-top: 2px;
-	background: linear-gradient(45deg, #F2F2F2 0%, #8C8C88 90%);
-	place-items: center;
-	width: 99%;
-  	margin: 0 auto;
-   }
-/*Consulta de Salud */
-#contenedor-consejos{
-	display: flex;
-	margin:20px auto;
-	
-}
-#content{
-	font-family: "Poppins", "sans-serif";
-	display:block;
-	width: 80%;
-	min-height: 500px;
-		box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
--webkit-box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
--moz-box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
-	background: #fafafa;
-	text-align: center;
-	padding: 20px;
-	border-radius: 10px;
-}
-#articulos{
-	display: block
-	justify-content: center;
-}
-.articulo{
-	text-align:justify;
-	max-width: 100%;
-	color:	#000;
-	margin-bottom: 15px;
-	margin-top: 15px;
-	padding: 25px;
-	border-left: 10px solid #3F7373;
-}
-.articulo ul, .articulo ol{
-	padding: 20px;
+/* GLOBAL */
+* {
+	margin: 0px;
+	padding: 0px;
 }
 
-/* Nav y footer*/
-#container{
+/* BODY */
+body {
+	font-family: "Poppins", "sans-serif";
+	font-size: 16px;
+	padding-top: 2px;
+	background-color: #8C8C88;
+	width: 99%;
+	margin: 0 auto;
+}
+
+.contenido {
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
+	margin: 20px 0;
+	width: 100%;
+}
+
+/* HEADER */
+header {
 	position: relative;
 	font-size: 50px;
 }
-#titulo {
-	font-family:"Poppins";
+
+header::after {
+	content: "";
 	position: absolute;
-	bottom: 0;
-	left: -10;
-	color: white;
-	z-index: 1;
-}
-#portada{
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-#container::after {
-  content: "";
-  position: absolute;
-  top: 60%;
-  left: 0;
-  width: 100%;
-  height: 40%;
-  background-color: rgba(0, 0, 0, 0.5);
+	top: 60%;
+	left: 0;
+	width: 100%;
+	height: 40%;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
+header img {
+	max-height: 300px;
+}
+
+/* NAV */
 nav ul {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
-  overflow: hidden;
-  background-color: rgb(32, 36, 38);
-  font-family:"Poppins";
+	display: flex;
+	justify-content: space-between;
+	list-style-type: none;
+	overflow: hidden;
+	background-color: rgb(32, 36, 38);
 }
 
 nav li {
-  float: left;
+	float: left;
 }
 
 nav li a {
 	font-weight: bold;
-    text-transform: uppercase;
-	font-family: Trebuchet MS, Arial, sans-serif,;
+	text-transform: uppercase;
 	display: block;
 	color: white;
 	text-align: center;
@@ -99,34 +66,184 @@ nav li a {
 	text-decoration: inherit;
 }
 
-/* Contacto*/
+/* HEADERS */
+h2 {
+	padding: 10px;
+	background: radial-gradient(#025159 0%, #35402D 100%);
+	border-radius: 5px;
+	color: white;
+	text-align: center;
+}
 
-#front-page{
+/* INDEX */
+#nosotros {
+	display: flex;
+	flex-direction: column;
+	max-width: 1200px;
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	max-width: 55.5%;
+	text-align: justify;
+	height: 500px;
+}
+
+#nosotros article {
+	margin-top: 10px;
+}
+
+/* PRODUCTOS */
+#productos-container {
+	max-width: 1200px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+}
+
+.tarjeta {
+	box-shadow: 1px 8px 11px 0px rgba(0, 0, 0, 0.76);
+	-webkit-box-shadow: 1px 8px 11px 0px rgba(0, 0, 0, 0.76);
+	-moz-box-shadow: 1px 8px 11px 0px rgba(0, 0, 0, 0.76);
+	background-color: #fafafa;
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.tarjeta img {
+	max-width: 100%;
+	max-height: 100%;
+	transition: all .5s;
+}
+
+.tarjeta img:hover {
+	transform: scale(1.2);
+}
+
+.img-prod {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 25px;
+	background: #f0f0f0;
+	height: 250px;
+}
+
+.descripcion {
 	width: 100%;
-  height: 400px;
-  object-fit: cover;
 }
 
-#title{
-    font-family: "Poppins";
-    position: absolute;
-    bottom: 0;
-    left: -10;
-    color: white;
-    z-index: 1;
+.descripcion h2 {
+	background: radial-gradient(#025159 0%, #35402D 100%);
+	padding: 10px;
+	text-align: center;
+	color: white;
+	border-radius: 0;
 }
-#fieldset-form{
+
+.descripcion p {
+	text-align: center;
+	padding: 10px 0;
+}
+
+.tarjeta button {
+	margin: 20px;
+	background: radial-gradient(#025159 0%, #35402D 100%);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-family: 'Poppins', sans-serif;
+}
+
+/* CONSEJOS DE SALUD */
+#contenedor-consejos {
+	display: flex;
+	margin: 20px auto;
+
+}
+
+#content {
+	display: block;
+	width: 80%;
+	min-height: 500px;
+	box-shadow: 1px 8px 11px 0px rgba(0, 0, 0, 0.76);
+	-webkit-box-shadow: 1px 8px 11px 0px rgba(0, 0, 0, 0.76);
+	-moz-box-shadow: 1px 8px 11px 0px rgba(0, 0, 0, 0.76);
+	background: #fafafa;
+	text-align: center;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+#articulos {
+	display: block;
+	justify-content: center;
+}
+
+.articulo {
+	text-align: justify;
+	max-width: 100%;
+	color: #000;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	padding: 25px;
+	border-left: 10px solid #3F7373;
+}
+
+.articulo ul,
+.articulo ol {
+	padding: 20px;
+}
+
+
+#titulo {
+	position: absolute;
+	bottom: 0;
+	left: -10;
+	color: white;
+	z-index: 1;
+}
+
+#portada {
+	width: 100%;
+	height: 300px;
+	object-fit: cover;
+}
+
+
+/* CONTACTO */
+
+#front-page {
+	width: 100%;
+	height: 400px;
+	object-fit: cover;
+}
+
+#title {
+	position: absolute;
+	bottom: 0;
+	left: -10;
+	color: white;
+	z-index: 1;
+}
+
+#fieldset-form {
 	width: fit-content;
 	display: in-line;
-	font-family: "Poppins";
 	padding: 20px;
 	border-radius: 5px;
 }
+
 fieldset ul {
 	list-style: none;
 }
-#seccion{
-	display:flex;
+
+#seccion {
+	display: flex;
 	margin: 0 auto;
 	padding: 20px;
 	width: fit-content;
@@ -141,19 +258,20 @@ input {
 	right: 0;
 
 }
+
 button {
 	width: 250px;
 	height: 40px;
-	font-family: "Poppins";
-	background: radial-gradient(#025159 0%,#35402D 100%);
+	background: radial-gradient(#025159 0%, #35402D 100%);
 	color: #fff;
 }
 
 .seccion-sucursales {
 	width: 100%;
-	font-family: 'Poppins';
 	max-width: 1200px;
-	margin: 40px auto;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 20px;
 }
 
 .sucursales-disponibles {
@@ -177,181 +295,76 @@ button {
 	padding-left: 20px;
 }
 
-/* Paseos */
-#horarios{
-	display:flex;
-	justify-content: space-between;
-	max-width:1200px;
-	padding:20px;
-	border-radius: 10px;
-	margin: 0 auto;
-}
-#container2{
-    display: flex;
-    flex-direction: column;
-    float:left;
-    width:60%;
-}
-#paseo{
-	height: 150px;
-	border-radius: 10px;
-}
-#paseo2{
-	height: 150px;
-	border-radius: 10px;
-}
-@font-face {
-  font-family: "MiFuente";
-  src: url("../../static/images/Knip.otf");
-}
-@font-face {
-  font-family: "MiFuente2";
-  src: url("../../static/images/Hind.ttf");
-}
-table {
-	font-family: "MiFuente2";
-	text-align:center;
-	width:100%;
-}
-th {
-	color:white;
-	border-width: 2px;
-	padding: 1px;
-	border-style: inset;
-	border-color:#BABDBF;
-	background-color: #3F7373;
-}
-td {
-	color:#025159;
-	border-width: 2px;
-	padding: 1px;
-	border-style: inset;
-	border-color:#BABDBF;
-	background-color: rgb(255, 255, 240);
-}
-/* Index */
-#index-container{
+/* PASEOS */
+#horarios {
 	display: flex;
+	justify-content: space-between;
 	max-width: 1200px;
-	margin: 20px auto 20px auto;
-	font-family: "Poppins" , "sans-serif";
-}
-#index-articles{
-	background-color: white;
 	padding: 20px;
 	border-radius: 10px;
-	max-width: 55.5%;
-	text-align: justify;
-	height: 500px;
-}
-#index-articles h2{
-	padding:10px;
-	background:radial-gradient(#025159 0%,#35402D 100%);
-	border-radius:5px;
-	color: white;
-	text-align:center;
-	left:0;
-	position:relative;
-}
-#index-articles article{
-	margin-top:10px;
-}
-/* Productos */
-#productos-container{
-	display: flex;
-	max-width:1200px;
-	margin: 20px auto;
-}
-#productos-container ol{
-	list-style: none;
-	width: 55.5%;
-	display: grid;
-	grid-template-columns: 50% 50%;
-	grid-template-rows: 500px 500px;
-	gap: 15px;
 	margin: 0 auto;
 }
-.tarjeta{
-	font-family: "poppins" , "sans-serif";
-	box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
--webkit-box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
--moz-box-shadow: 1px 8px 11px 0px rgba(0,0,0,0.76);
-	background: #fafafa;
+
+#container2 {
+	display: flex;
+	flex-direction: column;
+	float: left;
+	width: 60%;
+}
+
+#paseo {
+	height: 150px;
 	border-radius: 10px;
-	position: relative;
-	overflow: hidden;
 }
-.tarjeta img:hover{
-	max-width: 110%;
-	max-height: 110%;
-	transition: all .5s;
+
+#paseo2 {
+	height: 150px;
+	border-radius: 10px;
 }
-.tarjeta img{
-	max-width: 100%;
-	max-height: 100%;
-}
-.img-prod{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 25px;
-    background: #f0f0f0;
-	height: 250px;
-}
-.descripcion{
-	margin: auto;
-	text-align: left;
-	min-width: 250px;
-	
-}
-.descripcion h2{
-	font-family: "poppins" , "sans-serif";
-	margin: auto;
-	width:100%;
+
+table {
 	text-align: center;
+	width: 100%;
+}
+
+th {
+	color: white;
+	border-width: 2px;
+	padding: 1px;
+	border-style: inset;
+	border-color: #BABDBF;
+	background-color: #3F7373;
+}
+
+td {
+	color: #025159;
+	border-width: 2px;
+	padding: 1px;
+	border-style: inset;
+	border-color: #BABDBF;
+	background-color: rgb(255, 255, 240);
+}
+
+/* ASIDE */
+aside {
+	min-width: 500px;
+	max-width: 500px;
+	text-align: justify;
+	color: white;
+	padding: 30px;
+	background: radial-gradient(#025159 0%, #35402D 100%);
+	border-radius: 10px;
+	height: fit-content;
+}
+
+aside ul {
+	list-style-type: circle;
+}
+
+/* FOOTER */
+footer {
+	background-color: rgb(32, 36, 38);
 	color: white;
 	padding: 10px;
-	background: radial-gradient(#025159 0%,#35402D 100%);
+	text-align: center;
 }
-.descripcion p{
-	margin: 10px 0;
-	margin-left: 20px;
-}
-.tarjeta button{
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	background: radial-gradient(#025159 0%,#35402D 100%);
-	border-radius: 5px;
-	margin-left:20px;
-	cursor: pointer;
-	
-}
-/* Aside */
-aside {
-	font-family:"Poppins";
-	text-align: justify;
-	float:left;
-    font-size: 15px;
-    color:white;
-    padding: 30px;
-    background: radial-gradient(#025159 0%,#35402D 100%);
-    width:35%;
-    border-radius: 10px;
-    margin-left: 20px;
-    height: fit-content;
-}
-
-aside ul{
-	list-style-type:circle;
-}
-/* Footer */
-footer {
-	/* Esta fuente deberia ser poppins*/
-  font-family: "poppins" , "sans-serif";
-  background-color: rgb(32, 36, 38);
-  color: white;
-  padding: 10px;
-  text-align: center;
-}
-
