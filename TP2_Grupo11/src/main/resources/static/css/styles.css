@@ -16,12 +16,16 @@ body {
 }
 
 .contenido {
-	display: flex;
+	display: grid;
 	justify-content: space-between;
-	flex-wrap: nowrap;
+	/*flex-wrap: nowrap;*/
+	grid-template-columns:65% 30%;
 	gap: 30px;
 	margin: 20px 0;
 	width: 100%;
+}
+.contenido section{
+	width:70%;
 }
 
 /* HEADER */
@@ -287,35 +291,21 @@ button {
 }
 
 /* PASEOS */
-#horarios {
-	display: flex;
-	justify-content: space-between;
-	max-width: 1200px;
-	padding: 20px;
-	border-radius: 10px;
-	margin: 0 auto;
-}
-
-#container2 {
-	display: flex;
-	flex-direction: column;
-	float: left;
-	width: 60%;
-}
 
 #paseo {
-	height: 150px;
+	height: 25%;;
 	border-radius: 10px;
 }
 
 #paseo2 {
-	height: 150px;
+	height: 25%;
 	border-radius: 10px;
 }
 
 table {
 	text-align: center;
 	width: 100%;
+	font-size:10px;
 }
 
 th {
@@ -338,8 +328,8 @@ td {
 
 /* ASIDE */
 aside {
-	min-width: 500px;
-	max-width: 500px;
+	min-width: 30%;
+	max-width: 30%;
 	text-align: justify;
 	color: white;
 	padding: 30px;
