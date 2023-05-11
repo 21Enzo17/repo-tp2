@@ -7,55 +7,74 @@
 	<link rel="stylesheet" href="../static/css/styles.css">
 	</head>
 	<body>
-		<header>
-			<h1>Mascotas Barn</h1>
-			<img alt="Perro marron feliz" src="../static/images/Animales.jpg" title="Mascota Banner" width="100%">
-		</header>
-		<nav>
-			<ul>
-				<li><a href="index.html">Inicio</a></li>
-				<li><a href="Productos.html">Productos</a></li>
-				<li><a href="3-Consejos_de_salud.html">Consejos de Salud</a></li>
-				<li><a href="Servicio_de_paseo.html">Servicio de paseo</a></li>
-				<li><a href="sucursales.html">Sucursales</a></li>
-				<li><a href="Contacto.html">Contacto</a></li>
-			</ul>
-		</nav>
-		<section>
+		<div>
+			<header>
+				<div id="container">
+					<div id="titulo"><h1>Mascotas Barn</h1></div>
+					<div>
+						<img id="portada" alt="Perro marron feliz" src="../static/images/Perro-portada2.jpg" title="Mascota Banner" width="100%">
+					</div>
+				</div>
+			</header>
+			<nav>
+				<ul>
+					<li><a href="index.html">Inicio</a></li>
+					<li><a href="Productos.html">Productos</a></li>
+					<li><a href="3-Consejos_de_salud.html">Consejos de Salud</a></li>
+					<li><a href="Servicio_de_paseo.html">Servicio de paseo</a></li>
+					<li><a href="sucursales.html">Sucursales</a></li>
+					<li><a href="Contacto.html">Contacto</a></li>
+				</ul>
+			</nav>
+		</div>
+		<section id="productos-container">
 			<ol>
-				<li>
-					<img src="../static/images/Maintance22kg.jpg" alt="Maintance Criadores" width="50%">
+				<li class="tarjeta">
+				<div class="img-prod">
+					<img src="../static/images/MaintanceFondo.png" alt="Maintance Criadores" ">
+				</div>
+				<div class="descripcion">
 					<h2>Maintance Criadores</h2>
 					<p>Bolsa alimento perros de 22kg</p>
-					<p>Precio: $100</p>
-					<button>Agregar al carrito</button>
-				</li>
-				<li>
-					<img src="../static/images/juguete-para-gato.jpg" alt="Juguete para Gato" width="50%">
+					<p>Precio: <b>$100</b></p>
+				</div>
+				<button>Agregar al carrito</button>
+			</li>
+			<li class="tarjeta">
+				<div class="img-prod">
+					<img src="../static/images/juguete-gato.png" alt="Juguete para Gato" ">
+				</div>
+				<div class="descripcion">
 					<h2>Juguete para gatos</h2>
-					<p>Raton para gatos, marcca Robot</p>
-					<p>Precio: $50</p>
-					<button>Agregar al carrito</button>
-				</li>
-				<li>
-					<img src="../static/images/peces-acuarios-pequenos.png" alt="Acuario" width="50%" >
+					<p>Raton para gatos, marca Smart</p>
+					<p>Precio: <b>$50</b></p>
+				</div>
+				<button>Agregar al carrito</button>
+			</li>
+			<li class="tarjeta">
+				<div class="img-prod">
+					<img src="../static/images/peces-acuarios-pequenos.png" alt="Acuario" ">
+				</div>
+				<div class="descripcion">
 					<h2>Acuario</h2>
 					<p>Acuario marca Acme, 50lts</p>
-					<p>Precio: $150</p>
-					<button>Agregar al carrito</button>
-				</li>
+					<p>Precio: <b>$150</b></p>
+				</div>
+				<button>Agregar al carrito</button>
+			</li>
 			</ol>
-		</section>
-		<aside>
-	      <h2>Otras recomendaciones para el cuidado de mascotas</h2>
-	      <ul>
-	        <li>Alimenta a tu mascota con una dieta equilibrada y adecuada a su edad y tamaño.</li>
-	        <li>Mantén a tu mascota hidratada y asegúrate de tener siempre agua fresca disponible.</li>
-	        <li>Lleva a tu mascota al veterinario regularmente para chequeos y vacunas.</li>
-	        <li>Proporciona a tu mascota suficiente ejercicio y estimulación mental.</li>
-	        <li>Proporciona a tu mascota un lugar cómodo y seguro para descansar.</li>
-	      </ul>
-	    </aside>
+		
+		   		<aside>
+		     		 <h2>Otras recomendaciones</h2>
+		     			 <ul>
+					        <li>Aliméntala con una dieta equilibrada y adecuada a su edad y tamaño.</li>
+					        <li>Mantenla hidratada y asegúrate de tener siempre agua fresca disponible.</li>
+					        <li>Asegúrate de ir al veterinario regularmente para chequeos y vacunas.</li>
+					        <li>Proporciona suficiente ejercicio y estimulación mental.</li>
+					        <li>Proporciónale un lugar cómodo y seguro para descansar.</li>
+		      			</ul>
+		   		</aside>
+	    </section>
 		<footer>
 			<p>APU 2023 &copy; Copyright, Mascotas Barn, Diseñado por Grupo11 , SS Jujuy - Argentina</p>
 		</footer>
