@@ -1,70 +1,42 @@
 <!DOCTYPE html>
-<html lang="es">
-
-<head>
-	<meta charset="UTF-8">
-	<title>Inicio</title>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="../static/css/styles.css">
-</head>
-
-<body>
-	<header>
-		<div id="titulo">
-			<h1>Mascotas Barn</h1>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Inicio</title>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" th:href="@{/css/styles.css}">
+	</head>
+	<body>
+		<header th:replace="layouts/header :: header"></header>
+		<nav th:replace="layouts/nav :: nav"></nav>
+		<div class="contenido">
+			<section id="nosotros">
+				<h2>Objetivos de la empresa</h2>
+				<article>
+					<h3>Nuestro objetivo</h3>
+					<p>En nuestro negocio de mascotas, nos esforzamos por brindar el
+						mejor cuidado posible para tus amigos peludos. Nuestro objetivo es
+						ofrecer una experiencia excepcional para tus mascotas y para ti como
+						dueño, para que puedas estar seguro de que tu mascota está en buenas
+						manos.</p>
+				</article>
+				<article>
+					<h3>Servicios que ofrecemos</h3>
+					<p>Ofrecemos una amplia variedad de servicios para satisfacer
+						todas las necesidades de tus mascotas, incluyendo: cuidado de día,
+						alojamiento nocturno, servicios de aseo, paseos diarios,
+						entrenamiento y mucho más.</p>
+				</article>
+				<article>
+					<h3>Nuestro equipo</h3>
+					<p>Contamos con un equipo altamente capacitado y dedicado que ama
+						a los animales tanto como tú. Nos aseguramos de que todos nuestros
+						empleados estén entrenados para ofrecer el mejor cuidado posible a
+						tus mascotas.</p>
+				</article>
+			</section>
+			<aside th:replace="layouts/aside :: aside"></aside>
 		</div>
-		<img id="portada" alt="Perro marron feliz" src="../static/images/portada.jpg" title="Mascota Banner">
-	</header>
-	<nav>
-		<ul>
-			<li><a href="index.html">Inicio</a></li>
-			<li><a href="producto.html">Productos</a></li>
-			<li><a href="consejos.html">Consejos de Salud</a></li>
-			<li><a href="paseos.html">Servicio de paseo</a></li>
-			<li><a href="sucursales.html">Sucursales</a></li>
-			<li><a href="contactos.html">Contacto</a></li>
-		</ul>
-	</nav>
-	<div class="contenido">
-		<section id="nosotros">
-			<h2>Objetivos de la empresa</h2>
-			<article>
-				<h3>Nuestro objetivo</h3>
-				<p>En nuestro negocio de mascotas, nos esforzamos por brindar el
-					mejor cuidado posible para tus amigos peludos. Nuestro objetivo es
-					ofrecer una experiencia excepcional para tus mascotas y para ti como
-					dueño, para que puedas estar seguro de que tu mascota está en buenas
-					manos.</p>
-			</article>
-			<article>
-				<h3>Servicios que ofrecemos</h3>
-				<p>Ofrecemos una amplia variedad de servicios para satisfacer
-					todas las necesidades de tus mascotas, incluyendo: cuidado de día,
-					alojamiento nocturno, servicios de aseo, paseos diarios,
-					entrenamiento y mucho más.</p>
-			</article>
-			<article>
-				<h3>Nuestro equipo</h3>
-				<p>Contamos con un equipo altamente capacitado y dedicado que ama
-					a los animales tanto como tú. Nos aseguramos de que todos nuestros
-					empleados estén entrenados para ofrecer el mejor cuidado posible a
-					tus mascotas.</p>
-			</article>
-		</section>
-		<aside>
-			<h2>Otras recomendaciones</h2>
-			<ul>
-				<li>Aliméntala con una dieta equilibrada y adecuada a su edad y tamaño.</li>
-				<li>Mantenla hidratada y asegúrate de tener siempre agua fresca disponible.</li>
-				<li>Asegúrate de ir al veterinario regularmente para chequeos y vacunas.</li>
-				<li>Proporciona suficiente ejercicio y estimulación mental.</li>
-				<li>Proporciónale un lugar cómodo y seguro para descansar.</li>
-			</ul>
-		</aside>
-	</div>
-	<footer>
-		<p>APU 2023 &copy; Copyright, Mascotas Barn, Diseñado por Grupo11 , SS Jujuy - Argentina</p>
-	</footer>
-</body>
-
+		<footer th:replace="layouts/footer :: footer"></footer>
+	</body>
 </html>
