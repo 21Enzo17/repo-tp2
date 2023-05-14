@@ -14,44 +14,46 @@
 				<h2>Nuevo Producto</h2>
 				<fieldset id="fieldset-form">
 					<legend> <b>Agregar Producto</b> </legend>
-					<form th:Object="${Producto}" th:action="@{/nuevo_producto}" method="Post">
+					<form th:action="@{/nuevo_producto}" th:object="${formProducto}" method="post">
 						<div>
 							<label>
 								Nombre del Producto
 							</label>
 							<br>
-							<input th:field="*{nombre}" type="text" placeholder="Ingrese el producto">
+							<input type="text" placeholder="Ingrese el producto" th:field="*{nombre}">
 						</div>
 						<div>
 							<label>
 								Categoria
 							</label>
 							<br>
-							<input th:field="*{categoria}" type="text" placeholder="Ingrese la categoria">
+							<input type="text" placeholder="Ingrese la categoria" th:field="*{categoria}">
 						</div>
 						<div>
 							<label>
 								Código del Producto
 							</label>
 							<br>
-							<input th:field="*{cod}" type="number" placeholder="Ingrese el código">
+							<input  type="number" placeholder="Ingrese el código" th:field="*{cod}">
 						</div>
 						<div>
 							<label>
 								Precio
 							</label>
 							<br>
-							<input th:field="*{precio}" type="number" placeholder="Ingrese el Precio">
+							<input  type="number" placeholder="Ingrese el Precio" th:field="*{precio}">
 						</div>
 						<div>
 							<label>
 								Descuento
 							</label>
 							<br>
-							<input th:field="*{descuento}" type="number" placeholder="Ingrese el Descuento">
+							<input  type="number" min="0" max="100" placeholder="Ingrese el Descuento" th:field="*{descuento}">
 						</div>
 						<button type="submit">Enviar</button>
 					</form>
+					<p th:if="${mensaje}" th:text="${mensaje}"></p>
+					<p th:text="${lista}"></p>
 				</fieldset>
 			</section>
 			<aside th:replace="layouts/aside :: aside"></aside>

@@ -63,6 +63,19 @@ public class Producto {
     public float calcularDescuento () {
         return this.precio - (this.precio * this.descuento)/100;
     }
-    
 
+    @Override
+    public String toString() {
+        return "{" +
+            " nombre='" + getNombre() + "'" +
+            ", cod='" + getCod() + "'" +
+            ", precio='" + getPrecio() + "'" +
+            ", categoria='" + getCategoria() + "'" +
+            ", descuento='" + getDescuento() + "'" +
+            "}";
+    }
+    
+    public boolean validarProducto(){
+        return this.nombre.length()>0 && this.categoria.length()>0 && this.cod!=0 && this.precio!=0;
+    }
 }
