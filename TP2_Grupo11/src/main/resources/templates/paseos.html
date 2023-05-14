@@ -1,52 +1,39 @@
 <!DOCTYPE html>
-<html lang='es'>
-	<head >
-		<meta charset="UTF-8">
-		<title>Servicio de Paseo</title>
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="../static/css/styles.css">
-	</head>
-	
-	<body>
-		<header>
-		<div id="titulo">
-			<h1>Mascotas Barn</h1>
-		</div>
-		<img id="portada" alt="Perro marron feliz" src="../static/images/portada.jpg" title="Mascota Banner">
-	</header>
-	<nav>
-		<ul>
-			<li><a href="index.html">Inicio</a></li>
-			<li><a href="producto.html">Productos</a></li>
-			<li><a href="consejos.html">Consejos de Salud</a></li>
-			<li><a href="paseos.html">Servicio de paseo</a></li>
-			<li><a href="sucursales.html">Sucursales</a></li>
-			<li><a href="contactos.html">Contacto</a></li>
-		</ul>
-	</nav>
-		<div class="contenido">
-			<section class="paseo-general">
-				<h2 id="horario-paseo">Horario de Paseos</h2>
-				<div><img class="paseo" alt="mascotasPaseando" src="../static/images/paseo2.jpg" title="pet2" ></div>
-				<div>
-				<table id="t1" >
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Servicio de Paseo</title>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+	<header th:replace="layouts/header :: header"></header>
+	<nav th:replace="layouts/nav :: nav"></nav>
+	<div class="contenido">
+		<section class="paseo-general">
+			<h2 id="horario-paseo">Horario de Paseos</h2>
+			<div><img class="paseo" alt="mascotasPaseando" th:src="@{/images/paseo2.jpg}" title="pet2"></div>
+			<div>
+				<table id="t1">
 					<tr>
-						<th >Día</th>
-						<th >Lunes</th>
-						<th >Martes</th>
-						<th >Miércoles</th>
-						<th >Jueves</th>
-						<th >Viernes</th>
-						<th >Sábado</th>			
+						<th>Día</th>
+						<th>Lunes</th>
+						<th>Martes</th>
+						<th>Miércoles</th>
+						<th>Jueves</th>
+						<th>Viernes</th>
+						<th>Sábado</th>
 					</tr>
 					<tr>
-						<td >Horario</td>
+						<td>Horario</td>
 						<td>9 a 12 - 16 a 18</td>
 						<td>9 a 12 - 16 a 18</td>
 						<td>9 a 12 - 16 a 18</td>
 						<td>9 a 12 - 16 a 18</td>
 						<td>9 a 12 - 16 a 18</td>
-						<td>9 a 12 - 16 a 18</td>			
+						<td>9 a 12 - 16 a 18</td>
 					</tr>
 					<tr>
 						<td>Paseador</td>
@@ -55,25 +42,15 @@
 						<td>Juan Pérez</td>
 						<td>María Gómez</td>
 						<td>Lucas Días</td>
-						<td>Roberto Vásquez</td>			
+						<td>Roberto Vásquez</td>
 					</tr>
 				</table>
-				</div>
-					<div><img class="paseo" alt="mascotasPaseando" src="../static/images/paseo.jpg" title="pet1" ></div>
-		   	</section>
-		   		<aside>
-		     		 <h2>Otras recomendaciones</h2>
-		     			 <ul>
-					        <li>Aliméntala con una dieta equilibrada y adecuada a su edad y tamaño.</li>
-					        <li>Mantenla hidratada y asegúrate de tener siempre agua fresca disponible.</li>
-					        <li>Asegúrate de ir al veterinario regularmente para chequeos y vacunas.</li>
-					        <li>Proporciona suficiente ejercicio y estimulación mental.</li>
-					        <li>Proporciónale un lugar cómodo y seguro para descansar.</li>
-		      			</ul>
-		   		</aside>
-	   		</div>
-		<footer>
-			<p>APU 2023 &copy; Copyright, Mascotas Barn, Diseñado por Grupo11 , SS Jujuy - Argentina</p>
-		</footer>
-	</body>
+			</div>
+			<div><img class="paseo" alt="mascotasPaseando" th:src="@{/images/paseo.jpg}" title="pet1"></div>
+		</section>
+		<aside th:replace="layouts/aside :: aside"></aside>
+	</div>
+	<footer th:replace="layouts/footer :: footer"></footer>
+</body>
+
 </html>
