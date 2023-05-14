@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Nuevo Producto</title>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" th:href="@{/css/styles.css}">
+	</head>
+	<body>
+		<header th:replace="layouts/header :: header"></header>
+		<nav th:replace="layouts/nav :: nav"></nav>
+		<div class="contenido">
+			<section id="seccion">
+				<h2>Nuevo Producto</h2>
+				<fieldset id="fieldset-form">
+					<legend> <b>Agregar Producto</b> </legend>
+					<form th:Object="${Producto}" th:action="@{/nuevo_producto}" method="Post">
+						<div>
+							<label>
+								Nombre del Producto
+							</label>
+							<br>
+							<input th:field="*{nombre}" type="text" placeholder="Ingrese el producto">
+						</div>
+						<div>
+							<label>
+								Categoria
+							</label>
+							<br>
+							<input th:field="*{categoria}" type="text" placeholder="Ingrese la categoria">
+						</div>
+						<div>
+							<label>
+								Código del Producto
+							</label>
+							<br>
+							<input th:field="*{cod}" type="number" placeholder="Ingrese el código">
+						</div>
+						<div>
+							<label>
+								Precio
+							</label>
+							<br>
+							<input th:field="*{precio}" type="number" placeholder="Ingrese el Precio">
+						</div>
+						<div>
+							<label>
+								Descuento
+							</label>
+							<br>
+							<input th:field="*{descuento}" type="number" placeholder="Ingrese el Descuento">
+						</div>
+						<button type="submit">Enviar</button>
+					</form>
+				</fieldset>
+			</section>
+			<aside th:replace="layouts/aside :: aside"></aside>
+		</div>
+		<footer th:replace="layouts/footer :: footer"></footer>
+	</body>
+</html>
