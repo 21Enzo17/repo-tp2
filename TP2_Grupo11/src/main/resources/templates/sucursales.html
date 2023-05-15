@@ -7,8 +7,8 @@
 		<link rel="stylesheet" th:href="@{/css/styles.css}">
 	</head>
 	<body>
-		<header th:replace="layouts/header :: header"></header>
-		<nav th:replace="layouts/nav :: nav"></nav>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
 		<div class="contenido">
 			<section class="seccion-sucursales">
 				<h2>Sucursales</h2>
@@ -57,8 +57,8 @@
 					</div>
 				</div>
 			</section>
-			<aside th:replace="layouts/aside :: aside"></aside>
+			<aside th:replace="~{layouts/aside :: aside}"></aside>
 		</div>
-	    <footer th:replace="layouts/footer :: footer"></footer>
+	    <footer th:replace="~{layouts/footer :: footer}"></footer>
 	</body>
 </html>

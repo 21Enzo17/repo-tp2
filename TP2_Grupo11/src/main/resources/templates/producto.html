@@ -9,8 +9,8 @@
 </head>
 
 <body>
-	<header th:replace="layouts/header :: header"></header>
-	<nav th:replace="layouts/nav :: nav"></nav>
+	<header th:replace="~{layouts/header :: header}"></header>
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
 	<div class="contenido">
 		<section class="productos-principal">
 			<h2>Productos</h2>
@@ -61,9 +61,9 @@
 				</article>
 			</div>
 		</section>
-		<aside th:replace="layouts/aside :: aside"></aside>
+		<aside th:replace="~{layouts/aside :: aside}"></aside>
 	</div>
-	<footer th:replace="layouts/footer :: footer"></footer>
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
 
 </body>
 

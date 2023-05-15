@@ -2,10 +2,8 @@ package ar.edu.unju.fi.Listas;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ar.edu.unju.fi.model.Producto;
-import java.util.Objects;
-
+// quite java util objects
 public class ListaProductos {
     private List<Producto> productos;
 
