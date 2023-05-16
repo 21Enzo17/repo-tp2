@@ -6,19 +6,21 @@ public class Producto {
     private float precio;
     private String categoria;
     private int descuento;
+    private String imagen;
+
 
 
     public Producto() {
     }
 
-    public Producto(String nombre, int cod, float precio, String categoria, int descuento) {
+    public Producto(String nombre, int cod, float precio, String categoria, int descuento, String imagen) {
         this.nombre = nombre;
         this.cod = cod;
         this.precio = precio;
         this.categoria = categoria;
         this.descuento = descuento;
+        this.imagen = imagen;
     }
-    
 
     public String getNombre() {
         return this.nombre;
@@ -35,6 +37,45 @@ public class Producto {
     public void setCod(int cod) {
         this.cod = cod;
     }
+
+    public String getImagen() {
+        return this.imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public Producto nombre(String nombre) {
+        setNombre(nombre);
+        return this;
+    }
+
+    public Producto cod(int cod) {
+        setCod(cod);
+        return this;
+    }
+
+    public Producto precio(float precio) {
+        setPrecio(precio);
+        return this;
+    }
+
+    public Producto categoria(String categoria) {
+        setCategoria(categoria);
+        return this;
+    }
+
+    public Producto descuento(int descuento) {
+        setDescuento(descuento);
+        return this;
+    }
+
+    public Producto imagen(String imagen) {
+        setImagen(imagen);
+        return this;
+    }
+   
 
     public float getPrecio() {
         return this.precio;

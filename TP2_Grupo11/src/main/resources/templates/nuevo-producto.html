@@ -14,7 +14,7 @@
 				<h2>Nuevo Producto</h2>
 				<fieldset id="fieldset-form">
 					<legend> <b>Agregar Producto</b> </legend>
-					<form th:action="@{/nuevo_producto}" th:object="${formProducto}" method="post">
+					<form th:action="@{/producto/nuevo-producto}" th:object="${formProducto}" method="post">
 						<div>
 							<label>
 								Nombre del Producto
@@ -49,6 +49,13 @@
 							</label>
 							<br>
 							<input  type="number" min="0" max="100" placeholder="Ingrese el Descuento" th:field="*{descuento}">
+						</div>
+						<div>
+							<label>
+								Imagen
+							</label>
+							<br>
+							<input  type="text" placeholder="Ingrese el url de la imagen" th:field="*{imagen}">
 						</div>
 						<button type="submit">Enviar</button>
 					</form>
