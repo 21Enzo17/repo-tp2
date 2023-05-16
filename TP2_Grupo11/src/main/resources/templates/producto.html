@@ -28,7 +28,11 @@
 						<p>Precio: <b>$<span th:text="${prod.precio}"></span></b></p>
 						<p>Con Descuento: <b>$<span th:text="${prod.calcularDescuento()}"></span></b></p>
 					</div>
-					<button>Agregar al carrito</button>
+					<button class="agregar-carrito">Agregar al carrito</button>
+					<div class="modificar-eliminar">
+						<button class="modificar"><a href=""><i class="bi bi-pencil-square"></i></a></button>
+						<button class="eliminar"><a th:href="@{/producto/eliminar-producto/}+${prod.cod}"><i class="bi bi-x-circle-fill"></i></a></button>
+					</div>
 				</article>
 			</div>
 		</section>

@@ -107,6 +107,7 @@ h2 {
 }
 
 /* PRODUCTOS */
+
 #titulo-producto{
 	background: none;
 	padding: 0;
@@ -199,7 +200,7 @@ h2 {
 	padding: 10px 0;
 }
 
-.tarjeta button {
+.agregar-carrito {
 	margin: 20px;
 	background: radial-gradient(#025159 0%, #35402D 100%);
 	color: white;
@@ -208,7 +209,37 @@ h2 {
 	cursor: pointer;
 	font-family: 'Poppins', sans-serif;
 }
-
+.modificar-eliminar{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	gap: 10px;
+}
+.modificar{
+	width: 40px;
+	font-size: 20px;
+	padding: 5px;
+	background: green;
+	color: white;
+	border-radius: 5px;
+	margin: 0;
+	margin-bottom: 10px;
+}
+.modificar a{
+	color: #fff;
+}
+.eliminar{
+	width: 40px;
+	font-size: 20px;
+	padding: 5px;
+	background: red;
+	color: white;
+	border-radius: 5px;
+	margin: 0;
+}
+.eliminar a{
+	color: #fff;
+}
 /* CONSEJOS DE SALUD */
 #contenedor-consejos {
 	display: flex;
