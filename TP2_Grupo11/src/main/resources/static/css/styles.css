@@ -219,7 +219,7 @@ h2 {
 	width: 40px;
 	font-size: 20px;
 	padding: 5px;
-	background: green;
+	background: #21bb41;
 	color: white;
 	border-radius: 5px;
 	margin: 0;
@@ -232,7 +232,7 @@ h2 {
 	width: 40px;
 	font-size: 20px;
 	padding: 5px;
-	background: red;
+	background: #f14b25;
 	color: white;
 	border-radius: 5px;
 	margin: 0;
@@ -325,6 +325,9 @@ input {
 	height: 30px;
 	right: 0;
 	margin-bottom: 10px;
+}
+input::placeholder{
+	padding: 10px;
 }
 textarea{
 	resize: none;

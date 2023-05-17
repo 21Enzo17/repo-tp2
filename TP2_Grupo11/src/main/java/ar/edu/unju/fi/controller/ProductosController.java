@@ -6,14 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.fi.Listas.ListaProductos;
 import ar.edu.unju.fi.model.Producto;
+
 @Controller
 @RequestMapping("/producto")
 public class ProductosController {
     ListaProductos listaProductos = new ListaProductos();
+    
     // String nombre, int cod, float precio, String categoria, int descuento, String imagen
     
     @GetMapping("/listado")
@@ -21,7 +24,6 @@ public class ProductosController {
         model.addAttribute("listaProductos", listaProductos.getProductos());
         return "/producto";
     }
-
     @GetMapping("/nuevo-producto")
     public String getNuevoProductoPage(Model model){
         Producto formProducto = new Producto();
@@ -30,15 +32,11 @@ public class ProductosController {
     }
 
     @PostMapping("/nuevo-producto")
-    public String crearProducto(@ModelAttribute("formProducto")Producto formProducto, Model model){
-        listaProductos.addProductos(formProducto);
-        if (formProducto.validarProducto()){
-            model.addAttribute("mensaje", "Se agrego correctamente");
-            model.addAttribute("lista", listaProductos);
-            return "redirect:/producto/listado";
-        }
-        model.addAttribute("mensaje", "Error no se agrego el producto");
-        return "/nuevo-producto";
+    public ModelAndView crearProducto(@ModelAttribute("formProducto")Producto formProducto){
+        ModelAndView modelView = new ModelAndView("producto");
+        listaProductos.getProductos().add(formProducto);
+        modelView.addObject("listaProductos", listaProductos.getProductos());
+        return modelView;
     }
 
     @GetMapping("/eliminar-producto/{codigo}")
@@ -52,4 +50,29 @@ public class ProductosController {
         model.addAttribute("listaProductos", listaProductos.getProductos());
         return "redirect:/producto/listado";
     }
+    @GetMapping("/editar-producto/{codigo}")
+    public String editarProducto(@PathVariable(value="codigo")int codigo,Model model){
+        for(Producto producto:listaProductos.getProductos()){
+            if(producto.getCod()==codigo){
+                model.addAttribute("encontrado", producto);
+                break;
+            }
+        }
+        return "/modificar-producto";
+    }
+    @PostMapping("modificar-producto")
+    public String modificarLista(@ModelAttribute("encontrado")Producto modificado){
+        for(Producto producto:listaProductos.getProductos()){
+            if(modificado.getCod()==producto.getCod()){
+                producto.setNombre(modificado.getNombre());
+                producto.setCategoria(modificado.getCategoria());
+                producto.setDescuento(modificado.getDescuento());
+                producto.setImagen(modificado.getImagen());
+                producto.setPrecio(modificado.getPrecio());
+                break;
+            }
+        }
+        return "redirect:/producto/listado";
+    }
+
 }
