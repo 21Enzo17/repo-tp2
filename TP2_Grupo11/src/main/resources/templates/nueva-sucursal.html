@@ -20,28 +20,28 @@
             Dirección
           </label>
           <br>
-          <input type="text" placeholder="Ingrese dirección" th:field="*{direccion}">
+          <input type="text" placeholder="Ingrese dirección" th:field="*{direccion}" required>
         </div>
         <div>
           <label>
             Telefono
           </label>
           <br>
-          <input type="tel" placeholder="Ingrese telefono" th:field="*{telefono}">
+          <input type="tel" placeholder="Ingrese telefono" th:field="*{telefono}" required>
         </div>
         <div>
           <label>
             Mail
           </label>
           <br>
-          <input  type="email" placeholder="Ingrese mail" th:field="*{mail}">
+          <input  type="email" placeholder="Ingrese mail" th:field="*{mail}" required>
         </div>
         <div>
           <label>
             Horario
           </label>
           <br>
-          <textarea placeholder="Ingrese el horario" th:field="*{horarioAtencion}"></textarea>
+          <textarea placeholder="Ingrese el horario" th:field="*{horarioAtencion}" required></textarea>
         </div>
         <button type="submit">Enviar</button>
       </form>

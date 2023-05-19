@@ -15,12 +15,22 @@ import org.springframework.web.servlet.ModelAndView;
 public class SucursalesController {
     ListaSucursal listaSucursales = new ListaSucursal();
 
+    /**
+     * Método que muestra la página de sucursales
+     * @param model
+     * @return sucursales.html
+     */
     @GetMapping("/listado")
     public String getSucursales(Model model){
         model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
         return "sucursales";
     }
 
+    /**
+     * Método que muestra la página para crear una nueva sucursal
+     * @param model
+     * @return nueva-sucursal.html
+     */
     @GetMapping("/nueva-sucursal")
     public String getNuevaSucursalPage(Model model){
         Sucursal formSucursal = new Sucursal();
@@ -28,6 +38,11 @@ public class SucursalesController {
         return "nueva-sucursal";
     }
 
+    /**
+     * Método que crea una nueva sucursal y la agrega a la lista
+     * @param formSucursal
+     * @return sucursales.html
+     */
     @PostMapping("/nueva-sucursal")
     public ModelAndView crearSucursal(Sucursal formSucursal){
         ModelAndView modelView = new ModelAndView("sucursales");
@@ -36,6 +51,12 @@ public class SucursalesController {
         return modelView;
     }
 
+    /**
+     * Método que elimina una sucursal de la lista según su dirección
+     * @param direccion
+     * @param model
+     * @return sucursales.html
+     */
     @GetMapping("/eliminar-sucursal/{direccion}")
     public String eliminarSucursal(@PathVariable(value="direccion")String direccion, Model model){
         for(Sucursal sucursal:listaSucursales.getListaSucursales()){
@@ -48,6 +69,12 @@ public class SucursalesController {
         return "redirect:/sucursales/listado";
     }
 
+    /**
+     * Método que muestra la página para editar una sucursal
+     * @param direccion
+     * @param model
+     * @return modificar-sucursal.html
+     */
     @GetMapping("/editar-sucursal/{direccion}")
     public String editarSucursal(@PathVariable(value="direccion")String direccion, Model model){
         for(Sucursal sucursal:listaSucursales.getListaSucursales()){
@@ -59,6 +86,11 @@ public class SucursalesController {
         return "modificar-sucursal";
     }
 
+    /**
+     * Método que modifica una sucursal de la lista según su dirección
+     * @param sucursalEditado
+     * @return sucursales.html
+     */
     @PostMapping("/editar-sucursal")
     public ModelAndView modificarSucursal(Sucursal sucursalEditado){
         ModelAndView modelView = new ModelAndView("sucursales");
