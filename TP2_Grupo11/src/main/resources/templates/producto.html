@@ -1,37 +1,23 @@
 <!DOCTYPE html>
-<html lang='es'>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Productos</title>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="../static/css/styles.css">
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 
 <body>
-	<header>
-		<div id="titulo">
-			<h1>Mascotas Barn</h1>
-		</div>
-		<img id="portada" alt="Perro marron feliz" src="../static/images/portada.jpg" title="Mascota Banner">
-	</header>
-	<nav>
-		<ul>
-			<li><a href="index.html">Inicio</a></li>
-			<li><a href="producto.html">Productos</a></li>
-			<li><a href="consejos.html">Consejos de Salud</a></li>
-			<li><a href="paseos.html">Servicio de paseo</a></li>
-			<li><a href="sucursales.html">Sucursales</a></li>
-			<li><a href="contactos.html">Contacto</a></li>
-		</ul>
-	</nav>
+	<header th:replace="layouts/header :: header"></header>
+	<nav th:replace="layouts/nav :: nav"></nav>
 	<div class="contenido">
 		<section class="productos-principal">
 			<h2>Productos</h2>
 			<div id="productos-container">
 				<article class="tarjeta">
 					<div class="img-prod">
-						<img src="../static/images/MaintanceFondo.png" alt="Maintance Criadores">
+						<img th:src="@{/images/MaintanceFondo.png}" alt="Maintance Criadores">
 					</div>
 					<div class="descripcion">
 						<h3>Maintance Criadores</h3>
@@ -42,7 +28,7 @@
 				</article>
 				<article class="tarjeta">
 					<div class="img-prod">
-						<img src="../static/images/juguete-gato.png" alt="Juguete para Gato">
+						<img th:src="@{/images/juguete-gato.png}" alt="Juguete para Gato">
 					</div>
 					<div class="descripcion">
 						<h3>Juguete para gatos</h3>
@@ -53,7 +39,7 @@
 				</article>
 				<article class="tarjeta">
 					<div class="img-prod">
-						<img src="../static/images/peces-acuarios-pequenos.png" alt="Acuario">
+						<img th:src="@{/images/peces-acuarios-pequenos.png}" alt="Acuario">
 					</div>
 					<div class="descripcion">
 						<h3>Acuario</h3>
@@ -64,7 +50,7 @@
 				</article>
 				<article class="tarjeta">
 					<div class="img-prod">
-						<img src="../static/images/nutrique.png" alt="Maintance Criadores">
+						<img th:src="@{/images/nutrique.png}" alt="Maintance Criadores">
 					</div>
 					<div class="descripcion">
 						<h3>Nutrique</h3>
@@ -75,20 +61,9 @@
 				</article>
 			</div>
 		</section>
-		<aside>
-			<h2>Otras recomendaciones</h2>
-			<ul>
-				<li>Aliméntala con una dieta equilibrada y adecuada a su edad y tamaño.</li>
-				<li>Mantenla hidratada y asegúrate de tener siempre agua fresca disponible.</li>
-				<li>Asegúrate de ir al veterinario regularmente para chequeos y vacunas.</li>
-				<li>Proporciona suficiente ejercicio y estimulación mental.</li>
-				<li>Proporciónale un lugar cómodo y seguro para descansar.</li>
-			</ul>
-		</aside>
+		<aside th:replace="layouts/aside :: aside"></aside>
 	</div>
-	<footer>
-		<p>APU 2023 &copy; Copyright, Mascotas Barn, Diseñado por Grupo11 , SS Jujuy - Argentina</p>
-	</footer>
+	<footer th:replace="layouts/footer :: footer"></footer>
 
 </body>
 
