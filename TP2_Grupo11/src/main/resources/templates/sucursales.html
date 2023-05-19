@@ -5,13 +5,17 @@
 	    <title>Sucursales</title>
 	    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" th:href="@{/css/styles.css}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	</head>
 	<body>
 		<header th:replace="~{layouts/header :: header}"></header>
 		<nav th:replace="~{layouts/nav :: nav}"></nav>
 		<div class="contenido">
 			<section class="seccion-sucursales">
-				<h2>Sucursales</h2>
+				<div class="sucursal-nav">
+					<h2>Sucursales</h2>
+					<button><a th:href="@{/sucursales/nueva-sucursal}"><i class="bi bi-plus-circle"></i></a></button>
+				</div>
 				<p>Actualmente hay 3 locales y seguiremos creciendo con nuevas aperturas en el área.</p>
 				<div class="sucursales-disponibles">
 					<div class="sucursales">
@@ -20,6 +24,10 @@
 							<p th:text="${sucursal.telefono}"></p>
 							<p th:text="${sucursal.mail}"></p>
 							<p th:text="${sucursal.horarioAtencion}"></p>
+							<div class="botones">
+								<button class="modificar"><a><i class="bi bi-pencil-square"></i></a></button>
+								<button class="eliminar"><a><i class="bi bi-x-circle"></i></a></button>
+							</div>
 						</article>
 					</div>
 				</div>
