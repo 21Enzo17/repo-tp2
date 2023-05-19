@@ -10,8 +10,8 @@
 
 <body>
 	<div>
-		<header th:replace="layouts/header :: header"></header>
-		<nav th:replace="layouts/nav :: nav"></nav>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
 	</div>
 	<div class="contenido">
 		<section id="content">
@@ -33,9 +33,9 @@
 				
 			</div>
 		</section>
-		<aside th:replace="layouts/aside :: aside"></aside>
+		<aside th:replace="~{layouts/aside :: aside}"></aside>
 	</div>
-	<footer th:replace="layouts/footer :: footer"></footer>
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
 </body>
 
 </html>

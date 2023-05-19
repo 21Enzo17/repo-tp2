@@ -4,7 +4,16 @@
 	margin: 0px;
 	padding: 0px;
 }
-
+button {
+	display: block;
+	border: none;
+	cursor: pointer;
+	width: 250px;
+	height: 40px;
+	background: radial-gradient(#025159 0%, #35402D 100%);
+	color: #fff;
+	margin: 0 auto;
+}
 /* BODY */
 body {
 	font-family: "Poppins", "sans-serif";
@@ -98,6 +107,37 @@ h2 {
 }
 
 /* PRODUCTOS */
+
+#titulo-producto{
+	background: none;
+	padding: 0;
+}
+.productos-nav{
+	display: flex;
+	background: radial-gradient(#025159 0%, #35402D 100%);
+	padding: 10px;
+	border-radius: 10px;
+	text-align: center;
+	position: relative;
+	align-items: center;
+	
+}
+.productos-nav h2{
+	width: fit-content;
+	margin: 0 auto;
+}
+.productos-nav button{
+	font-size: 25px;
+	background: none;
+	text-align: start;
+	justify-content: center;
+	width: fit-content;
+	margin: 0;
+	right: 0;
+}
+.productos-nav button a{
+	color: #fff;
+}
 .productos-principal{
 	background: #fff;
 	padding: 20px;
@@ -160,7 +200,7 @@ h2 {
 	padding: 10px 0;
 }
 
-.tarjeta button {
+.agregar-carrito {
 	margin: 20px;
 	background: radial-gradient(#025159 0%, #35402D 100%);
 	color: white;
@@ -169,7 +209,37 @@ h2 {
 	cursor: pointer;
 	font-family: 'Poppins', sans-serif;
 }
-
+.modificar-eliminar{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	gap: 10px;
+}
+.modificar{
+	width: 40px;
+	font-size: 20px;
+	padding: 5px;
+	background: #21bb41;
+	color: white;
+	border-radius: 5px;
+	margin: 0;
+	margin-bottom: 10px;
+}
+.modificar a{
+	color: #fff;
+}
+.eliminar{
+	width: 40px;
+	font-size: 20px;
+	padding: 5px;
+	background: #f14b25;
+	color: white;
+	border-radius: 5px;
+	margin: 0;
+}
+.eliminar a{
+	color: #fff;
+}
 /* CONSEJOS DE SALUD */
 #contenedor-consejos {
 	display: flex;
@@ -256,21 +326,15 @@ input {
 	right: 0;
 	margin-bottom: 10px;
 }
+input::placeholder{
+	padding: 10px;
+}
 textarea{
 	resize: none;
 	width: 100%;
 	margin-bottom: 10px;
 }
-button {
-	display: block;
-	border: none;
-	cursor: pointer;
-	width: 250px;
-	height: 40px;
-	background: radial-gradient(#025159 0%, #35402D 100%);
-	color: #fff;
-	margin: 0 auto;
-}
+
 
 .seccion-sucursales {
 	max-width: 1200px;
