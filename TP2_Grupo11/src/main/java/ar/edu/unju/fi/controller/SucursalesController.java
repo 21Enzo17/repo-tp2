@@ -36,5 +36,15 @@ public class SucursalesController {
         return modelView;
     }
 
-    
+    @GetMapping("/eliminar-sucursal/{direccion}")
+    public String eliminarSucursal(@PathVariable(value="direccion")String direccion, Model model){
+        for(Sucursal sucursal:listaSucursales.getListaSucursales()){
+            if(sucursal.getDireccion().equals(direccion)){
+                listaSucursales.getListaSucursales().remove(sucursal);
+                break;
+            }
+        }
+        model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
+        return "redirect:/sucursales/listado";
+    }
 }
