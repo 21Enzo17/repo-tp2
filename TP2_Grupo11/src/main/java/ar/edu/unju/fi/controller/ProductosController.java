@@ -55,10 +55,11 @@ public class ProductosController {
         for(Producto producto:listaProductos.getProductos()){
             if(producto.getCod()==codigo){
                 model.addAttribute("encontrado", producto);
+                System.out.println(producto.toString());
                 break;
             }
         }
-        return "/modificar-producto";
+        return "modificar-producto";
     }
     @PostMapping("modificar-producto")
     public String modificarLista(@ModelAttribute("encontrado")Producto modificado){
