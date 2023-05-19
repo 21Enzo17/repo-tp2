@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Producto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header th:replace="~{layouts/header :: header}"></header>
+<nav th:replace="~{layouts/nav :: nav}"></nav>
+<div class="contenido">
+  <section id="seccion">
+    <h2>Nuevo Producto</h2>
+    <fieldset id="fieldset-form">
+      <legend> <b>Agregar Producto</b> </legend>
+      <form th:action="" th:object="" method="post">
+        <div>
+          <label>
+            Dirección
+          </label>
+          <br>
+          <input type="text" placeholder="Ingrese dirección" th:field="*{direccion}">
+        </div>
+        <div>
+          <label>
+            Telefono
+          </label>
+          <br>
+          <input type="tel" placeholder="Ingrese telefono" th:field="*{telefono}">
+        </div>
+        <div>
+          <label>
+            Mail
+          </label>
+          <br>
+          <input  type="number" placeholder="Ingrese mail" th:field="*{mail}">
+        </div>
+        <div>
+          <label>
+            Horario
+          </label>
+          <br>
+          <input  type="number" placeholder="Ingrese el horario" th:field="*{horario}">
+        </div>
+        <button type="submit">Enviar</button>
+      </form>
+      <p th:if="${mensaje}" th:text="${mensaje}"></p>
+      <p th:text="${lista}"></p>
+    </fieldset>
+  </section>
+  <aside th:replace="~{layouts/aside :: aside}"></aside>
+</div>
+<footer th:replace="~{layouts/footer :: footer}"></footer>
+</body>
+</html>

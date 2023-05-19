@@ -15,44 +15,11 @@
 				<p>Actualmente hay 3 locales y seguiremos creciendo con nuevas aperturas en el área.</p>
 				<div class="sucursales-disponibles">
 					<div class="sucursales">
-						<article class="sucursal">
-							<h3>Las Vicuñas 890, San Salvador de Jujuy, Jujuy</h3>
-							<p>
-								Telefono: +54 9 11 5587 5274 <br>
-				
-								Mail: vicuñas@vet.com.ar <br>
-				
-								Lunes a viernes: 8 a 21 hs <br>
-								Sábados: 9 a 21 hs <br>
-								Domingos: 10 a 20 hs <br>
-								Feriados: 10 a 19 hs <br>
-							</p>
-						</article>
-						<article class="sucursal">
-							<h3>Av. España 1650, San Salvador de Jujuy, Jujuy</h3>
-							<p>
-								Telefono: +54 11 2259 4709 <br>
-				
-								Mail: avespaña@vet.com.ar <br>
-				
-								Lunes a viernes: 8 a 21 hs <br>
-								Sábados: 9 a 21 hs <br>
-								Domingos: 10 a 20 hs <br>
-								Feriados: 10 a 19 hs <br>
-							</p>
-						</article>
-						<article class="sucursal">
-							<h3>Juana Manuela Gorriti 315, San Salvador de Jujuy, Jujuy</h3>
-							<p>
-								Telefono: +54 9 11 6696 2038 <br>
-				
-								Mail: gorriti@vet.com.ar <br>
-				
-								Lunes a viernes: 8 a 21 hs <br>
-								Sábados: 9 a 21 hs <br>
-								Domingos: 9 a 21 hs <br>
-								Feriados: 10 a 20 hs <br>
-							</p>
+						<article class="sucursal" th:each="sucursal : ${listaSucursales}">
+							<h3 th:text="${sucursal.direccion}"></h3>
+							<p th:text="${sucursal.telefono}"></p>
+							<p th:text="${sucursal.mail}"></p>
+							<p th:text="${sucursal.horarioAtencion}"></p>
 						</article>
 					</div>
 				</div>
