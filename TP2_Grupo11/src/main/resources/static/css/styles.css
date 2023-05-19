@@ -390,6 +390,11 @@ textarea{
 	padding-left: 20px;
 }
 
+.sucursales .sucursal .botones {
+    display: flex;
+    gap: 20px;
+}
+
 /* PASEOS */
 .paseo-general{
 	background: #fff;

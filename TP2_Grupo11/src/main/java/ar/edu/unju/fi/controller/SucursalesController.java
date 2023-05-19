@@ -47,4 +47,31 @@ public class SucursalesController {
         model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
         return "redirect:/sucursales/listado";
     }
+
+    @GetMapping("/editar-sucursal/{direccion}")
+    public String editarSucursal(@PathVariable(value="direccion")String direccion, Model model){
+        for(Sucursal sucursal:listaSucursales.getListaSucursales()){
+            if(sucursal.getDireccion().equals(direccion)){
+                model.addAttribute("sucursalEditar", sucursal);
+                break;
+            }
+        }
+        return "modificar-sucursal";
+    }
+
+    @PostMapping("/editar-sucursal")
+    public ModelAndView modificarSucursal(Sucursal sucursalEditado){
+        ModelAndView modelView = new ModelAndView("sucursales");
+        for(Sucursal sucursal:listaSucursales.getListaSucursales()){
+            if(sucursal.getDireccion().equals(sucursalEditado.getDireccion())){
+                sucursal.setDireccion(sucursalEditado.getDireccion());
+                sucursal.setTelefono(sucursalEditado.getTelefono());
+                sucursal.setHorarioAtencion(sucursalEditado.getHorarioAtencion());
+                sucursal.setMail(sucursalEditado.getMail());
+                break;
+            }
+        }
+        modelView.addObject("listaSucursales", listaSucursales.getListaSucursales());
+        return modelView;
+    }
 }

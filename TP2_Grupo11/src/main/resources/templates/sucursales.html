@@ -25,7 +25,7 @@
 							<p th:text="${sucursal.mail}"></p>
 							<p th:text="${sucursal.horarioAtencion}"></p>
 							<div class="botones">
-								<button class="modificar"><a><i class="bi bi-pencil-square"></i></a></button>
+								<button class="modificar"><a th:href="@{/sucursales/editar-sucursal/}+${sucursal.direccion}"><i class="bi bi-pencil-square"></i></a></button>
 								<button class="eliminar"><a th:href="@{/sucursales/eliminar-sucursal/}+${sucursal.direccion}"><i class="bi bi-x-circle"></i></a></button>
 							</div>
 						</article>
