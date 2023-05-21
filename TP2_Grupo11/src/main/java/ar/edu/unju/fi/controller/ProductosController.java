@@ -11,19 +11,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.fi.Listas.ListaProductos;
 import ar.edu.unju.fi.model.Producto;
-
+/**
+ * Esta clase es la clase controladora de la pagina productos
+ * @author: Grupo 11
+ * @version: 21/05/2023
+ */
 @Controller
 @RequestMapping("/producto")
 public class ProductosController {
     ListaProductos listaProductos = new ListaProductos();
-    
-    // String nombre, int cod, float precio, String categoria, int descuento, String imagen
-    
+    /**
+     * Esta funcion de tipo String, controla la palabra clave /producto/listado y retorna el html
+     * listado con sus respectiva lista 
+     * @param model Este parametro recibe la lista de productos
+     * @return Retorna la pagina /producto/listado cargada con los productos
+     */
     @GetMapping("/listado")
     public String getProductos(Model model){
         model.addAttribute("listaProductos", listaProductos.getProductos());
         return "/producto";
     }
+    /**
+     * Esta funcion de tipo String, controla la palabra clave /nuevo-producto
+     * y retorna el html nuevo-producto, un formulario para crear un producto
+     * @param model
+     * @return
+     */
     @GetMapping("/nuevo-producto")
     public String getNuevoProductoPage(Model model){
         Producto formProducto = new Producto();
