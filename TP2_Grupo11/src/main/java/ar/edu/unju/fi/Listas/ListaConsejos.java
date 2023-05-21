@@ -24,7 +24,7 @@ public class ListaConsejos {
 	public String toString() {
 		return "ListaConsejos [listaConsejos=" + listaConsejos + "]";
 	}
-
+	
 	public List<Consejo> getListaConsejos() {
 		return listaConsejos;
 	}

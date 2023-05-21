@@ -18,23 +18,36 @@ public class ConsejosController {
 	
 	ListaConsejos listaConsejos = new ListaConsejos();
 		
-	
+	 /**
+     * Método que muestra la página de consejos
+     * @param model
+     * @return consejos.html
+     */
     @GetMapping("/listado")
     public String getConsejos(Model model){
     	model.addAttribute("listaConsejos", listaConsejos.getListaConsejos());
         return "consejos";
     }
     
+    /**
+     * Método que muestra la página para crear un nuevo consejo
+     * @param model
+     * @return nuevo-consejo.html
+     */
     @GetMapping("/nuevo-consejo")
- 
     public String getnuevoConsejo(Model model) {
     	Consejo nuevoConsejo = new Consejo();    	
     	model.addAttribute("nuevoConsejo", nuevoConsejo);
     	return "nuevo-consejo";
     }
     
-    @PostMapping("/nuevo-consejo")
     
+    /**
+     * Método que crea un nuevo consejo y lo agrega a la lista
+     * @param listaConsejo
+     * @return consejos.html
+     */
+    @PostMapping("/nuevo-consejo")
     public ModelAndView crearConsejo(Consejo nuevoConsejo)
     {
     	ModelAndView modelAndView = new ModelAndView("consejos");
