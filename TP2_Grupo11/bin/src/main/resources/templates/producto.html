@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Productos</title>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+	<header th:replace="~{layouts/header :: header}"></header>
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+	<div class="contenido">
+		<section class="productos-principal">
+			<h2>Productos</h2>
+			<div id="productos-container">
+				<article class="tarjeta">
+					<div class="img-prod">
+						<img th:src="@{/images/MaintanceFondo.png}" alt="Maintance Criadores">
+					</div>
+					<div class="descripcion">
+						<h3>Maintance Criadores</h3>
+						<p>Bolsa alimento perros de 22kg</p>
+						<p>Precio: <b>$100</b></p>
+					</div>
+					<button>Agregar al carrito</button>
+				</article>
+				<article class="tarjeta">
+					<div class="img-prod">
+						<img th:src="@{/images/juguete-gato.png}" alt="Juguete para Gato">
+					</div>
+					<div class="descripcion">
+						<h3>Juguete para gatos</h3>
+						<p>Raton para gatos, marca Smart</p>
+						<p>Precio: <b>$50</b></p>
+					</div>
+					<button>Agregar al carrito</button>
+				</article>
+				<article class="tarjeta">
+					<div class="img-prod">
+						<img th:src="@{/images/peces-acuarios-pequenos.png}" alt="Acuario">
+					</div>
+					<div class="descripcion">
+						<h3>Acuario</h3>
+						<p>Acuario marca Acme, 50lts</p>
+						<p>Precio: <b>$150</b></p>
+					</div>
+					<button>Agregar al carrito</button>
+				</article>
+				<article class="tarjeta">
+					<div class="img-prod">
+						<img th:src="@{/images/nutrique.png}" alt="Maintance Criadores">
+					</div>
+					<div class="descripcion">
+						<h3>Nutrique</h3>
+						<p>Bolsa alimento Gatos</p>
+						<p>Precio: <b>$100</b></p>
+					</div>
+					<button>Agregar al carrito</button>
+				</article>
+			</div>
+		</section>
+		<aside th:replace="~{layouts/aside :: aside}"></aside>
+	</div>
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+
+</body>
+
+</html>

@@ -6,6 +6,7 @@
 	<title>Consejos de salud</title>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -15,20 +16,14 @@
 	</div>
 	<div class="contenido">
 		<section id="content">
-			<h2>Conoce los cuidados que necesita tu mascota y como te puedes beneficiar de ellos</h2>
+			<div class="consejos-nav">
+					<h2 class="titulo-h2">Conoce los cuidados que necesita tu mascota </h2>
+					<button><a th:href="@{/consejos/nuevo-consejo}"><i class="bi bi-plus-circle"></i></a></button>
+				</div>
 			<div id="articulos">
-				<article class="articulo">
-					<h3>Al cuidar de tu mascota puedes mejorar tu salud física y mental</h3>
-					<p>¿Sabías que la hormona Oxitocina, que se secreta cuando el cuerpo experimenta placer, también se
-						secreta cuando una mascota y su dueño experimentan interacciones positivas entre si?<br>
-						Entre más fuerte sea el vínculo entre la persona y su mascota, mayor es la posibilidad de que la
-						persona secrete esta hormona, creando estados de felicidad y también de salud.<br>
-						Se encuentra comprobado que al tener una estrecha relación con tu mascota e interactuar con esta
-						regularmente, aparecen una serie de beneficios en tu vida.
-						Estudios demuestran que las personas que cuidan de sus mascotas también podrían ser más
-						saludables, a razón que al sacarlos a caminar o correr y también jugar activamente con ellos se
-						hace ejercicio teniendo un impacto positivo en su cuerpo y mente. En particular se han
-						demostrado beneficios de salud al disminuir la tasa de problemas cardiovasculares.<br>
+				<article th:each="consejo:${listaConsejos}" class="articulo">
+					<h3 th:text="${consejo.titulo}" ></h3>
+					<p th:text="${consejo.descripcion}"><br>
 				</article>
 				
 			</div>

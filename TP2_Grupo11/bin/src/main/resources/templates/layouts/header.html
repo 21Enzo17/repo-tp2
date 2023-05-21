@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Header</title>
+</head>
+<body>
+    <header th:fragment="header">
+		<div id="titulo">
+			<h1>Mascotas Barn</h1>
+		</div>
+		<img id="portada" alt="Perro marron feliz" th:src="@{/images/portada.jpg}" title="Mascota Banner">
+	</header>
+    
+	
+</body>
+</html>

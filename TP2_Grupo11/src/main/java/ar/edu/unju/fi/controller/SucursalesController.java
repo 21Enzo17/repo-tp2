@@ -25,7 +25,7 @@ public class SucursalesController {
         model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
         return "sucursales";
     }
-
+ 
     /**
      * Método que muestra la página para crear una nueva sucursal
      * @param model
