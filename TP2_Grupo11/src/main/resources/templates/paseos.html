@@ -6,6 +6,8 @@
 	<title>Servicio de Paseo</title>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	
 </head>
 
 <body>
@@ -13,38 +15,47 @@
 	<nav th:replace="~{layouts/nav :: nav}"></nav>
 	<div class="contenido">
 		<section class="paseo-general">
-			<h2 id="horario-paseo">Horario de Paseos</h2>
-			<div><img class="paseo" alt="mascotasPaseando" th:src="@{/images/paseo2.jpg}" title="pet2"></div>
+			
+			<div class="productos-nav">
+				<h2 id="titulo-producto">Horarios de Paseo</h2><button><a th:href="@{/paseos/nuevohorario}"><i class="bi bi-plus-circle"></i></a></button>
+			</div>
+			<div><img class="paseo" alt="mascotasPaseando" th:src="@{/images/gato.JPG}" title="pet2"></div>
 			<div>
 				<table id="t1">
 					<tr>
 						<th>Día</th>
-						<th>Lunes</th>
-						<th>Martes</th>
-						<th>Miércoles</th>
-						<th>Jueves</th>
-						<th>Viernes</th>
-						<th>Sábado</th>
+						<th th:each="lhora: ${listaDeHorarios}" th:text="${lhora.dia}"></th>
+						
 					</tr>
 					<tr>
-						<td>Horario</td>
-						<td>9 a 12 - 16 a 18</td>
-						<td>9 a 12 - 16 a 18</td>
-						<td>9 a 12 - 16 a 18</td>
-						<td>9 a 12 - 16 a 18</td>
-						<td>9 a 12 - 16 a 18</td>
-						<td>9 a 12 - 16 a 18</td>
+						<td>Horario AM</td>
+						<td  th:each="lhora: ${listaDeHorarios}" th:text="${lhora.turnoA}"></td>
+						
 					</tr>
 					<tr>
 						<td>Paseador</td>
-						<td>Juan Pérez</td>
-						<td>Lucas Díaz</td>
-						<td>Juan Pérez</td>
-						<td>María Gómez</td>
-						<td>Lucas Días</td>
-						<td>Roberto Vásquez</td>
+						<td th:each="lhora: ${listaDeHorarios}" th:text="${lhora.paseador1}"></td>
+						
 					</tr>
+					<tr>
+						<td>Horario PM</td>
+						<td  th:each="lhora: ${listaDeHorarios}" th:text="${lhora.turnoB}"></td>
+						
+					</tr>
+					<tr>
+						<td>Paseador</td>
+						<td th:each="lhora: ${listaDeHorarios}" th:text="${lhora.paseador2}"></td>
+						
+					<tr>
+						<td>Opciones</td>
+						<td th:each="lhora: ${listaDeHorarios}">
+							<button class="modificar"><a th:href="@{/paseos/modificarHorarios/}+${lhora.dia}"><i class="bi bi-pencil-square"></i></a></button>
+							<button class="eliminar"><a th:href="@{/paseos/eliminarHorarios/}+${lhora.dia}"><i class="bi bi-x-circle"></i></a></button>
+							
+						</td>	
+						
 				</table>
+		
 			</div>
 			<div><img class="paseo" alt="mascotasPaseando" th:src="@{/images/paseo.jpg}" title="pet1"></div>
 		</section>

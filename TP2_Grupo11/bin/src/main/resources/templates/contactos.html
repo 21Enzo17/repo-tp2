@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Contactanos</title>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+	<header th:replace="~{layouts/header :: header}"></header>
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+	<div class="contenido">
+		<section id="seccion">
+			<h2>Formulario de Contacto</h2>
+			<fieldset id="fieldset-form">
+
+				<legend> <b>Contáctenos</b> </legend>
+				<p>
+					3915 Av. General Belgrano, 388-9999999 <br>
+					Lunes a Viernes: 9:00 am a 8:00 pm <br>
+					Sábados a Domingos: 9:00 am a 12:30 pm <br>
+				</p>
+				<a href=""> contacto@mail.com.ar </a>
+				<ul>
+					<li>
+						<a href=""> Facebook </a>
+					</li>
+					<li>
+						<a href=""> Instagram </a>
+					</li>
+					<li>
+						<a href=""> Twitter </a>
+					</li>
+				</ul>
+				<br>
+				<hr>
+				<br>
+				<form>
+					<div>
+						<label>
+							Nombre
+						</label>
+						<br>
+						<input type="text" placeholder="Ingrese su nombre">
+					</div>
+					<div>
+						<label>
+							Email
+						</label>
+						<br>
+						<input type="email" placeholder="Ingrese un email valido">
+					</div>
+					<div>
+						<label>
+							Ciudad
+						</label>
+						<br>
+						<input type="text" placeholder="Ingrese su ciudad">
+					</div>
+					<div>
+						<label>
+							Mensaje
+						</label>
+						<br>
+						<textarea> </textarea>
+					</div>
+
+					<button type="submit">Enviar</button>
+				</form>
+			</fieldset>
+		</section>
+		<aside th:replace="~{layouts/aside :: aside}"></aside>
+	</div>
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+</body>
+
+
+</html>

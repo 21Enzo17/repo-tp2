@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Nuevo Producto</title>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" th:href="@{/css/styles.css}">
+	</head>
+	<body>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+		<div class="contenido">
+			<section id="seccion">
+				<fieldset id="fieldset-form">
+					<legend><b></b></legend>
+					<form th:action="@{/paseos/guardar}" th:object="${formHorario}" method="post">
+						<div>
+							<label>Dia</label>
+								<select type="text"  th:field="*{dia}">
+						        <option value="Lunes">Lunes</option>
+						        <option value="Martes">Martes</option>
+						        <option value="Miércoles">Miércoles</option>
+						        <option value="Jueves">Jueves</option>
+						        <option value="Viernes">Viernes</option>
+						        <option value="Sábado">Sábado</option>
+						    </select>
+							<br>							
+						</div>
+						<div>
+							<label for="turnoA">Nuevo turno mañana</label>
+							<br>
+							<input type="text" placeholder=" Ingrese nuevo horario" th:field="*{turnoA}">
+						</div>
+						<div>
+							<label for="turnoB">Nuevo turno tarde</label>
+							<br>
+							<input type="text" placeholder=" Ingrese horario" th:field="*{turnoB}">
+						</div>
+						<div>
+							<label for="paseador1">Paseador turno mañana</label>
+							<br>
+							<input type="text" placeholder=" nombre paseador" th:field="*{paseador1}">
+						</div>
+						<div>
+							<label for="paseador2">Paseador turno tarde</label>
+							<br>
+							<input type="text" placeholder=" nombre paseador" th:field="*{paseador2}">
+						</div>
+				
+					<button id="bt" type="submit">Agregar</button>
+					</form>
+				</fieldset>
+			</section>
+			<aside th:replace="~{layouts/aside :: aside}"></aside>
+		</div>
+		<footer th:replace="~{layouts/footer :: footer}"></footer>
+	</body>
+</html>
