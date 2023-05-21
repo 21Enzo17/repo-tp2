@@ -13,10 +13,10 @@
 		<div class="contenido">
 			<section class="seccion-sucursales">
 				<div class="sucursal-nav">
-					<h2>Sucursales</h2>
+					<h2 class="titulo-h2">Sucursales</h2>
 					<button><a th:href="@{/sucursales/nueva-sucursal}"><i class="bi bi-plus-circle"></i></a></button>
 				</div>
-				<p>Actualmente hay 3 locales y seguiremos creciendo con nuevas aperturas en el área.</p>
+				<p>Actualmente hay <span th:text="${listaSucursales.size()}"></span> locales y seguiremos creciendo con nuevas aperturas en el área.</p>
 				<div class="sucursales-disponibles">
 					<div class="sucursales">
 						<article class="sucursal" th:each="sucursal : ${listaSucursales}">
