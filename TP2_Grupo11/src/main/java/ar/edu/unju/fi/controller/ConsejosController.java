@@ -54,10 +54,9 @@ public class ConsejosController {
     	listaConsejos.getListaConsejos().add(nuevoConsejo);
     	modelAndView.addObject("listaConsejos",listaConsejos.getListaConsejos());
     	return modelAndView;
-    	
     }
     
-    @GetMapping("/eliminar-consejo/{id}")
+    @GetMapping("/eliminar-consejos/{id}")
     public String eliminarConsejo(@PathVariable(value="id")int id,Model model){
         for(Consejo consejo:listaConsejos.getListaConsejos()){
             if(consejo.getId()==id){
@@ -73,7 +72,7 @@ public class ConsejosController {
     public String editarConsejos(@PathVariable(value="id")int id,Model model){
         for(Consejo consejo:listaConsejos.getListaConsejos()){
             if(consejo.getId()==id){
-                model.addAttribute("encontrado", consejo);
+                model.addAttribute("consejosEditar", consejo);
                 System.out.println(consejo.toString());
                 break;
             }
