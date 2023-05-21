@@ -19,19 +19,32 @@ public class PaseosController {
 	
 	ListaHorarios listaDeHorarios = new ListaHorarios();
 	
+    /**
+     * retorna pagina paseos
+     * @param model
+     * @return  paseos.html
+     */
     @GetMapping("/horarios")
     public String getPaseos(Model model){
     	model.addAttribute("listaDeHorarios", listaDeHorarios.getHorarios());
         return "paseos" ;
     }
-    
+    /**
+     * agrega un nuevo horario de paseos
+     * @param model
+     * @return formulario de Alta
+     */
     @GetMapping("/nuevohorario")
     public String getNuevoHorarioPage(Model model){
     	Turno nuevoTurno = new Turno();
         model.addAttribute("formHorario", nuevoTurno);
         return "nuevohorario";
     }
-    
+    /**
+     * confirmar un Nuevo Horario cargado
+     * @param formHorario
+     * @return paseos.html
+     */
     @PostMapping("/guardar")
     public ModelAndView ActualizarListadoHorariosPage(@ModelAttribute("formHorario")Turno formHorario) {
     	ModelAndView modelView = new ModelAndView("paseos");
@@ -39,7 +52,12 @@ public class PaseosController {
     	modelView.addObject("listaDeHorarios", listaDeHorarios.getHorarios());    	    
     	return modelView;
     }
-    
+    /**
+     * Editar un dia de Horarios ya existente
+     * @param model
+     * @param dia tomado automaticamente
+     * @return 
+     */
     @GetMapping("/modificarHorarios/{dia}")
     public String getModificarPage(Model model, @PathVariable(value="dia")String dia) {
     	Turno turnoDia = new Turno();
@@ -56,6 +74,12 @@ public class PaseosController {
  
     }
     
+    /**
+     * Dar de baja un dia de Horarios en la lista
+     * @param model
+     * @param dia seleccionado automaticamente
+     * @return
+     */
     @GetMapping("/eliminarHorarios/{dia}")
     public String getEliminarPage(Model model, @PathVariable(value="dia")String dia) {
         for(Turno lhora: listaDeHorarios.getHorarios()) {
@@ -67,6 +91,12 @@ public class PaseosController {
         return "redirect:/paseos/horarios";
  
     }
+    /**
+     * Confirmar cambios de un Horario Editado
+     * @param modificado
+     * @param model
+     * @return paseos.html
+     */
     @PostMapping("/confirmarCambio")
     public String confirmarCambios(@ModelAttribute("turnoDia")Turno modificado,Model model) {
     	for(Turno lhora: listaDeHorarios.getHorarios()) {
