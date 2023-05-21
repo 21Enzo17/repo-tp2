@@ -14,27 +14,27 @@
         <h2>Editar Consejo</h2>
         <fieldset id="fieldset-form">
             <legend> <b>Editar Consejo</b> </legend>
-            <form th:action="@{/consejos/editar-consejos}" th:object="${consejosEditar}" method="post">
+            <form th:action="@{/consejos/modificar-consejo}" th:object="${consejosEditar}" method="post">
                 <div>
                     <label>
                         Id
                     </label>
                     <br>
-                    <input type="text" readonly placeholder="Ingrese Codigo" value="consejosEditar.id" th:field="*{id}" required>
+                    <input type="text" readonly placeholder="Ingrese Codigo" value="${consejosEditar.id}" th:field="*{id}" required>
                 </div>
                 <div>
                     <label>
                         Titulo
                     </label>
                     <br>
-                    <input type="text" placeholder="Ingrese Titulo" value="consejosEditar.titulo" th:field="*{titulo}" required>
+                    <input type="text" placeholder="Ingrese Titulo" value="${consejosEditar.titulo}" th:field="*{titulo}" required>
                 </div>
                 <div>
                     <label>
                         Descripcion
                     </label>
                     <br>
-                    <input type="tel" placeholder="Ingrese descripcion" value="consejosEditar.descripcion" th:field="*{descripcion}" required>
+                    <textarea name="" placeholder="Ingrese descripcion" value="${consejosEditar.descripcion}" th:field="*{descripcion}" required cols="30" rows="10"></textarea>
                 </div>
                 <button type="submit">Enviar</button>
             </form>

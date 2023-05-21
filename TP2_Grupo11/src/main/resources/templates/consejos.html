@@ -24,11 +24,12 @@
 				<article th:each="consejo:${listaConsejos}" class="articulo">
 					<h3 th:text="${consejo.titulo}" ></h3>
 					<p th:text="${consejo.descripcion}"><br>
+					<div class="modificar-eliminar">
+						<button class="modificar"><a th:href="@{/consejos/editar-consejos/}+${consejo.id}"><i class="bi bi-pencil-square"></i></a></button>
+						<button class="eliminar"><a th:href="@{/consejos/eliminar-consejos/}+${consejo.id}"><i class="bi bi-x-circle"></i></a></button>
+					</div>
 				</article>
-			<div class="modificar-eliminar">
-					<button class="modificar"><a th:href="@{/consejos/editar-producto/}+${prod.cod}"><i class="bi bi-pencil-square"></i></a></button>
-					<button class="eliminar"><a th:href="@{/consejos/eliminar-producto/}+${prod.cod}"><i class="bi bi-x-circle"></i></a></button>
-			</div>
+			
 			</div>
 		</section>
 		<aside th:replace="~{layouts/aside :: aside}"></aside>
