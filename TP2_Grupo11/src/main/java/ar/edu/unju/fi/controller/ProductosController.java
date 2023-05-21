@@ -17,20 +17,32 @@ import ar.edu.unju.fi.model.Producto;
 public class ProductosController {
     ListaProductos listaProductos = new ListaProductos();
     
-    // String nombre, int cod, float precio, String categoria, int descuento, String imagen
-    
+    /**
+     * Metodo que muestra la pagina de productos
+     * @param model
+     * @return producto.html
+     */
     @GetMapping("/listado")
     public String getProductos(Model model){
         model.addAttribute("listaProductos", listaProductos.getProductos());
         return "/producto";
     }
+    /**
+     * Metodo que muestra la pagina de agregar producto
+     * @param model
+     * @return nuevo-producto.html
+     */
     @GetMapping("/nuevo-producto")
     public String getNuevoProductoPage(Model model){
         Producto formProducto = new Producto();
         model.addAttribute("formProducto", formProducto);
         return "nuevo-producto";
     }
-
+    /**
+     * Metodo que crea un producto y lo agrega a la lista
+     * @param formProducto
+     * @return  nuevo-producto.html
+     */
     @PostMapping("/nuevo-producto")
     public ModelAndView crearProducto(@ModelAttribute("formProducto")Producto formProducto){
         ModelAndView modelView = new ModelAndView("producto");
@@ -38,7 +50,12 @@ public class ProductosController {
         modelView.addObject("listaProductos", listaProductos.getProductos());
         return modelView;
     }
-
+    /**
+     * Metodo que elimina un producto de la lista
+     * @param codigo
+     * @param model
+     * @return producto.html
+     */
     @GetMapping("/eliminar-producto/{codigo}")
     public String eliminarProducto(@PathVariable(value="codigo")int codigo,Model model){
         for(Producto producto:listaProductos.getProductos()){
@@ -50,6 +67,12 @@ public class ProductosController {
         model.addAttribute("listaProductos", listaProductos.getProductos());
         return "redirect:/producto/listado";
     }
+    /**
+     * Metodo que permite editar un producto
+     * @param codigo
+     * @param model
+     * @return modificar-producto.html
+     */
     @GetMapping("/editar-producto/{codigo}")
     public String editarProducto(@PathVariable(value="codigo")int codigo,Model model){
         for(Producto producto:listaProductos.getProductos()){
@@ -61,6 +84,11 @@ public class ProductosController {
         }
         return "modificar-producto";
     }
+    /**
+     * Metodo que modifica el producto
+     * @param modificado
+     * @return producto.html
+     */
     @PostMapping("modificar-producto")
     public String modificarLista(@ModelAttribute("encontrado")Producto modificado){
         for(Producto producto:listaProductos.getProductos()){

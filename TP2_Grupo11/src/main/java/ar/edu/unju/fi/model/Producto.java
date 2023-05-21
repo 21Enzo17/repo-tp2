@@ -100,7 +100,10 @@ public class Producto {
     public void setDescuento(int descuento) {
         this.descuento = descuento;
     }
-
+    /**
+     * Este metodo permite calcular el desceunto total y retornar un precio
+     * @return precio
+     */
     public float calcularDescuento () {
         return this.precio - (this.precio * this.descuento)/100;
     }

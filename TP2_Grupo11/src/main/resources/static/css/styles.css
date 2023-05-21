@@ -119,7 +119,7 @@ h2 {
 
 /* PRODUCTOS */
 
-#titulo-producto{
+.titulo-h2{
 	background: none;
 	padding: 0;
 }
@@ -334,19 +334,47 @@ fieldset ul {
 input {
 	width: 350px;
 	height: 30px;
-	right: 0;
 	margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
 }
 input::placeholder{
 	padding: 10px;
 }
 textarea{
 	resize: none;
-	width: 100%;
+	width: 350px;
+	height: 60px;
 	margin-bottom: 10px;
+	font-family: 'Poppins', sans-serif;
 }
 
+/* SUCURSAL */
+.sucursal-nav{
+	display: flex;
+	background: radial-gradient(#025159 0%, #35402D 100%);
+	padding: 10px;
+	border-radius: 10px;
+	text-align: center;
+	position: relative;
+	align-items: center;
 
+}
+.sucursal-nav h2{
+	width: fit-content;
+	margin: 0 auto;
+}
+.sucursal-nav button{
+	font-size: 25px;
+	background: none;
+	text-align: start;
+	justify-content: center;
+	width: fit-content;
+	margin: 0;
+	right: 0;
+}
+.sucursal-nav button a{
+	color: #fff;
+}
 .seccion-sucursales {
 	max-width: 1200px;
 	background-color: #fff;
@@ -373,6 +401,11 @@ textarea{
 .sucursales .sucursal {
 	border-left: 10px solid #3F7373;
 	padding-left: 20px;
+}
+
+.sucursales .sucursal .botones {
+    display: flex;
+    gap: 20px;
 }
 
 /* PASEOS */
