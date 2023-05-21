@@ -36,7 +36,7 @@ public class PaseosController {
     public ModelAndView ActualizarListadoHorariosPage(@ModelAttribute("formHorario")Turno formHorario) {
     	ModelAndView modelView = new ModelAndView("paseos");
     	listaDeHorarios.getHorarios().add(formHorario);
-    	modelView.addObject("listaHorarios", listaDeHorarios.getHorarios());    	    
+    	modelView.addObject("listaDeHorarios", listaDeHorarios.getHorarios());    	    
     	return modelView;
     }
     
