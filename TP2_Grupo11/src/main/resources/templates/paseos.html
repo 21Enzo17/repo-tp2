@@ -17,7 +17,7 @@
 		<section class="paseo-general">
 			
 			<div class="productos-nav">
-				<h2 id="titulo-producto">Horarios de Paseo</h2><button><a th:href="@{/paseos/nuevohorario}"><i class="bi bi-plus-circle"></i></a></button>
+				<h2 class="titulo-h2">Horarios de Paseo</h2><button><a th:href="@{/paseos/nuevohorario}"><i class="bi bi-plus-circle"></i></a></button>
 			</div>
 			<div><img class="paseo" alt="mascotasPaseando" th:src="@{/images/gato.JPG}" title="pet2"></div>
 			<div>
@@ -57,8 +57,10 @@
 				</table>
 		
 			</div>
+			<p th:if="${error}" th:text="${error}"></p>
 			<div><img class="paseo" alt="mascotasPaseando" th:src="@{/images/paseo.jpg}" title="pet1"></div>
 		</section>
+
 		<aside th:replace="~{layouts/aside :: aside}"></aside>
 	</div>
 	<footer th:replace="~{layouts/footer :: footer}"></footer>

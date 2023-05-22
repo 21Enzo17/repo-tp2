@@ -15,9 +15,9 @@
       <legend> <b>Agregar Consejo</b> </legend>
       <form th:action="@{/consejos/nuevo-consejo}" th:object="${nuevoConsejo}" method="post">
         <div>
-          <label >ID</label>
+          <label >ID Manual</label>
           <br>
-          <input type="number" placeholder="ID Manual" th:field="*{id}" required>
+          <input type="number" placeholder="ID Manual" th:field="*{id}" value="null" required>
         </div>
         <div>
           <label>

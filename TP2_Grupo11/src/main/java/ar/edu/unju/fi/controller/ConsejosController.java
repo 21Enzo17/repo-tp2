@@ -55,7 +55,12 @@ public class ConsejosController {
     	modelAndView.addObject("listaConsejos",listaConsejos.getListaConsejos());
     	return modelAndView;
     }
-    
+    /**
+     * Metodo que elimina un consejo de la lista
+     * @param id
+     * @param model
+     * @return consejos.html
+     */
     @GetMapping("/eliminar-consejos/{id}")
     public String eliminarConsejo(@PathVariable(value="id")int id,Model model){
         for(Consejo consejo:listaConsejos.getListaConsejos()){
@@ -67,7 +72,12 @@ public class ConsejosController {
         model.addAttribute("listaConsejos", listaConsejos.getListaConsejos());
         return "redirect:/consejos/listado";
     }
-    
+    /**
+     * Metodo que permite editar un consejo por id
+     * @param id
+     * @param model
+     * @return modificar-consejo.html
+     */
     @GetMapping("/editar-consejos/{id}")
     public String editarConsejos(@PathVariable(value="id")int id,Model model){
         for(Consejo consejo:listaConsejos.getListaConsejos()){
@@ -79,6 +89,11 @@ public class ConsejosController {
         }
         return "modificar-consejo";
     }
+    /**
+     * Metodo que permite guardar el consejo modificado
+     * @param modificado
+     * @return  consejos.html
+     */
     @PostMapping("modificar-consejo")
     public String modificarLista(@ModelAttribute("encontrado")Consejo modificado){
         for(Consejo consejo:listaConsejos.getListaConsejos()){
@@ -90,6 +105,4 @@ public class ConsejosController {
         }
         return "redirect:/consejos/listado";
     }
-    
-
 }

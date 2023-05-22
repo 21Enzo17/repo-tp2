@@ -36,9 +36,14 @@ public class PaseosController {
      */
     @GetMapping("/nuevohorario")
     public String getNuevoHorarioPage(Model model){
-    	Turno nuevoTurno = new Turno();
-        model.addAttribute("formHorario", nuevoTurno);
-        return "nuevohorario";
+        if(listaDeHorarios.getHorarios().size()<6){
+            Turno nuevoTurno = new Turno();
+            model.addAttribute("formHorario", nuevoTurno);
+            return "nuevohorario";
+        }
+        model.addAttribute("listaDeHorarios", listaDeHorarios.getHorarios());
+        model.addAttribute("error", "La semana tiene sus turnos completos");
+        return "paseos";
     }
     /**
      * confirmar un Nuevo Horario cargado
@@ -89,7 +94,6 @@ public class PaseosController {
         	}
         }        
         return "redirect:/paseos/horarios";
- 
     }
     /**
      * Confirmar cambios de un Horario Editado
