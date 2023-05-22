@@ -11,16 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.fi.Listas.ListaProductos;
 import ar.edu.unju.fi.model.Producto;
-
+/**
+ * Esta clase es la clase controladora de la pagina productos
+ * @author: Grupo 11
+ * @version: 21/05/2023
+ */
 @Controller
 @RequestMapping("/producto")
 public class ProductosController {
     ListaProductos listaProductos = new ListaProductos();
-    
     /**
      * Metodo que muestra la pagina de productos
      * @param model
      * @return producto.html
+
      */
     @GetMapping("/listado")
     public String getProductos(Model model){
