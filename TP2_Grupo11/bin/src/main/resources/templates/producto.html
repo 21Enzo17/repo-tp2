@@ -6,6 +6,7 @@
 	<title>Productos</title>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -13,51 +14,26 @@
 	<nav th:replace="~{layouts/nav :: nav}"></nav>
 	<div class="contenido">
 		<section class="productos-principal">
-			<h2>Productos</h2>
+
+			<div class="productos-nav">
+				<h2 id="titulo-producto">Productos</h2><button><a th:href="@{/producto/nuevo-producto}"><i class="bi bi-plus-circle"></i></a></button>
+			</div>
 			<div id="productos-container">
-				<article class="tarjeta">
+				<article th:each="prod : ${listaProductos}" class="tarjeta">
 					<div class="img-prod">
-						<img th:src="@{/images/MaintanceFondo.png}" alt="Maintance Criadores">
+						<img th:src="${prod.imagen}" alt="${prod.nombre}">
 					</div>
 					<div class="descripcion">
-						<h3>Maintance Criadores</h3>
-						<p>Bolsa alimento perros de 22kg</p>
-						<p>Precio: <b>$100</b></p>
+						<h3 th:text="${prod.nombre}"></h3>
+						<p></p>
+						<p>Precio: <b>$<span th:text="${prod.precio}"></span></b></p>
+						<p>Con Descuento: <b>$<span th:text="${prod.calcularDescuento()}"></span></b></p>
 					</div>
-					<button>Agregar al carrito</button>
-				</article>
-				<article class="tarjeta">
-					<div class="img-prod">
-						<img th:src="@{/images/juguete-gato.png}" alt="Juguete para Gato">
+					<button class="agregar-carrito">Agregar al carrito</button>
+					<div class="modificar-eliminar">
+						<button class="modificar"><a th:href="@{/producto/editar-producto/}+${prod.cod}"><i class="bi bi-pencil-square"></i></a></button>
+						<button class="eliminar"><a th:href="@{/producto/eliminar-producto/}+${prod.cod}"><i class="bi bi-x-circle"></i></a></button>
 					</div>
-					<div class="descripcion">
-						<h3>Juguete para gatos</h3>
-						<p>Raton para gatos, marca Smart</p>
-						<p>Precio: <b>$50</b></p>
-					</div>
-					<button>Agregar al carrito</button>
-				</article>
-				<article class="tarjeta">
-					<div class="img-prod">
-						<img th:src="@{/images/peces-acuarios-pequenos.png}" alt="Acuario">
-					</div>
-					<div class="descripcion">
-						<h3>Acuario</h3>
-						<p>Acuario marca Acme, 50lts</p>
-						<p>Precio: <b>$150</b></p>
-					</div>
-					<button>Agregar al carrito</button>
-				</article>
-				<article class="tarjeta">
-					<div class="img-prod">
-						<img th:src="@{/images/nutrique.png}" alt="Maintance Criadores">
-					</div>
-					<div class="descripcion">
-						<h3>Nutrique</h3>
-						<p>Bolsa alimento Gatos</p>
-						<p>Precio: <b>$100</b></p>
-					</div>
-					<button>Agregar al carrito</button>
 				</article>
 			</div>
 		</section>

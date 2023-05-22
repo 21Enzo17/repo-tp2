@@ -21,10 +21,10 @@ import ar.edu.unju.fi.model.Producto;
 public class ProductosController {
     ListaProductos listaProductos = new ListaProductos();
     /**
-     * Esta funcion de tipo String, controla la palabra clave /producto/listado y retorna el html
-     * listado con sus respectiva lista 
-     * @param model Este parametro recibe la lista de productos
-     * @return Retorna la pagina /producto/listado cargada con los productos
+     * Metodo que muestra la pagina de productos
+     * @param model
+     * @return producto.html
+
      */
     @GetMapping("/listado")
     public String getProductos(Model model){
@@ -32,10 +32,9 @@ public class ProductosController {
         return "/producto";
     }
     /**
-     * Esta funcion de tipo String, controla la palabra clave /nuevo-producto
-     * y retorna el html nuevo-producto, un formulario para crear un producto
+     * Metodo que muestra la pagina de agregar producto
      * @param model
-     * @return
+     * @return nuevo-producto.html
      */
     @GetMapping("/nuevo-producto")
     public String getNuevoProductoPage(Model model){
@@ -43,7 +42,11 @@ public class ProductosController {
         model.addAttribute("formProducto", formProducto);
         return "nuevo-producto";
     }
-
+    /**
+     * Metodo que crea un producto y lo agrega a la lista
+     * @param formProducto
+     * @return  nuevo-producto.html
+     */
     @PostMapping("/nuevo-producto")
     public ModelAndView crearProducto(@ModelAttribute("formProducto")Producto formProducto){
         ModelAndView modelView = new ModelAndView("producto");
@@ -51,7 +54,12 @@ public class ProductosController {
         modelView.addObject("listaProductos", listaProductos.getProductos());
         return modelView;
     }
-
+    /**
+     * Metodo que elimina un producto de la lista
+     * @param codigo
+     * @param model
+     * @return producto.html
+     */
     @GetMapping("/eliminar-producto/{codigo}")
     public String eliminarProducto(@PathVariable(value="codigo")int codigo,Model model){
         for(Producto producto:listaProductos.getProductos()){
@@ -63,6 +71,12 @@ public class ProductosController {
         model.addAttribute("listaProductos", listaProductos.getProductos());
         return "redirect:/producto/listado";
     }
+    /**
+     * Metodo que permite editar un producto
+     * @param codigo
+     * @param model
+     * @return modificar-producto.html
+     */
     @GetMapping("/editar-producto/{codigo}")
     public String editarProducto(@PathVariable(value="codigo")int codigo,Model model){
         for(Producto producto:listaProductos.getProductos()){
@@ -74,6 +88,11 @@ public class ProductosController {
         }
         return "modificar-producto";
     }
+    /**
+     * Metodo que modifica el producto
+     * @param modificado
+     * @return producto.html
+     */
     @PostMapping("modificar-producto")
     public String modificarLista(@ModelAttribute("encontrado")Producto modificado){
         for(Producto producto:listaProductos.getProductos()){
