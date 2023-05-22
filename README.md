@@ -31,3 +31,9 @@ Copyright 2023 - Mascotas Barn - Diseñado por Grupo 11 – Jujuy – República
 # Trabajo Practico N°3<br>
 - CSS<br>
 Se le agrego estilo a todas las paginas.<br>
+<hr>
+ #Trabajo Practico N°4<br>
+ -Thymeleaf<br>
+ -Java<br>
+ -Modelo Vista Controlador<br>
+ Se agrego controllers a todas las paginas, ademas de abm a las paginas productos, consejos, paseos y sucursales.<br>
