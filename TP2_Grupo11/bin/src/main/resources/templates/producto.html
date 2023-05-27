@@ -14,9 +14,8 @@
 	<nav th:replace="~{layouts/nav :: nav}"></nav>
 	<div class="contenido">
 		<section class="productos-principal">
-
 			<div class="productos-nav">
-				<h2 id="titulo-producto">Productos</h2><button><a th:href="@{/producto/nuevo-producto}"><i class="bi bi-plus-circle"></i></a></button>
+				<h2 class="titulo-h2">Productos</h2><button><a th:href="@{/producto/nuevo-producto}"><i class="bi bi-plus-circle"></i></a></button>
 			</div>
 			<div id="productos-container">
 				<article th:each="prod : ${listaProductos}" class="tarjeta">

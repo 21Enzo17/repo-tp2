@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Nuevo Producto</title>
@@ -15,10 +15,15 @@
 					<legend><b></b></legend>
 					<form th:action="@{/paseos/guardar}" th:object="${formHorario}" method="post">
 						<div>
-							<label for="dia"> Dia </label>
-								<select th:field="*{dia}">
-						        <option th:each="Disp: ${diasDisponibles}"  th:value="${Disp}" th:text="${Disp}"></option>						        
-						    	</select>
+							<label>Dia</label>
+								<select type="text"  th:field="*{dia}">
+						        <option value="Lunes">Lunes</option>
+						        <option value="Martes">Martes</option>
+						        <option value="Miércoles">Miércoles</option>
+						        <option value="Jueves">Jueves</option>
+						        <option value="Viernes">Viernes</option>
+						        <option value="Sábado">Sábado</option>
+						    </select>
 							<br>							
 						</div>
 						<div>
@@ -42,7 +47,7 @@
 							<input type="text" placeholder=" nombre paseador" th:field="*{paseador2}">
 						</div>
 				
-					<button id="bt" type="submit" th:text="Agregar"></button>
+					<button id="bt" type="submit">Agregar</button>
 					</form>
 				</fieldset>
 			</section>

@@ -8,16 +8,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unju.fi.Listas.ListaHorarios;
+import ar.edu.unju.fi.model.Dia;
 import ar.edu.unju.fi.model.Turno;
-
+import ar.edu.unju.fi.Listas.DiasSemana;
+import java.util.List;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/paseos")
 public class PaseosController {
-	
 	ListaHorarios listaDeHorarios = new ListaHorarios();
+	DiasSemana semana=new DiasSemana();
 	
     /**
      * retorna pagina paseos
@@ -36,10 +38,18 @@ public class PaseosController {
      */
     @GetMapping("/nuevohorario")
     public String getNuevoHorarioPage(Model model){
+    	List<String> disponibles = new ArrayList<>();
+    	
         if(listaDeHorarios.getHorarios().size()<6){
             Turno nuevoTurno = new Turno();
+            for(Dia dia: semana.getSemana()) {
+            		if(listaDeHorarios.existe(dia.getNombre())==false) {
+            			disponibles.add(dia.getNombre());
+            		}
+            }
             model.addAttribute("formHorario", nuevoTurno);
-            return "nuevohorario";
+            model.addAttribute("diasDisponibles",disponibles);
+            return "nuevohorario"; 
         }
         model.addAttribute("listaDeHorarios", listaDeHorarios.getHorarios());
         model.addAttribute("error", "La semana tiene sus turnos completos");
@@ -52,9 +62,40 @@ public class PaseosController {
      */
     @PostMapping("/guardar")
     public ModelAndView ActualizarListadoHorariosPage(@ModelAttribute("formHorario")Turno formHorario) {
-    	ModelAndView modelView = new ModelAndView("paseos");
-    	listaDeHorarios.getHorarios().add(formHorario);
-    	modelView.addObject("listaDeHorarios", listaDeHorarios.getHorarios());    	    
+	    	
+    	switch (formHorario.getDia()) {
+	        case "Lunes":
+	        	formHorario.setCod(1);
+	            break;
+	        case "Martes":
+	        	formHorario.setCod(2);
+	            break;
+	        case "Miércoles":
+	        	formHorario.setCod(3);
+	            break;
+	        case "Jueves":
+	        	formHorario.setCod(4);
+	            break;
+	        case "Viernes":
+	        	formHorario.setCod(5);
+	            break;
+	        case "Sábado":
+	        	formHorario.setCod(6);
+	            break;
+	        default:
+	        	formHorario.setCod(0);
+	        	}
+	    	ModelAndView modelView = new ModelAndView("paseos");
+	    	List<Turno> listaOrdenada=new ArrayList<Turno>();
+	    	listaDeHorarios.getHorarios().add(formHorario);
+	    	for(int i=1;i<=6;i++) {
+	    		for(Turno turno: listaDeHorarios.getHorarios()) {
+	    			if(turno.getCod()==i) {
+	    				listaOrdenada.add(turno);
+	    			}
+	    		}
+	    	}
+    	modelView.addObject("listaDeHorarios", listaOrdenada);    	    
     	return modelView;
     }
     /**
