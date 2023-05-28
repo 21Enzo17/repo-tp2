@@ -1,10 +1,13 @@
 package ar.edu.unju.fi.Listas;
 
 import ar.edu.unju.fi.model.Sucursal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ListaSucursal {
     private List<Sucursal> listaSucursales;
 
