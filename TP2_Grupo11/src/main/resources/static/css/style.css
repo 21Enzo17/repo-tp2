@@ -35,6 +35,17 @@ body{
     border-left: 10px solid #025159;
 }
 
+.nueva-sucursal-form button, .editar-sucursal-form button {
+    background-color: #025159;
+    border: 2px solid transparent;
+    color: #fff;
+}
+
+.nueva-sucursal-form button:hover, .editar-sucursal-form button:hover {
+    border: 2px solid #025159;
+    color: #025159;
+}
+
 /* Aside */
 aside{
     background: radial-gradient(#025159 0%, #35402D 100%);
