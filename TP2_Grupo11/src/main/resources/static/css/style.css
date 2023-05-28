@@ -29,6 +29,12 @@ body{
 .texto-banner{
     font-size: calc(3.5rem + 1.5vw)!important;
 }
+
+/* Sucursales */
+.sucursales-disponibles .sucursales article {
+    border-left: 10px solid #025159;
+}
+
 /* Aside */
 aside{
     background: radial-gradient(#025159 0%, #35402D 100%);
