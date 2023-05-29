@@ -45,11 +45,14 @@
 	<!-- FILA TRES TABLA-->
 	<div class="row fila align-items-center">
 		<div class="col m-3 table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xlg d-flex justify-content-center ">
-				<table id="t1" class="table table-light table-striped text-center ">
-					<tr class="table-light">
-						<th class="table-light">Día</th>
-						<th class="table-light" th:each="lhora: ${listaDeHorarios}" th:text="${lhora.dia}"></th>
+				<table id="t1" class="table table-light table-striped text-center table-over">
+				   <thead>
+					<tr class="table-light">		
+						<th scope="col" class="table-light">Día</th>
+						<th scope="col" class="table-light" th:each="lhora: ${listaDeHorarios}" th:text="${lhora.dia}"></th>
 					</tr>
+				   </thead>
+				   <tbody>
 					<tr class="table-light">
 						<td class="table-light">Horario AM</td>
 						<td class="table-light"  th:each="lhora: ${listaDeHorarios}" th:text="${lhora.turnoA}"></td>
@@ -72,7 +75,8 @@
 							<button class="modificar"><a th:href="@{/paseos/modificarHorarios/}+${lhora.dia}"><i class="bi bi-pencil-square"></i></a></button>
 							<button class="eliminar"><a th:href="@{/paseos/eliminarHorarios/}+${lhora.dia}"><i class="bi bi-x-circle"></i></a></button>
 						</td>
-					</tr>	
+					</tr>
+				   </tbody>	
 				</table>
 			</div>
 	</div>
