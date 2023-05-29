@@ -15,7 +15,9 @@
     <div class="row gap-4">
         <section class="col-12 col-lg-7 bg-light p-4 rounded-4">
             <h2 class="titulares fw-bold">Editar Sucursal</h2>
-                <form class="editar-sucursal-form" th:action="@{/sucursales/editar-sucursal}" th:object="${sucursalEditar}" method="post">
+            <fieldset class="rounded-2 border border-2 border-success">
+                <legend style="float:none;width: fit-content;"><b>Modificar Producto</b></legend>
+                <form class="editar-sucursal-form p-3" th:action="@{/sucursales/editar-sucursal}" th:object="${sucursalEditar}" method="post">
                     <div class="mb-3">
                         <label class="form-label">Dirección</label>
                         <input class="form-control" type="text" readonly placeholder="Ingrese dirección" value="sucursalEditar.direccion" th:field="*{direccion}" required>
@@ -34,6 +36,7 @@
                     </div>
                     <button class="btn" type="submit">Enviar</button>
                 </form>
+            </fieldset>
         </section>
         <aside th:replace="~{layouts/aside :: aside}"></aside>
     </div>

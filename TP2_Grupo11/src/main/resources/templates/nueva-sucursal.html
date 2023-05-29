@@ -17,7 +17,9 @@
 		<div class="row gap-4">
 			<section class="col-12 col-lg-7 bg-light p-4 rounded-4">
 				<h2 class="titulares fw-bold">Nueva Sucursal</h2>
-					<form class="nueva-sucursal-form" th:action="@{/sucursales/nueva-sucursal}" th:object="${formSucursal}" method="post">
+				<fieldset class="rounded-2 border border-2 border-success">
+					<legend style="float:none;width: fit-content;"><b>Modificar Producto</b></legend>
+					<form class="nueva-sucursal-form p-3" th:action="@{/sucursales/nueva-sucursal}" th:object="${formSucursal}" method="post">
 						<div class=" mb-3">
 							<label class="form-label">Dirección</label>
 							<input class="form-control" type="text" placeholder="Ingrese dirección" th:field="*{direccion}" required>
@@ -36,6 +38,7 @@
 						</div>
 						<button class="btn" type="submit">Enviar</button>
 					</form>
+				</fieldset>
 					<p th:if="${mensaje}" th:text="${mensaje}"></p>
 					<p th:text="${lista}"></p>
 			</section>
