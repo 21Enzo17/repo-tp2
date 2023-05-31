@@ -20,21 +20,21 @@
 				<fieldset class="rounded-2 border border-2 border-success">
 					<legend style="float:none;width: fit-content;"><b>Modificar Producto</b></legend>
 					<form class="nueva-sucursal-form p-3" th:action="@{/sucursales/nueva-sucursal}" th:object="${formSucursal}" method="post">
-						<div class=" mb-3">
-							<label class="form-label">Dirección</label>
+						<div class="form-floating mb-3">
 							<input class="form-control" type="text" placeholder="Ingrese dirección" th:field="*{direccion}" required>
+							<label class="form-label">Dirección</label>
 						</div>
-						<div class=" mb-3">
-							<label class="form-label">Telefono</label>
+						<div class="form-floating mb-3">
 							<input class="form-control" type="tel" placeholder="Ingrese telefono" th:field="*{telefono}" required>
+							<label class="form-label">Telefono</label>
 						</div>
-						<div class=" mb-3">
-							<label class="form-label">Mail</label>
+						<div class="form-floating mb-3">
 							<input class="form-control" type="email" placeholder="Ingrese mail" th:field="*{mail}" required>
+							<label class="form-label">Mail</label>
 						</div>
-						<div class=" mb-3">
-							<label class="form-label">Horario</label>
+						<div class="form-floating mb-3">
 							<textarea class="form-control" placeholder="Ingrese el horario" th:field="*{horarioAtencion}" required></textarea>
+							<label class="form-label">Horario</label>
 						</div>
 						<button class="btn" type="submit">Enviar</button>
 					</form>

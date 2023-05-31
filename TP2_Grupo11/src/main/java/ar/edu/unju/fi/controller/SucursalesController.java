@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/sucursales")
 public class SucursalesController {
     @Autowired
-    ListaSucursal listaSucursales;
+    private ListaSucursal listaSucursales;
 
     /**
      * Método que muestra la página de sucursales

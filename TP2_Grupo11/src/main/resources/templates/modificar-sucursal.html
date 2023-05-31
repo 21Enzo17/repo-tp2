@@ -18,21 +18,21 @@
             <fieldset class="rounded-2 border border-2 border-success">
                 <legend style="float:none;width: fit-content;"><b>Modificar Producto</b></legend>
                 <form class="editar-sucursal-form p-3" th:action="@{/sucursales/editar-sucursal}" th:object="${sucursalEditar}" method="post">
-                    <div class="mb-3">
-                        <label class="form-label">Dirección</label>
+                    <div class="form-floating mb-3">
                         <input class="form-control" type="text" readonly placeholder="Ingrese dirección" value="sucursalEditar.direccion" th:field="*{direccion}" required>
+                        <label class="form-label">Dirección</label>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Telefono</label>
+                    <div class="form-floating mb-3">
                         <input class="form-control" type="tel" placeholder="Ingrese telefono" value="sucursalEditar.telefono" th:field="*{telefono}" required>
+                        <label class="form-label">Telefono</label>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Mail</label>
+                    <div class="form-floating mb-3">
                         <input class="form-control"  type="email" placeholder="Ingrese mail" value="sucursalEditar.mail" th:field="*{mail}" required>
+                        <label class="form-label">Mail</label>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Horario</label>
+                    <div class="form-floating mb-3">
                         <textarea class="form-control" placeholder="Ingrese el horario" value="sucursalEditar.horarioAtencion" th:field="*{horarioAtencion}" required></textarea>
+                        <label class="form-label">Horario</label>
                     </div>
                     <button class="btn" type="submit">Enviar</button>
                 </form>
