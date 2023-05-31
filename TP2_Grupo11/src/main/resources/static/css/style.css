@@ -5,9 +5,8 @@
     
 }
 body{
-    background-color: white;
     font-family: 'Poppins' , sans-serif;
-    
+    background-color: #8C8C88;
 }
 .titulares{
 	padding: 10px;
@@ -71,20 +70,22 @@ nav ul li:hover{
     color: #025159;
 }
 
-/* Aside */
-aside{
-    background: radial-gradient(#025159 0%, #35402D 100%);
-    border-radius: 5px;
-    margin-top: 5px;
-}
-form {
+/* ACA COMENTE ESTE FORM POR QUE NO SE BIEN POR QUE SE LO USA */
+/*form {
   border: 2px solid #007bff;
   padding: 16px;
-}
+}*/
 .mi-boton {
   color: white;
   background:gray;
 }
 #headingOne {
 	color:white;
+}
+
+/* Aside */
+aside{
+    background: radial-gradient(#025159 0%, #35402D 100%);
+    border-radius: 5px;
+    margin-top: 5px;
 }
