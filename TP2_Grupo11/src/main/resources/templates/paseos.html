@@ -24,54 +24,58 @@
 
 	<div class="container-xxl my-4">
 		<div class="row gap-4 justify-content-evenly">
-			<section class="col-12 col-lg-7 bg-light p-4 rounded-4">
-				<!-- IMAGEN DE GATO -->
-				<img class="col img-fluid w-auto " th:src="@{/images/gato.JPG}" alt="nena-con-su-gato">
-				<div class="titulares container">
-					<div class="row">
-						<!-- TITULO HORARIOS DE PASEO -->
-						<h2 class="col-11 fw-bold">Horarios de Paseo </h2>
-						<!-- ICONO PARA AGREGAR -->
-						<button class="btn col-1"><a class="text-white fs-4 me-3" th:href="@{/paseos/nuevohorario}"><i
-									class="bi bi-clipboard-plus"></i></a></button>
+			<section class="col-12 col-sm-11 col-lg-7 bg-light p-4 rounded-4">
+				<div class="titulares container mw-100">
+					<div class="align-items-center position-relative d-flex ">
+						<h2 class=" fw-bold mx-auto my-0">Horarios de Paseo</h2>
+						<button class=" position-absolute end-0 boton-agregar my-0 p-0"><a class="text-white fs-3"
+								th:href="@{/paseos/nuevohorario}"><i class="bi bi-plus-circle"></i></a></button>
 					</div>
 				</div>
+				<!-- IMAGEN DE GATO -->
+				<img class="col img-fluid w-auto " th:src="@{/images/gato.JPG}" alt="nena-con-su-gato">
+				
 				<!-- TABLA -->
-				<table class="table table-light table-striped text-center table-over my-4">
-					<thead>
-					 <tr class="table-light">		
-						 <th scope="col" class="table-light">Día</th>
-						 <th scope="col" class="table-light" th:each="lhora: ${listaDeHorarios}" th:text="${lhora.dia}"></th>
-					 </tr>
-					</thead>
-					<tbody>
-					 <tr class="table-light">
-						 <td class="table-light">Horario AM</td>
-						 <td class="table-light"  th:each="lhora: ${listaDeHorarios}" th:text="${lhora.turnoA}"></td>
-					 </tr>
-					 <tr class="table-light">
-						 <td class="table-light">Paseador</td>
-						 <td class="table-light" th:each="lhora: ${listaDeHorarios}" th:text="${lhora.paseador1}"></td>						
-					 </tr>
-					 <tr class="table-light">
-						 <td class="table-light">Horario PM</td>
-						 <td class="table-light"  th:each="lhora: ${listaDeHorarios}" th:text="${lhora.turnoB}"></td>						
-					 </tr>
-					 <tr class="table-light">
-						 <td class="table-light">Paseador</td>
-						 <td class="table-light" th:each="lhora: ${listaDeHorarios}" th:text="${lhora.paseador2}"></td>
-					 </tr>						
-					 <tr class="table-light">
-						 <td class="table-light">Opciones</td>
-						 <td class="table-light" th:each="lhora: ${listaDeHorarios}">
-							<div class="d-flex gap-1">
-								<button class="btn btn-success"><a class="text-white" th:href="@{/paseos/modificarHorarios/}+${lhora.dia}"><i class="bi bi-pencil-square"></i></a></button>
-								<button class="btn btn-danger"><a class="text-white" th:href="@{/paseos/eliminarHorarios/}+${lhora.dia}"><i class="bi bi-x-circle"></i></a></button>
-							</div>
-						 </td>
-					 </tr>
-					</tbody>	
-				 </table>
+				<div class="table-responsive">
+					<table class="table table-light table-striped text-center table-over my-4">
+						<thead style="background: radial-gradient(#025159 0%, #35402D 100%);">
+						<tr class="table-light text-white" >		
+							<th scope="col" style="background: radial-gradient(#025159 0%, #35402D 100%) !important;">Día</th>
+							<th scope="col" style="background: radial-gradient(#025159 0%, #35402D 100%) !important;" th:each="lhora: ${listaDeHorarios}" th:text="${lhora.dia}"></th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr class="table-light">
+							<td class="table-light">Horario AM</td>
+							<td class="table-light"  th:each="lhora: ${listaDeHorarios}" th:text="${lhora.turnoA}"></td>
+						</tr>
+						<tr class="table-light">
+							<td class="table-light">Paseador</td>
+							<td class="table-light" th:each="lhora: ${listaDeHorarios}" th:text="${lhora.paseador1}"></td>						
+						</tr>
+						<tr class="table-light">
+							<td class="table-light">Horario PM</td>
+							<td class="table-light"  th:each="lhora: ${listaDeHorarios}" th:text="${lhora.turnoB}"></td>						
+						</tr>
+						<tr class="table-light">
+							<td class="table-light">Paseador</td>
+							<td class="table-light" th:each="lhora: ${listaDeHorarios}" th:text="${lhora.paseador2}"></td>
+						</tr>						
+						<tr class="table-light">
+							<td class="table-light">Opciones</td>
+							<td class="table-light" th:each="lhora: ${listaDeHorarios}">
+								<div class="modificar-eliminar d-flex gap-2 mt-2 justify-content-center">
+									<button class=" px-0 py-1 btn btn-success "><a style="font-size:20px;" class="text-white" th:href="@{/paseos/modificarHorarios/}+${lhora.dia}">
+										<i class="px-2 py-1 bi bi-pencil-square"></i></a></button>
+									<button class="px-0 py-1 btn btn-danger"><a style="font-size:20px;" class="text-white" th:href="@{/paseos/eliminarHorarios/}+${lhora.dia}">
+										<i class="px-2 py-1 bi bi-x-circle"></i></a></button>
+								</div>
+								
+							</td>
+						</tr>
+						</tbody>	
+					</table>
+				</div>
 				<!-- IMAGEN PASEADOR -->
 				<img th:src="@{/images/paseo.JPG}" class="img-fluid w-100" alt="paseadores">
 			</section>
