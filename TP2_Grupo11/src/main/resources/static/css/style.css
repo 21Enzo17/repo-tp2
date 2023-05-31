@@ -39,3 +39,10 @@ form {
   border: 2px solid #007bff;
   padding: 16px;
 }
+.mi-boton {
+  color: white;
+  background:gray;
+}
+#headingOne {
+	color:white;
+}
