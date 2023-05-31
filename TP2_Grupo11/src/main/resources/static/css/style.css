@@ -12,7 +12,7 @@ body{
 .titulares{
 	padding: 10px;
 	background: radial-gradient(#025159 0%, #35402D 100%);
-	border-radius: 5px;
+	border-radius: 10px;
 	color: white;
 	text-align: center;
 }
