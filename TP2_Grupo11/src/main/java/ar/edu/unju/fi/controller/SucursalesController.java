@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import ar.edu.unju.fi.Listas.ListaSucursal;
 import ar.edu.unju.fi.model.Sucursal;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/sucursales")
 public class SucursalesController {
-    ListaSucursal listaSucursales = new ListaSucursal();
+    @Autowired
+    private ListaSucursal listaSucursales;
 
     /**
      * Método que muestra la página de sucursales
