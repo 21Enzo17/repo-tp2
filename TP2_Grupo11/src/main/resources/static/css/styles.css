@@ -14,7 +14,13 @@ select {
 }
 #bt{
     width: 100%;
+    color:white;
 }
+.bi-bag-plus{
+  width: 60px;
+  height: 50px;
+}
+
 button {
 	border: none;
 	cursor: pointer;
@@ -26,26 +32,17 @@ button {
 	border-radius:5px;
 }
 /* BODY */
-body {
-	font-family: "Poppins", "sans-serif";
-	font-size: 16px;
-	padding-top: 2px;
-	background-color: #8C8C88;
-	width: 99%;
-	margin: 0 auto;
-}
 
+/*
 .contenido {
 	display: grid;
 	justify-content: space-between;
-	/*flex-wrap: nowrap;*/
+	/*flex-wrap: nowrap;
 	grid-template-columns:65% 35%;
 	gap: 30px;
 	margin: 20px auto;
 	width: 1200px;
 }
-
-
 /* HEADER */
 header {
 	position: relative;
@@ -94,7 +91,6 @@ nav li a:hover{
 
 /* HEADERS */
 h2 {
-	padding: 10px;
 	background: radial-gradient(#025159 0%, #35402D 100%);
 	border-radius: 5px;
 	color: white;
@@ -452,7 +448,7 @@ textarea{
 }
 
 
-table {
+/*table {
 	text-align: center;
 	width: 100%;
 	font-size:12px;
@@ -477,17 +473,19 @@ td {
 }
 
 /* ASIDE */
-aside {
+/*aside {
 	text-align: justify;
 	color: white;
 	padding: 30px;
 	background: radial-gradient(#025159 0%, #35402D 100%);
-	border-radius: 10px;
+	height: 100%;
+	
+	
 }
 
 aside ul {
 	list-style-type: circle;
-}
+} */
 
 /* FOOTER */
 footer {
