@@ -11,7 +11,10 @@
 		<link rel="stylesheet" th:href="@{/css/style.css}">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-		<title>Contactanos</title>
+
+		<link rel="shortcut icon" th:href="@{/images/Mascotas-Barn.ico}" type="image/x-icon" >
+		<title>Contacto</title>
+
 	</head>
 <body>
 	<header th:replace="~{layouts/header :: header}"></header>
@@ -20,8 +23,11 @@
 		<div class="row gap-4">
 		<section id="seccion" class="col-12 col-lg-7 bg-light p-4 rounded-4">		
 			<h2 class="titulares fw-bold">Formulario de Contacto</h2>
-			<fieldset id="fieldset-form">
-				<legend> <b>Contáctenos</b> </legend>
+
+			<fieldset id="fieldset-form" class="rounded-2 border border-2 border-success">
+				<legend style="float:none;width: fit-content;"> <b>Contactactanos</b> </legend>
+				<div class="px-4 pt-4 py-4">
+
 				<p>
 					3915 Av. General Belgrano, 388-9999999 <br>
 					Lunes a Viernes: 9:00 am a 8:00 pm <br>
@@ -42,37 +48,34 @@
 				<br>
 				<hr>
 				<br>
-				<form class="border p-3">
-					<div class="mb-3 form-group">
+
+				<form>
+					<div class="form-floating mb-3">
+						<input type="text" class="form-control" placeholder="Ingrese su nombre">
 						<label>
 							Nombre
 						</label>
-						<br>
-						<input type="text" class="form-control" placeholder="Ingrese su nombre">
 					</div>
-					<div class="mb-3 form-group">
+					<div class="form-floating mb-3">
+					<input type="email" class="form-control" placeholder="Ingrese un email valido">
 						<label>
 							Email
 						</label>
-						<br>
-						<input type="email" class="form-control" placeholder="Ingrese un email valido">
 					</div>
-					<div class="mb-3 form-group">
+					<div class="form-floating mb-3">
+					<input type="text" class="form-control" placeholder="Ingrese su ciudad">
 						<label>
 							Ciudad
 						</label>
-						<br>
-						<input type="text" class="form-control" placeholder="Ingrese su ciudad">
 					</div>
-					<div class=" mb-3 form-group">
-						<label>
-							Mensaje
-						</label>
-						<br>
-						<textarea> </textarea>
+					<div class="form-floating mb-3">
+						<textarea class="form-control" placeholder="Mensaje"></textarea>
+						<label>Mensaje</label>
 					</div>
-					<button class="btn btn-primary" type="submit">Enviar</button>
+					<button class="btn text-white mt-2" style="background: radial-gradient(#025159 0%, #35402D 100%);" type="submit">Enviar</button>
+
 				</form>
+				</div>
 			</fieldset>
 		</section>	
 			<aside th:replace="~{layouts/aside :: aside}"></aside>
