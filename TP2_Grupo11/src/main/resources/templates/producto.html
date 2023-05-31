@@ -3,43 +3,78 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Productos</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" th:href="@{/images/Mascotas-Barn2.ico}" type="image/x-icon" >
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<title>Productos</title>
 </head>
 
 <body>
 	<header th:replace="~{layouts/header :: header}"></header>
 	<nav th:replace="~{layouts/nav :: nav}"></nav>
-	<div class="contenido">
-		<section class="productos-principal">
-			<div class="productos-nav">
-				<h2 class="titulo-h2">Productos</h2><button><a th:href="@{/producto/nuevo-producto}"><i class="bi bi-plus-circle"></i></a></button>
-			</div>
-			<div id="productos-container">
-				<article th:each="prod : ${listaProductos}" class="tarjeta">
-					<div class="img-prod">
-						<img th:src="${prod.imagen}" alt="${prod.nombre}">
+	<div class="container-xxl ">
+		<div class="row justify-content-evenly gap-4 my-4">
+			<section class="col-11 col-lg-7 bg-light p-4 rounded-4 ">
+				<div class="titulares container mw-100">
+					<div class="align-items-center position-relative d-flex ">
+						<h2 class=" fw-bold mx-auto my-0">Productos</h2>
+						<button class=" position-absolute end-0 boton-agregar my-0 p-0"><a class="text-white fs-3"
+								th:href="@{/producto/nuevo-producto}"><i class="bi bi-plus-circle"></i></a></button>
 					</div>
-					<div class="descripcion">
-						<h3 th:text="${prod.nombre}"></h3>
-						<p></p>
-						<p>Precio: <b>$<span th:text="${prod.precio}"></span></b></p>
-						<p>Con Descuento: <b>$<span th:text="${prod.calcularDescuento()}"></span></b></p>
+				</div>
+				<div id="productos-container">
+					<div class="container-xl mx-auto my-2">
+						<div class="row row-cols-1 row-cols-xl-2 g-2">
+							<article th:each="prod : ${listaProductos}" class="col">
+								<div class="card tarjeta-producto overflow-hidden">
+									<img class="card-img-top" th:src="${prod.imagen}" alt="${prod.nombre}">
+									<div class="card-body align-items-center d-block">
+										<h3 class="card-title text-center fw-bold fs-5" th:text="${prod.nombre}" ></h3>
+										<p class="text-center">Precio: <b class="text-decoration-line-through">$<span th:text="${prod.precio}">500</span> </b></p>
+										<p class="text-center">Con Descuento <b>$<span th:text="${prod.calcularDescuento()}"></span></b></p>
+										<a href="" class="btn btn-primary mx-auto my-0 w-100" style="background:radial-gradient(#025159 0%, #35402D 100%);border: none;">Agregar al Carrito</a>
+										<div class="modificar-eliminar d-flex gap-3 mt-2 justify-content-center">
+											<button class=" px-0 py-1 btn btn-success "><a style="font-size:20px;" class="text-white" th:href="@{/producto/editar-producto/}+${prod.cod}">
+												<i class="px-2 py-1 bi bi-pencil-square"></i></a></button>
+											<button class="px-0 py-1 btn btn-danger"><a style="font-size:20px;" class="text-white" th:href="@{/producto/eliminar-producto/}+${prod.cod}">
+												<i class="px-2 py-1 bi bi-x-circle"></i></a></button>
+										</div>
+									</div>
+								</div>
+							</article>
 					</div>
-					<button class="agregar-carrito">Agregar al carrito</button>
-					<div class="modificar-eliminar">
-						<button class="modificar"><a th:href="@{/producto/editar-producto/}+${prod.cod}"><i class="bi bi-pencil-square"></i></a></button>
-						<button class="eliminar"><a th:href="@{/producto/eliminar-producto/}+${prod.cod}"><i class="bi bi-x-circle"></i></a></button>
-					</div>
-				</article>
-			</div>
-		</section>
-		<aside th:replace="~{layouts/aside :: aside}"></aside>
+					<!--
+					<article th:each="prod : ${listaProductos}" class="tarjeta">
+						<div class="img-prod">
+							<img th:src="${prod.imagen}" alt="${prod.nombre}">
+						</div>
+						<div class="descripcion">
+							<h3 th:text="${prod.nombre}"></h3>
+							<p></p>
+							<p>Precio: <b>$<span th:text="${prod.precio}"></span></b></p>
+							<p>Con Descuento: <b>$<span th:text="${prod.calcularDescuento()}"></span></b></p>
+						</div>
+						<button class="agregar-carrito">Agregar al carrito</button>
+						<div class="modificar-eliminar">
+							<button class="modificar"><a th:href="@{/producto/editar-producto/}+${prod.cod}"><i
+										class="bi bi-pencil-square"></i></a></button>
+							<button class="eliminar"><a th:href="@{/producto/eliminar-producto/}+${prod.cod}"><i
+										class="bi bi-x-circle"></i></a></button>
+						</div>
+					</article>
+					-->
+				</div>
+			</section>
+			<aside th:replace="~{layouts/aside :: aside}"></aside>
+		</div>
 	</div>
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
-
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
 </html>
