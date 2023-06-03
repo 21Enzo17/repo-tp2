@@ -1,8 +1,7 @@
 package ar.edu.unju.fi.model;
-
-
 public class Turno {
 
+	private int cod;
 	private String dia;
 	private String turnoA;
 	private String turnoB;
@@ -13,14 +12,25 @@ public class Turno {
 	public Turno() {
 		super();
 	}
-	public Turno(String dia, String turnoA, String turnoB, String paseador1, String paseador2) {
+	
+	public Turno(int cod, String dia, String turnoA, String turnoB, String paseador1, String paseador2) {
 		super();
+		this.cod = cod;
 		this.dia = dia;
 		this.turnoA = turnoA;
 		this.turnoB = turnoB;
 		this.paseador1 = paseador1;
 		this.paseador2 = paseador2;
 	}
+	
+	public int getCod() {
+		return cod;
+	}
+
+	public void setCod(int cod) {
+		this.cod = cod;
+	}
+
 	public String getDia() {
 		return dia;
 	}
@@ -51,4 +61,5 @@ public class Turno {
 	public void setPaseador2(String paseador2) {
 		this.paseador2 = paseador2;
 	}
+
 }
