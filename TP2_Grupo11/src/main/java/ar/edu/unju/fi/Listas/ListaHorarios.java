@@ -29,4 +29,14 @@ public class ListaHorarios{
 		this.horarios = horarios;
 	}
     
+	public boolean existe (String dia) {
+		boolean aux=false,band=true;
+		for (int i = 0; i < horarios.size() && band; i++) {
+		    if(horarios.get(i).getDia().equals(dia)) {
+		    	aux=true;
+		    	band=false;
+		    }
+		}
+		return aux;
+	}
 }

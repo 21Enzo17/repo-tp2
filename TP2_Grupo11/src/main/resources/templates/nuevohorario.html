@@ -29,12 +29,7 @@
 						<div class="form-group">
 							<label>Dia</label>
 								<select class="form-select" type="text"  th:field="*{dia}">
-								<option value="Lunes">Lunes</option>
-								<option value="Martes">Martes</option>
-								<option value="Miércoles">Miércoles</option>
-								<option value="Jueves">Jueves</option>
-								<option value="Viernes">Viernes</option>
-								<option value="Sábado">Sábado</option>
+									<option th:each="Disp: ${diasDisponibles}"  th:value="${Disp}" th:text="${Disp}"></option>
 							</select>
 							<br>							
 						</div>
