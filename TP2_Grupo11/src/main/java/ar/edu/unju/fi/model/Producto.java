@@ -1,11 +1,25 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.*;
+
+@Component
 public class Producto {
+    @NotBlank(message="El nombre no puede estar vacio")
+    @Size(min=5,max=25,message = "El nombre debe ser mayor a 5 caracteres")
     private String nombre;
+    @Positive(message="El codigo no debe ser mayor a 1")
     private int cod;
+    @Positive(message="El precio no puede ser menor a 1")
     private float precio;
+    @Size(min=5,max=30,message = "La categoria debe ser mayor a 5 caracteres y menor a 30")
     private String categoria;
+    @Positive(message="El descuento debe ser un valor positivo o cero")
+    @Max(value=100,message="Solo puede tener un descuento de hasta 100%")
     private int descuento;
+    @NotBlank(message="El campo no puede estar vacio")
+    @Pattern(regexp="^(https?|ftp)://[^\s/$.?#].[^\s]*$",message="El link debe comenzar por http://, https://, o ftp://")
     private String imagen;
 
 
