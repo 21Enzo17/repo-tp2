@@ -2,10 +2,12 @@ package ar.edu.unju.fi.Listas;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ar.edu.unju.fi.model.Consejo;
 
 import java.util.ArrayList;
-
+@Component
 public class ListaConsejos {
 
 	private List <Consejo> listaConsejos;

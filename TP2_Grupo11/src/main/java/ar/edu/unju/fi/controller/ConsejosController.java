@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -10,14 +11,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ar.edu.unju.fi.Listas.ListaConsejos;
 import ar.edu.unju.fi.model.Consejo;
+import ar.edu.unju.fi.model.Producto;
+
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/consejos")
 public class ConsejosController {
-	
-	ListaConsejos listaConsejos = new ListaConsejos();
-		
+	@Autowired
+	private ListaConsejos listaConsejos;
+	@Autowired
+	private Consejo formConsejo;
 	 /**
      * Método que muestra la página de consejos
      * @param model
@@ -35,9 +39,8 @@ public class ConsejosController {
      * @return nuevo-consejo.html
      */
     @GetMapping("/nuevo-consejo")
-    public String getnuevoConsejo(Model model) {
-    	Consejo nuevoConsejo = new Consejo();    	
-    	model.addAttribute("nuevoConsejo", nuevoConsejo);
+    public String getnuevoConsejo(Model model) { 	
+    	model.addAttribute("nuevoConsejo", formConsejo);
     	return "nuevo-consejo";
     }
     
