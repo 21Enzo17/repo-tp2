@@ -2,13 +2,12 @@ package ar.edu.unju.fi.controller;
 
 import ar.edu.unju.fi.Listas.ListaSucursal;
 import ar.edu.unju.fi.model.Sucursal;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -16,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class SucursalesController {
     @Autowired
     private ListaSucursal listaSucursales;
+    @Autowired
+    private Sucursal sucursal;
 
     /**
      * Método que muestra la página de sucursales
@@ -27,7 +28,7 @@ public class SucursalesController {
         model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
         return "sucursales";
     }
- 
+
     /**
      * Método que muestra la página para crear una nueva sucursal
      * @param model
@@ -35,8 +36,8 @@ public class SucursalesController {
      */
     @GetMapping("/nueva-sucursal")
     public String getNuevaSucursalPage(Model model){
-        Sucursal formSucursal = new Sucursal();
-        model.addAttribute("formSucursal", formSucursal);
+//        Sucursal formSucursal = new Sucursal();
+        model.addAttribute("formSucursal", sucursal);
         return "nueva-sucursal";
     }
 
@@ -46,10 +47,17 @@ public class SucursalesController {
      * @return sucursales.html
      */
     @PostMapping("/nueva-sucursal")
-    public ModelAndView crearSucursal(Sucursal formSucursal){
-        ModelAndView modelView = new ModelAndView("sucursales");
-        listaSucursales.getListaSucursales().add(formSucursal);
-        modelView.addObject("listaSucursales", listaSucursales.getListaSucursales());
+    public ModelAndView crearSucursal(@Valid @ModelAttribute("formSucursal") Sucursal formSucursal, BindingResult result){
+        ModelAndView modelView;
+        if (result.hasErrors()){
+            modelView = new ModelAndView("nueva-sucursal");
+
+        }
+        else{
+            modelView = new ModelAndView("sucursales");
+            listaSucursales.getListaSucursales().add(formSucursal);
+            modelView.addObject("listaSucursales", listaSucursales.getListaSucursales());
+        }
         return modelView;
     }
 
@@ -94,18 +102,24 @@ public class SucursalesController {
      * @return sucursales.html
      */
     @PostMapping("/editar-sucursal")
-    public ModelAndView modificarSucursal(Sucursal sucursalEditado){
-        ModelAndView modelView = new ModelAndView("sucursales");
-        for(Sucursal sucursal:listaSucursales.getListaSucursales()){
-            if(sucursal.getDireccion().equals(sucursalEditado.getDireccion())){
-                sucursal.setDireccion(sucursalEditado.getDireccion());
-                sucursal.setTelefono(sucursalEditado.getTelefono());
-                sucursal.setHorarioAtencion(sucursalEditado.getHorarioAtencion());
-                sucursal.setMail(sucursalEditado.getMail());
-                break;
-            }
+    public ModelAndView modificarSucursal(@Valid @ModelAttribute("sucursalEditar") Sucursal sucursalEditado, BindingResult result){
+        ModelAndView modelView;
+        if (result.hasErrors()){
+            modelView = new ModelAndView("modificar-sucursal");
         }
-        modelView.addObject("listaSucursales", listaSucursales.getListaSucursales());
+        else{
+            modelView = new ModelAndView("sucursales");
+            for(Sucursal sucursal:listaSucursales.getListaSucursales()){
+                if(sucursal.getDireccion().equals(sucursalEditado.getDireccion())){
+                    sucursal.setDireccion(sucursalEditado.getDireccion());
+                    sucursal.setTelefono(sucursalEditado.getTelefono());
+                    sucursal.setHorarioAtencion(sucursalEditado.getHorarioAtencion());
+                    sucursal.setMail(sucursalEditado.getMail());
+                    break;
+                }
+            }
+            modelView.addObject("listaSucursales", listaSucursales.getListaSucursales());
+        }
         return modelView;
     }
 }
