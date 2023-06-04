@@ -44,11 +44,30 @@
 							<input class="form-control" type="text" placeholder=" nombre paseador" value="${turnoDia.paseador2}" th:field="*{paseador2}">
 							<label>Paseador turno tarde</label>
 						</div>
-			
-						<button class="btn text-white mb-3" style="background: radial-gradient(#025159 0%, #35402D 100%);" type="submit">Modificar</button>
+						<button type="button" class="btn text-white mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background:radial-gradient(#025159 0%, #35402d 100%)" >
+						  Modificar
+						</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Confirmar cambios</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        Se Modificarán los horarios de este dia.
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn text-white mb-3" style="background: gray" data-bs-dismiss="modal">cancelar</button>
+							<button class="btn text-white mb-3" style="background: radial-gradient(#025159 0%, #35402D 100%)" type="submit">Modificar</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>			
 					</form>
 				</fieldset>
-			
 			</section>
 			<aside th:replace="~{layouts/aside :: aside}"></aside>
 		</div>

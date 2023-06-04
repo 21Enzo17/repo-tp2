@@ -3,8 +3,11 @@ package ar.edu.unju.fi.Listas;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ar.edu.unju.fi.model.Turno;
 
+@Component
 public class ListaHorarios{
 	
 	private List<Turno> horarios;

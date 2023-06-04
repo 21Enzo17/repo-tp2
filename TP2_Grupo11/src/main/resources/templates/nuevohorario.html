@@ -20,10 +20,10 @@
 	<div class="container-xxl my-4">
 		<div class="row justify-content-evenly gap-4 my-4">
 			<section class="col-12 col-sm-11 col-lg-7 bg-light p-4 rounded-4">
-				<h2 class="titulares fw-bold">Modificar Horario</h2>
+				<h2 class="titulares fw-bold">Nuevo Horario</h2>
 				<fieldset class="rounded-2 border border-2 border-success">
 					<legend style="float: none; width: fit-content">
-						<b>Modificar Producto</b>
+						<b>Completar un nuevo Horario</b>
 					</legend>
 					<form class="px-3 pt-3" th:action="@{/paseos/guardar}" th:object="${formHorario}" method="post">
 						<div class="form-group">
@@ -35,28 +35,61 @@
 						</div>
 						<div class="form-floating mb-3">
 							<input class="form-control" type="text" placeholder=" Ingrese nuevo horario"
-								value="${turnoDia.turnoA}" th:field="*{turnoA}" />
+								value="${turnoDia.turnoA}" th:field="*{turnoA}" >
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('turnoA')}"  th:errors="*{turnoA}"/>
+								
 							<label>Nuevo turno mañana</label>
 						</div>
 						<div class="form-floating mb-3">
 							<input class="form-control" type="text" placeholder=" Ingrese horario"
-								value="${turnoDia.turnoB}" th:field="*{turnoB}" />
+								value="${turnoDia.turnoB}" th:field="*{turnoB}" >
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('turnoB')}"  th:errors="*{turnoB}"/>
+								
 							<label>Nuevo turno tarde</label>
 						</div>
 						<div class="form-floating mb-3">
 							<input class="form-control" type="text" placeholder=" nombre paseador"
-								value="${turnoDia.paseador1}" th:field="*{paseador1}" />
+								value="${turnoDia.paseador1}" th:field="*{paseador1}" >
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('paseador1')}"  th:errors="*{paseador1}"/>
+								
 							<label>Paseador turno mañana</label>
 						</div>
 						<div class="form-floating mb-3">
 							<input class="form-control" type="text" placeholder=" nombre paseador"
-								value="${turnoDia.paseador2}" th:field="*{paseador2}" />
+								value="${turnoDia.paseador2}" th:field="*{paseador2}" >
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('paseador2')}"  th:errors="*{paseador2}"/>					
 							<label>Paseador turno tarde</label>
 						</div>
 
-						<button class="btn text-white mb-3" th:text="Agregar"	style="background: radial-gradient(#025159 0%, #35402d 100%)" type="submit">
-						</button>
+			<!-- 			<button class="btn text-white mb-3" th:text="Agregar"	style="background: radial-gradient(#025159 0%, #35402d 100%)" type="submit">  
+						</button>      -->
+						
+						<!-- Button trigger modal -->
+					<button type="button" class="btn text-white mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background:radial-gradient(#025159 0%, #35402d 100%)" >
+					  Agregar
+					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Confirmar Nuevo Horario</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        Se agregará a la lista de Horarios actual
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn text-white mb-3" style="background: gray" data-bs-dismiss="modal">cancelar</button>
+					        <button class="btn text-white mb-3" th:text="Agregar"	style="background: radial-gradient(#025159 0%, #35402d 100%)" type="submit"></button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
 					</form>
+					
+					
 				</fieldset>
 			</section>
 			<aside th:replace="~{layouts/aside :: aside}"></aside>

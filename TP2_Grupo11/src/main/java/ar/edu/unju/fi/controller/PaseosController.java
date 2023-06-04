@@ -1,7 +1,10 @@
 package ar.edu.unju.fi.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.Listas.ListaHorarios;
 import ar.edu.unju.fi.model.Dia;
 import ar.edu.unju.fi.model.Turno;
+import jakarta.validation.Valid;
 import ar.edu.unju.fi.Listas.ListaSemana;
 import java.util.List;
 import java.util.ArrayList;
@@ -18,8 +22,12 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("/paseos")
 public class PaseosController {
-	ListaHorarios listaDeHorarios = new ListaHorarios();
-	ListaSemana semana=new ListaSemana();
+	
+	@Autowired
+	ListaHorarios listaDeHorarios ;
+
+	@Autowired
+	ListaSemana semana;
 	
     /**
      * retorna pagina paseos
@@ -28,7 +36,15 @@ public class PaseosController {
      */
     @GetMapping("/horarios")
     public String getPaseos(Model model){
-    	model.addAttribute("listaDeHorarios", listaDeHorarios.getHorarios());
+    	List<Turno> listaOrdenada=new ArrayList<Turno>();
+    	for(int i=1;i<=6;i++) {
+    		for(Turno turno: listaDeHorarios.getHorarios()) {
+    			if(turno.getCod()==i) {
+    				listaOrdenada.add(turno);
+    			}
+    		}
+    	}
+    	model.addAttribute("listaDeHorarios", listaOrdenada);
         return "paseos" ;
     }
     /**
@@ -71,9 +87,19 @@ public class PaseosController {
      * @return paseos.html
      */
     @PostMapping("/guardar")
-    public ModelAndView ActualizarListadoHorariosPage(@ModelAttribute("formHorario")Turno formHorario) {
+    public ModelAndView ActualizarListadoHorariosPage(@Valid @ModelAttribute("formHorario")Turno formHorario,BindingResult result) {
+    	    	
+    	if(result.hasErrors()) {
+    		System.out.println(result.getErrorCount());
+    		System.out.println(result.getObjectName());
+	    	ModelAndView modelView = new ModelAndView("nuevoHorario");
+	    	modelView.addObject("formHorario", formHorario);
 	    	
-    	switch (formHorario.getDia()) {
+	    	return modelView;
+
+    	}else {
+    	
+            switch(formHorario.getDia()) {
 	        case "Lunes":
 	        	formHorario.setCod(1);
 	            break;
@@ -107,6 +133,7 @@ public class PaseosController {
 	    	}
     	modelView.addObject("listaDeHorarios", listaOrdenada);    	    
     	return modelView;
+    	}
     }
     /**
      * Editar un dia de Horarios ya existente

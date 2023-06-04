@@ -1,11 +1,28 @@
 package ar.edu.unju.fi.model;
+
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
+@Component
 public class Turno {
 
-	private int cod;
+	private int cod;		
 	private String dia;
+	@NotBlank(message="Debe ingresar turno")
+	@Size(min=3,max=30)
 	private String turnoA;
+
 	private String turnoB;
+	@NotBlank(message="Debe ingresar un nombre")
+	@Size(min=3,max=30)
+	@Pattern(regexp="[a-zA-Z]+",message="Solo debe contener letras")
 	private String paseador1;
+	@NotBlank(message="Debe ingresar un nombre")
+	@Size(min=3,max=30)
+	@Pattern(regexp="[a-zA-Z]+",message="Solo debe contener letras")
 	private String paseador2;
 	
 	
