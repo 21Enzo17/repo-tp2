@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 import ar.edu.unju.fi.model.Dia;
 
 @Component
-public class DiasSemana {
+public class ListaSemana {
 
 	private List<Dia> semana;
 	
-	public DiasSemana() {
+	public ListaSemana() {
 		
 		semana = new ArrayList<Dia>(); 
 		semana.add(new Dia("Lunes",1));
@@ -32,7 +32,7 @@ public class DiasSemana {
 		this.semana = semana;
 	}
 
-	public DiasSemana(List<Dia> semana) {
+	public ListaSemana(List<Dia> semana) {
 		super();
 		this.semana = semana;
 	}

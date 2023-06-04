@@ -1,6 +1,5 @@
 package ar.edu.unju.fi.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.Listas.ListaHorarios;
 import ar.edu.unju.fi.model.Dia;
 import ar.edu.unju.fi.model.Turno;
-import ar.edu.unju.fi.Listas.DiasSemana;
+import ar.edu.unju.fi.Listas.ListaSemana;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 @RequestMapping("/paseos")
 public class PaseosController {
 	ListaHorarios listaDeHorarios = new ListaHorarios();
-	DiasSemana semana=new DiasSemana();
+	ListaSemana semana=new ListaSemana();
 	
     /**
      * retorna pagina paseos
@@ -52,8 +51,18 @@ public class PaseosController {
             model.addAttribute("diasDisponibles",disponibles);
             return "nuevohorario"; 
         }
-        model.addAttribute("listaDeHorarios", listaDeHorarios.getHorarios());
-        model.addAttribute("error", "La semana tiene sus turnos completos");
+        boolean alerta=true;
+    	List<Turno> listaOrdenada=new ArrayList<Turno>();
+    	for(int i=1;i<=6;i++) {
+    		for(Turno turno: listaDeHorarios.getHorarios()) {
+    			if(turno.getCod()==i) {
+    				listaOrdenada.add(turno);
+    			}
+    		}
+    	}
+
+        model.addAttribute("listaDeHorarios", listaOrdenada);
+        model.addAttribute("alerta", alerta);
         return "paseos";
     }
     /**

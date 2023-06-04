@@ -12,12 +12,12 @@ public class ListaHorarios{
     public ListaHorarios(){
         horarios = new ArrayList<Turno>();
         //precarga de horarios
-        horarios.add(new Turno("Lunes","9 a 11 hrs","15 a 19 hrs","juan Perez","Maria Juana"));
-        horarios.add(new Turno("Martes","9 a 11 hrs","15 a 19 hrs","juan Perez","Maria Juana"));
-        horarios.add(new Turno("Miércoles","9 a 11 hrs","15 a 19 hrs","juan Perez","Roberto Vasquez"));
-        horarios.add(new Turno("Jueves","9 a 11 hrs","15 a 19 hrs","Lucas Días","Maria Juana"));
-        horarios.add(new Turno("Viernes","9 a 11 hrs","15 a 19 hrs","juan Perez","Maria Juana"));
-        horarios.add(new Turno("Sábado","9 a 11 hrs","15 a 19 hrs","johan Rosero","Maria Juana"));
+        horarios.add(new Turno(1,"Lunes","9 a 11 hrs","15 a 19 hrs","juan Perez","Maria Juana"));
+        horarios.add(new Turno(2,"Martes","9 a 11 hrs","15 a 19 hrs","juan Perez","Maria Juana"));
+        horarios.add(new Turno(3,"Miércoles","9 a 11 hrs","15 a 19 hrs","juan Perez","Roberto Vasquez"));
+        horarios.add(new Turno(4,"Jueves","9 a 11 hrs","15 a 19 hrs","Lucas Días","Maria Juana"));
+        horarios.add(new Turno(5,"Viernes","9 a 11 hrs","15 a 19 hrs","juan Perez","Maria Juana"));
+        horarios.add(new Turno(6,"Sábado","9 a 11 hrs","15 a 19 hrs","johan Rosero","Maria Juana"));
 
     }
 

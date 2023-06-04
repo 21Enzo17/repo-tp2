@@ -32,6 +32,11 @@
 								th:href="@{/paseos/nuevohorario}"><i class="bi bi-plus-circle"></i></a></button>
 					</div>
 				</div>
+				<!-- ALERTA -->
+				<div th:if="${alerta}"  class="alert alert-warning alert-dismissible fade show" role="alert">
+				  <strong>Los Turno estan completos!</strong> Aun puedes intentar editar los existentes.
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
 				<!-- IMAGEN DE GATO -->
 				<img class="col img-fluid w-auto " th:src="@{/images/gato.JPG}" alt="nena-con-su-gato">
 				
@@ -75,7 +80,6 @@
 						</tr>
 						</tbody>	
 					</table>
-					<p class="bg-danger text-white p-2 rounded text-center fw-bold" th:if="${error}" th:text="${error}"></p>
 				</div>
 				<!-- IMAGEN PASEADOR -->
 				<img th:src="@{/images/paseo.JPG}" class="img-fluid w-100" alt="paseadores">
