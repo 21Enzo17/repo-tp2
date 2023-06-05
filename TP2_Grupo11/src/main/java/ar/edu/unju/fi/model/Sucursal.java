@@ -1,9 +1,25 @@
 package ar.edu.unju.fi.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Sucursal {
+    @NotBlank(message = "Debe ingresar una dirección")
+    @Size(min = 5, message = "La dirección debe de ser mayor a 5 carácteres")
     private String direccion;
+    @NotBlank(message = "Debe ingresar un teléfono")
+    @Size(min = 8, message = "El teléfono debe tener al menos 8 digitos")
+//    @Pattern(regexp = "[1-9]", message = "El teléfono debe tener numeros del 1 al 9")
     private String telefono;
+    @NotBlank(message = "Debe ingresar un mail")
+    @Email(message = "Debe ingresar un mail válido")
     private String mail;
+    @NotBlank(message = "Debe ingresar un horario de atención")
+    @Size(min = 10, message = "Debes ingresar un horario más detallado (10 caracteres mínimo)")
     private String horarioAtencion;
 
     public Sucursal() {
