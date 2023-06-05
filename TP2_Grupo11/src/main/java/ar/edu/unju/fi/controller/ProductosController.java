@@ -3,6 +3,7 @@ package ar.edu.unju.fi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.fi.Listas.ListaProductos;
 import ar.edu.unju.fi.model.Producto;
+import jakarta.validation.Valid;
 /**
  * Esta clase es la clase controladora de la pagina productos
  * @author: Grupo 11
@@ -21,7 +23,12 @@ import ar.edu.unju.fi.model.Producto;
 @RequestMapping("/producto")
 public class ProductosController {
     @Autowired
-    ListaProductos listaProductos;
+    private ListaProductos listaProductos;
+
+    @Autowired
+    private Producto formProducto;
+
+
     /**
      * Metodo que muestra la pagina de productos
      * @param model
@@ -40,7 +47,6 @@ public class ProductosController {
      */
     @GetMapping("/nuevo-producto")
     public String getNuevoProductoPage(Model model){
-        Producto formProducto = new Producto();
         model.addAttribute("formProducto", formProducto);
         return "nuevo-producto";
     }
@@ -50,10 +56,15 @@ public class ProductosController {
      * @return  nuevo-producto.html
      */
     @PostMapping("/nuevo-producto")
-    public ModelAndView crearProducto(@ModelAttribute("formProducto")Producto formProducto){
-        ModelAndView modelView = new ModelAndView("producto");
-        listaProductos.getProductos().add(formProducto);
-        modelView.addObject("listaProductos", listaProductos.getProductos());
+    public ModelAndView crearProducto(@Valid @ModelAttribute("formProducto")Producto formProducto,BindingResult result){
+        ModelAndView modelView;
+        if(result.hasErrors()){
+            modelView = new ModelAndView("nuevo-producto");
+        }else{
+            modelView = new ModelAndView("producto");
+            listaProductos.getProductos().add(formProducto);
+            modelView.addObject("listaProductos", listaProductos.getProductos());
+        }
         return modelView;
     }
     /**
@@ -96,18 +107,24 @@ public class ProductosController {
      * @return producto.html
      */
     @PostMapping("modificar-producto")
-    public String modificarLista(@ModelAttribute("encontrado")Producto modificado){
-        for(Producto producto:listaProductos.getProductos()){
-            if(modificado.getCod()==producto.getCod()){
-                producto.setNombre(modificado.getNombre());
-                producto.setCategoria(modificado.getCategoria());
-                producto.setDescuento(modificado.getDescuento());
-                producto.setImagen(modificado.getImagen());
-                producto.setPrecio(modificado.getPrecio());
-                break;
+    public ModelAndView modificarLista(@Valid @ModelAttribute("encontrado")Producto modificado, BindingResult result){
+        ModelAndView modelView;
+        if(result.hasErrors()){
+            modelView = new ModelAndView("modificar-producto");
+        }else{
+            for(Producto producto:listaProductos.getProductos()){
+                if(modificado.getCod()==producto.getCod()){
+                    producto.setNombre(modificado.getNombre());
+                    producto.setCategoria(modificado.getCategoria());
+                    producto.setDescuento(modificado.getDescuento());
+                    producto.setImagen(modificado.getImagen());
+                    producto.setPrecio(modificado.getPrecio());
+                    break;
+                }
             }
+            modelView = new ModelAndView("producto");
+            modelView.addObject("listaProductos", listaProductos.getProductos());
         }
-        return "redirect:/producto/listado";
+        return modelView;
     }
-
-}
+    }
