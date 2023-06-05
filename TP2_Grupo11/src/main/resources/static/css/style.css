@@ -82,7 +82,11 @@ nav ul li:hover{
 #headingOne {
 	color:white;
 }
+/* Consejos */
+.sucursales-article{
+    border-left: 10px solid #025159;
 
+}
 /* Aside */
 aside{
     background: radial-gradient(#025159 0%, #35402D 100%);
