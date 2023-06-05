@@ -26,10 +26,9 @@
                     <form class="px-3 pt-3" th:action="@{/consejos/modificar-consejo}"
                         th:object="${consejosEditar}" method="post">
                         <div class="form-floating mb-3">
-                            
                             <input th:classappend="${#fields.hasErrors('id')} ?'is-invalid':'' " type="number"
                             readonly class="form-control" id="inputId" placeholder="Ingrese Codigo"
-                            value="${consejosEditar.id}" th:field="*{id}" required>
+                            value="${consejosEditar.id}" th:field="*{id}" >
                             <label>Id</label>
                             <p class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></p>
 
@@ -37,7 +36,7 @@
                         <div class="form-floating mb-3">
                             <input th:classappend="${#fields.hasErrors('titulo')} ?'is-invalid':'' " type="text"
                             class="form-control" placeholder="Ingrese Titulo" value="${consejosEditar.titulo}"
-                            th:field="*{titulo}" required>
+                            th:field="*{titulo}" >
                             <label>Titulo</label>
                             <p class="text-danger" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></p>
                         </div>
