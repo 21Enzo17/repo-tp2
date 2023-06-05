@@ -7,7 +7,7 @@ import jakarta.validation.constraints.*;
 @Component
 public class Producto {
     @NotBlank(message="El nombre no puede estar vacio")
-    @Size(min=5,max=25,message = "El nombre debe ser mayor a 5 caracteres")
+    @Size(min=5,max=25,message = "El nombre debe ser mayor a 5 caracteres y menor a 25")
     private String nombre;
     @Positive(message="El codigo no debe ser mayor a 1")
     private int cod;
