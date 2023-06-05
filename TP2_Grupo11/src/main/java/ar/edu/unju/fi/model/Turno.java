@@ -19,11 +19,11 @@ public class Turno {
 	private String turnoB;
 	@NotBlank(message="Debe ingresar un nombre")
 	@Size(min=3,max=30)
-	@Pattern(regexp="[a-zA-Z]+",message="Solo debe contener letras")
+	@Pattern(regexp="[a-zA-Z ]+",message="Solo debe contener letras")
 	private String paseador1;
 	@NotBlank(message="Debe ingresar un nombre")
 	@Size(min=3,max=30)
-	@Pattern(regexp="[a-zA-Z]+",message="Solo debe contener letras")
+	@Pattern(regexp="[a-zA-Z ]+",message="Solo debe contener letras")
 	private String paseador2;
 	
 	

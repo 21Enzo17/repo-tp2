@@ -187,35 +187,33 @@ public class PaseosController {
      * @return paseos.html
      */
     @PostMapping("/confirmarCambio")
-    public ModelAndView confirmarCambios(@Valid @ModelAttribute("turnoDia")Turno modificado,Model model,BindingResult result) {
-    	ModelAndView modelView = new ModelAndView("modificar-horario");
+    public ModelAndView confirmarCambios(@Valid @ModelAttribute("turnoDia")Turno modificado,BindingResult result) {
+    	ModelAndView modelView;
 
     	if(result.hasErrors()) {
     		System.out.println(result.getErrorCount());
     		System.out.println(result.getObjectName());
-	    	modelView.addObject("turnoDia", modificado);
-	    
-    	}
-    	else {
-    	for(Turno lhora: listaDeHorarios.getHorarios()) {
-        	if(modificado.getDia().equals(lhora.getDia())){
-        		lhora.setPaseador1(modificado.getPaseador1());
-        		lhora.setPaseador2(modificado.getPaseador2());
-        		lhora.setTurnoA(modificado.getTurnoA());
-        		lhora.setTurnoB(modificado.getTurnoB());
-        		break;
-        	}
-        }
-    	modelView = new ModelAndView("paseos");
-    	List<Turno> listaOrdenada=new ArrayList<Turno>();
-    	for(int i=1;i<=6;i++) {
-    		for(Turno turno: listaDeHorarios.getHorarios()) {
-    			if(turno.getCod()==i) {
-    				listaOrdenada.add(turno);
-    			}
-    		}
-    	}
-    	modelView.addObject("listaDeHorarios", listaOrdenada);    	    
+			modelView = new ModelAndView("modificar-horarios");
+    	}else {
+			for(Turno lhora: listaDeHorarios.getHorarios()) {
+				if(modificado.getDia().equals(lhora.getDia())){
+					lhora.setPaseador1(modificado.getPaseador1());
+					lhora.setPaseador2(modificado.getPaseador2());
+					lhora.setTurnoA(modificado.getTurnoA());
+					lhora.setTurnoB(modificado.getTurnoB());
+					break;
+				}
+			}
+			modelView = new ModelAndView("paseos");
+			List<Turno> listaOrdenada=new ArrayList<Turno>();
+			for(int i=1;i<=6;i++) {
+				for(Turno turno: listaDeHorarios.getHorarios()) {
+					if(turno.getCod()==i) {
+						listaOrdenada.add(turno);
+					}
+				}
+			}
+			modelView.addObject("listaDeHorarios", listaOrdenada);    	    
     	}
         return modelView;
     	

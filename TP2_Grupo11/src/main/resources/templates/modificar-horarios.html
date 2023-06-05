@@ -22,7 +22,7 @@
 			<section class="col-12 col-sm-11 col-lg-7 bg-light p-4 rounded-4">
 				<h2 class="titulares fw-bold">Modificar Horario</h2>
 				<fieldset class="rounded-2 border border-2 border-success">
-					<legend style="float:none width fit-content"> <b>Modificar Producto</b> </legend>
+					<legend style="float:none;width:fit-content;"> <b>Editar Horario</b> </legend>
 					<form class="px-3 pt-3" th:action="@{/paseos/confirmarCambio}" th:object="${turnoDia}" method="post">
 						<div class="form-floating mb-3">
 							<input class="form-control" type="text" readonly placeholder=" Ingrese" value="${turnoDia.dia}" th:field="*{dia}">
