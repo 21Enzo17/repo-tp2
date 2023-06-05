@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Sucursal {
     @NotBlank(message = "Debe ingresar una dirección")
-    @Size(min = 5, message = "La dirección debe de ser mayor a 5 carácteres")
+    @Size(min = 5, message = "La dirección debe de ser mayor a 5 o igual carácteres")
     private String direccion;
     @NotBlank(message = "Debe ingresar un teléfono")
     @Size(min = 8, message = "El teléfono debe tener al menos 8 digitos")
