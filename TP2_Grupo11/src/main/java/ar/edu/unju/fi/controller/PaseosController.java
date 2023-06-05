@@ -139,7 +139,7 @@ public class PaseosController {
 	     	}
 	    	ModelAndView modelView = new ModelAndView("paseos");
 	    	modelView.addObject("listaDeHorarios", listaOrdenada);
-
+	    	return modelView;
     	}
     }
     /**
@@ -206,8 +206,7 @@ public class PaseosController {
         		break;
         	}
         }
-
-    	ModelAndView modelView = new ModelAndView("paseos");
+    	modelView = new ModelAndView("paseos");
     	List<Turno> listaOrdenada=new ArrayList<Turno>();
     	for(int i=1;i<=6;i++) {
     		for(Turno turno: listaDeHorarios.getHorarios()) {
@@ -216,9 +215,9 @@ public class PaseosController {
     			}
     		}
     	}
-	modelView.addObject("listaDeHorarios", listaOrdenada);    	    
+    	modelView.addObject("listaDeHorarios", listaOrdenada);    	    
     	}
+        return modelView;
     	
     }                                                                                
-    return modelView;
 }
