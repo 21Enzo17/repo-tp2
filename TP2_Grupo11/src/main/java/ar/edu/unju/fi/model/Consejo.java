@@ -1,10 +1,20 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.*;
+
+@Component
 public class Consejo {
+	@NotBlank(message="El titulo no puede estar vacío")
+	@Size(min=5,max=25,message = "El nombre debe ser mayor a 5 caracteres")
 	private String titulo;
+	@NotBlank(message="La descripción no puede estar vacía")
+	@Size(min=5,max=550,message = "El nombre debe ser mayor a 5 caracteres")
 	private String descripcion;
+	@NotNull(message="El valor de ID no puede estar vacio")
+	@Positive(message="El ID debe ser un numero igual a 1 o mayor")
 	private int id;
-	
 	public int getId() {
 		return id;
 	}
