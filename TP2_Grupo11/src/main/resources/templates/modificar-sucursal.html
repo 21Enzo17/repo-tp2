@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Sucursal</title>
     <link rel="shortcut icon" th:href="@{/images/Mascotas-Barn2.ico}" type="image/x-icon" >
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
@@ -19,23 +19,27 @@
         <section class="col-12 col-sm-11 col-lg-7 bg-light p-4 rounded-4">
             <h2 class="titulares fw-bold">Editar Sucursal</h2>
             <fieldset class="rounded-2 border border-2 border-success">
-                <legend style="float:none;width: fit-content;"><b>Modificar Producto</b></legend>
+                <legend style="float:none;width: fit-content;"><b>Modificar Sucursal</b></legend>
                 <form class="editar-sucursal-form p-3" th:action="@{/sucursales/editar-sucursal}" th:object="${sucursalEditar}" method="post">
                     <div class="form-floating mb-3">
-                        <input class="form-control" type="text" readonly placeholder="Ingrese dirección" value="sucursalEditar.direccion" th:field="*{direccion}" required>
+                        <input class="form-control-plaintext" th:classappend="${#fields.hasErrors('direccion')} ? 'is-invalid' : ''" type="text" readonly placeholder="Ingrese dirección" value="sucursalEditar.direccion" th:field="*{direccion}">
                         <label class="form-label">Dirección</label>
+                        <p class="text-danger" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></p>
                     </div>
                     <div class="form-floating mb-3">
-                        <input class="form-control" type="tel" placeholder="Ingrese telefono" value="sucursalEditar.telefono" th:field="*{telefono}" required>
+                        <input class="form-control" th:classappend="${#fields.hasErrors('telefono')} ? 'is-invalid' : ''" type="tel" placeholder="Ingrese telefono" value="sucursalEditar.telefono" th:field="*{telefono}">
                         <label class="form-label">Telefono</label>
+                        <p class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></p>
                     </div>
                     <div class="form-floating mb-3">
-                        <input class="form-control"  type="email" placeholder="Ingrese mail" value="sucursalEditar.mail" th:field="*{mail}" required>
+                        <input class="form-control" th:classappend="${#fields.hasErrors('mail')} ? 'is-invalid' : ''" type="email" placeholder="Ingrese mail" value="sucursalEditar.mail" th:field="*{mail}">
                         <label class="form-label">Mail</label>
+                        <p class="text-danger" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></p>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" placeholder="Ingrese el horario" value="sucursalEditar.horarioAtencion" th:field="*{horarioAtencion}" required></textarea>
+                        <textarea class="form-control" th:classappend="${#fields.hasErrors('horarioAtencion')} ? 'is-invalid' : ''" placeholder="Ingrese el horario" value="sucursalEditar.horarioAtencion" th:field="*{horarioAtencion}"></textarea>
                         <label class="form-label">Horario</label>
+                        <p class="text-danger" th:if="${#fields.hasErrors('horarioAtencion')}" th:errors="*{horarioAtencion}"></p>
                     </div>
                     <button class="btn" type="submit">Enviar</button>
                 </form>
