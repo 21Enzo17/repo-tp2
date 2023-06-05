@@ -14,7 +14,8 @@ public class Turno {
 	@NotBlank(message="Debe ingresar turno")
 	@Size(min=3,max=30)
 	private String turnoA;
-
+	@NotBlank(message="Debe ingresar turno")
+	@Size(min=3,max=30)
 	private String turnoB;
 	@NotBlank(message="Debe ingresar un nombre")
 	@Size(min=3,max=30)

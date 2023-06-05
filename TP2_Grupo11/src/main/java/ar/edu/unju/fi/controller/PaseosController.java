@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,8 +92,15 @@ public class PaseosController {
     		System.out.println(result.getErrorCount());
     		System.out.println(result.getObjectName());
 	    	ModelAndView modelView = new ModelAndView("nuevoHorario");
-	    	modelView.addObject("formHorario", formHorario);
+	    	List<String> disponibles = new ArrayList<>();
 	    	
+	            for(Dia dia: semana.getSemana()) {
+	            		if(listaDeHorarios.existe(dia.getNombre())==false) {
+	            			disponibles.add(dia.getNombre());
+	            		}
+	            }
+	    	modelView.addObject("formHorario", formHorario);
+	    	modelView.addObject("diasDisponibles", disponibles);
 	    	return modelView;
 
     	}else {
@@ -121,18 +127,19 @@ public class PaseosController {
 	        default:
 	        	formHorario.setCod(0);
 	        	}
+            
+	    	 listaDeHorarios.getHorarios().add(formHorario);
+	    	 List<Turno> listaOrdenada=new ArrayList<Turno>();
+	     	for(int i=1;i<=6;i++) {
+	     		for(Turno turno: listaDeHorarios.getHorarios()) {
+	     			if(turno.getCod()==i) {
+	     				listaOrdenada.add(turno);
+	     			}
+	     		}
+	     	}
 	    	ModelAndView modelView = new ModelAndView("paseos");
-	    	List<Turno> listaOrdenada=new ArrayList<Turno>();
-	    	listaDeHorarios.getHorarios().add(formHorario);
-	    	for(int i=1;i<=6;i++) {
-	    		for(Turno turno: listaDeHorarios.getHorarios()) {
-	    			if(turno.getCod()==i) {
-	    				listaOrdenada.add(turno);
-	    			}
-	    		}
-	    	}
-    	modelView.addObject("listaDeHorarios", listaOrdenada);    	    
-    	return modelView;
+	    	modelView.addObject("listaDeHorarios", listaOrdenada);
+
     	}
     }
     /**
@@ -172,7 +179,7 @@ public class PaseosController {
         	}
         }        
         return "redirect:/paseos/horarios";
-    }
+    } 
     /**
      * Confirmar cambios de un Horario Editado
      * @param modificado
@@ -180,7 +187,16 @@ public class PaseosController {
      * @return paseos.html
      */
     @PostMapping("/confirmarCambio")
-    public String confirmarCambios(@ModelAttribute("turnoDia")Turno modificado,Model model) {
+    public ModelAndView confirmarCambios(@Valid @ModelAttribute("turnoDia")Turno modificado,Model model,BindingResult result) {
+    	ModelAndView modelView = new ModelAndView("modificar-horario");
+
+    	if(result.hasErrors()) {
+    		System.out.println(result.getErrorCount());
+    		System.out.println(result.getObjectName());
+	    	modelView.addObject("turnoDia", modificado);
+	    
+    	}
+    	else {
     	for(Turno lhora: listaDeHorarios.getHorarios()) {
         	if(modificado.getDia().equals(lhora.getDia())){
         		lhora.setPaseador1(modificado.getPaseador1());
@@ -190,9 +206,19 @@ public class PaseosController {
         		break;
         	}
         }
-        model.addAttribute("listaDeHorarios",listaDeHorarios.getHorarios());
-        return "redirect:/paseos/horarios";
+
+    	ModelAndView modelView = new ModelAndView("paseos");
+    	List<Turno> listaOrdenada=new ArrayList<Turno>();
+    	for(int i=1;i<=6;i++) {
+    		for(Turno turno: listaDeHorarios.getHorarios()) {
+    			if(turno.getCod()==i) {
+    				listaOrdenada.add(turno);
+    			}
+    		}
+    	}
+	modelView.addObject("listaDeHorarios", listaOrdenada);    	    
+    	}
     	
     }                                                                                
-    
+    return modelView;
 }

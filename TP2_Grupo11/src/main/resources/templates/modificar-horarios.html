@@ -22,27 +22,31 @@
 			<section class="col-12 col-sm-11 col-lg-7 bg-light p-4 rounded-4">
 				<h2 class="titulares fw-bold">Modificar Horario</h2>
 				<fieldset class="rounded-2 border border-2 border-success">
-					<legend style="float:none;width: fit-content;"> <b>Modificar Producto</b> </legend>
+					<legend style="float:none width fit-content"> <b>Modificar Producto</b> </legend>
 					<form class="px-3 pt-3" th:action="@{/paseos/confirmarCambio}" th:object="${turnoDia}" method="post">
 						<div class="form-floating mb-3">
 							<input class="form-control" type="text" readonly placeholder=" Ingrese" value="${turnoDia.dia}" th:field="*{dia}">
 							<label>Dia</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input class="form-control" type="text" placeholder=" Ingrese nuevo horario" value="${turnoDia.turnoA}" th:field="*{turnoA}">
+							<input th:classappend="${#fields.hasErrors('turnoA')} ? 'is-invalid' : ''" class="form-control" type="text" placeholder=" Ingrese nuevo horario" value="${turnoDia.turnoA}" th:field="*{turnoA}">
 							<label>Nuevo turno mañana</label>
+							<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('turnoA')}" th:errors="*{turnoA}"></p>
 						</div>
 						<div class="form-floating mb-3">
-							<input class="form-control" type="text" placeholder=" Ingrese horario" value="${turnoDia.turnoB}" th:field="*{turnoB}">
+							<input th:classappend="${#fields.hasErrors('turnoB')} ? 'is-invalid' : ''" class="form-control" type="text" placeholder=" Ingrese horario" value="${turnoDia.turnoB}" th:field="*{turnoB}">
 							<label>Nuevo turno tarde</label>
+							<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('turnoB')}" th:errors="*{turnoB}"></p>
 						</div>
 						<div class="form-floating mb-3">
-							<input class="form-control" type="text" placeholder=" nombre paseador" value="${turnoDia.paseador1}" th:field="*{paseador1}">
+							<input th:classappend="${#fields.hasErrors('paseador1')} ? 'is-invalid' : ''" class="form-control" type="text" placeholder=" nombre paseador" value="${turnoDia.paseador1}" th:field="*{paseador1}">
 							<label>Paseador turno mañana</label>
+							<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('paseador1')}" th:errors="*{paseador1}"></p>
 						</div>
 						<div class="form-floating mb-3">
-							<input class="form-control" type="text" placeholder=" nombre paseador" value="${turnoDia.paseador2}" th:field="*{paseador2}">
+							<input th:classappend="${#fields.hasErrors('paseador2')} ? 'is-invalid' : ''" class="form-control" type="text" placeholder=" nombre paseador" value="${turnoDia.paseador2}" th:field="*{paseador2}">
 							<label>Paseador turno tarde</label>
+							<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('paseador2')}" th:errors="*{paseador2}"></p>
 						</div>
 						<button type="button" class="btn text-white mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background:radial-gradient(#025159 0%, #35402d 100%)" >
 						  Modificar
