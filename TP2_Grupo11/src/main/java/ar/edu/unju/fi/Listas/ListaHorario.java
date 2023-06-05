@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 import ar.edu.unju.fi.model.Turno;
 
 @Component
-public class ListaHorarios{
+public class ListaHorario{
 	
 	private List<Turno> horarios;
 
-    public ListaHorarios(){
+    public ListaHorario(){
         horarios = new ArrayList<Turno>();
         //precarga de horarios
         horarios.add(new Turno(1,"Lunes","9 a 11 hrs","15 a 19 hrs","juan Perez","Maria Juana"));

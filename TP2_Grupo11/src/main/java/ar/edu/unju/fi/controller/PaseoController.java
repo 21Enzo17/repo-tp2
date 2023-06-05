@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ar.edu.unju.fi.Listas.ListaHorarios;
+import ar.edu.unju.fi.Listas.ListaHorario;
 import ar.edu.unju.fi.model.Dia;
 import ar.edu.unju.fi.model.Turno;
 import jakarta.validation.Valid;
@@ -20,10 +20,10 @@ import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/paseos")
-public class PaseosController {
+public class PaseoController {
 	
 	@Autowired
-	ListaHorarios listaDeHorarios ;
+	ListaHorario listaDeHorarios ;
 
 	@Autowired
 	ListaSemana semana;

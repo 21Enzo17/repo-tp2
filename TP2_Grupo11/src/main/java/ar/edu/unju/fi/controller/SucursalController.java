@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/sucursales")
-public class SucursalesController {
+public class SucursalController {
     @Autowired
     private ListaSucursal listaSucursales;
     @Autowired

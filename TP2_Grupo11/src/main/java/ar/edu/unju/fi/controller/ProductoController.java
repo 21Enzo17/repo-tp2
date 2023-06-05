@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ar.edu.unju.fi.Listas.ListaProductos;
+import ar.edu.unju.fi.Listas.ListaProducto;
 import ar.edu.unju.fi.model.Producto;
 import jakarta.validation.Valid;
 /**
@@ -21,9 +21,9 @@ import jakarta.validation.Valid;
  */
 @Controller
 @RequestMapping("/producto")
-public class ProductosController {
+public class ProductoController {
     @Autowired
-    private ListaProductos listaProductos;
+    private ListaProducto listaProductos;
 
     @Autowired
     private Producto formProducto;

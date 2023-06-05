@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 import ar.edu.unju.fi.model.Producto;
 // quite java util objects
 @Component
-public class ListaProductos {
+public class ListaProducto {
     private List<Producto> productos;
 
-    public ListaProductos(){
+    public ListaProducto(){
         productos = new ArrayList<Producto>();
         //Productos precargados
         productos.add(new Producto("Maintance Criadores", 0, 4500, "Alimento Mascota", 10, "https://www.baires-sa.com.ar/img_productos/11051359_BairesMaintenance-CriadoresPack01.png"));
@@ -22,7 +22,7 @@ public class ListaProductos {
         this.productos.add(nuevoProducto);
     }
 
-    public ListaProductos(List<Producto> productos) {
+    public ListaProducto(List<Producto> productos) {
         this.productos = productos;
     }
 
@@ -34,7 +34,7 @@ public class ListaProductos {
         this.productos = productos;
     }
 
-    public ListaProductos productos(List<Producto> productos) {
+    public ListaProducto productos(List<Producto> productos) {
         setProductos(productos);
         return this;
     }
