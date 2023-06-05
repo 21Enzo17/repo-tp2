@@ -13,7 +13,7 @@ public class Consejo {
 	@Size(min=5,max=550,message = "El nombre debe ser mayor a 5 caracteres")
 	private String descripcion;
 	@NotNull(message="El valor de ID no puede estar vacio")
-	@Min(value=1, message="El ID debe ser un numero igual a 1 o mayor")
+	@Positive(message="El ID debe ser un numero igual a 1 o mayor")
 	private int id;
 	public int getId() {
 		return id;

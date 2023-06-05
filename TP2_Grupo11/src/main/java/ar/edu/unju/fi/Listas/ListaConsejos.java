@@ -8,6 +8,7 @@ import ar.edu.unju.fi.model.Consejo;
 
 import java.util.ArrayList;
 @Component
+
 public class ListaConsejos {
 
 	private List <Consejo> listaConsejos;
@@ -34,7 +35,4 @@ public class ListaConsejos {
 	public void setListaConsejos(List<Consejo> listaConsejos) {
 		this.listaConsejos = listaConsejos;
 	}
-	
-	
-	
 }

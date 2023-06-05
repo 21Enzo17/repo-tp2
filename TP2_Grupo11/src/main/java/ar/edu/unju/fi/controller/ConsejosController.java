@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ar.edu.unju.fi.Listas.ListaConsejos;
 import ar.edu.unju.fi.model.Consejo;
 import ar.edu.unju.fi.model.Producto;
+import jakarta.validation.Valid;
 
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/consejos")
 public class ConsejosController {
+
 	@Autowired
 	private ListaConsejos listaConsejos;
 	@Autowired
@@ -43,21 +46,26 @@ public class ConsejosController {
     	model.addAttribute("nuevoConsejo", formConsejo);
     	return "nuevo-consejo";
     }
-    
-    
     /**
      * Método que crea un nuevo consejo y lo agrega a la lista
      * @param listaConsejo
      * @return consejos.html
      */
+ 
     @PostMapping("/nuevo-consejo")
-    public ModelAndView crearConsejo(Consejo nuevoConsejo)
+    public ModelAndView crearConsejo(@Valid @ModelAttribute("nuevoConsejo")Consejo nuevoConsejo, BindingResult result)
     {
-    	ModelAndView modelAndView = new ModelAndView("consejos");
-    	listaConsejos.getListaConsejos().add(nuevoConsejo);
-    	modelAndView.addObject("listaConsejos",listaConsejos.getListaConsejos());
-    	return modelAndView;
+    	ModelAndView modelView;
+    	if(result.hasErrors()) {
+    		modelView = new ModelAndView("nuevo-consejo");
+    	}else {
+    		modelView = new ModelAndView ("consejos");
+    		listaConsejos.getListaConsejos().add(nuevoConsejo);
+    		modelView.addObject("listaConsejos", listaConsejos.getListaConsejos());
+    	}
+    	return modelView;
     }
+    
     /**
      * Metodo que elimina un consejo de la lista
      * @param id
@@ -75,7 +83,7 @@ public class ConsejosController {
         model.addAttribute("listaConsejos", listaConsejos.getListaConsejos());
         return "redirect:/consejos/listado";
     }
-    /**
+    /*
      * Metodo que permite editar un consejo por id
      * @param id
      * @param model
@@ -86,7 +94,6 @@ public class ConsejosController {
         for(Consejo consejo:listaConsejos.getListaConsejos()){
             if(consejo.getId()==id){
                 model.addAttribute("consejosEditar", consejo);
-                System.out.println(consejo.toString());
                 break;
             }
         }
@@ -98,14 +105,21 @@ public class ConsejosController {
      * @return  consejos.html
      */
     @PostMapping("modificar-consejo")
-    public String modificarLista(@ModelAttribute("encontrado")Consejo modificado){
-        for(Consejo consejo:listaConsejos.getListaConsejos()){
-            if(modificado.getId()==consejo.getId()){
-                consejo.setTitulo(modificado.getTitulo());
-                consejo.setDescripcion(modificado.getDescripcion());
-                break;
+    public ModelAndView modificarLista(@Valid @ModelAttribute("consejosEditar")Consejo modificado, BindingResult result){
+    	 ModelAndView modelView;
+    	if(result.hasErrors()) {
+    	modelView = new ModelAndView("modificar-consejo");
+    	}else {
+    		for(Consejo consejo:listaConsejos.getListaConsejos()){
+    			if(modificado.getId()==consejo.getId()){
+    				consejo.setTitulo(modificado.getTitulo());
+    				consejo.setDescripcion(modificado.getDescripcion());
+    			break;
+            	}
             }
-        }
-        return "redirect:/consejos/listado";
+            modelView = new ModelAndView("consejos");
+            modelView.addObject("listaConsejos", listaConsejos.getListaConsejos());
+         }
+    	return modelView;
     }
-}
+  }
