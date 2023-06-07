@@ -2,17 +2,22 @@
 * {
 	margin: 0px;
 	padding: 0px;
+    
 }
 body{
-    background-color: #8C8C88;
     font-family: 'Poppins' , sans-serif;
+    background-color: #8C8C88;
 }
 .titulares{
 	padding: 10px;
 	background: radial-gradient(#025159 0%, #35402D 100%);
-	border-radius: 5px;
+	border-radius: 10px;
 	color: white;
 	text-align: center;
+}
+.boton-agregar{
+    border:none;
+    background:none;
 }
 /* Carousel Banner */
 .carousel-item{
@@ -28,8 +33,63 @@ body{
 
 .texto-banner{
     font-size: calc(3.5rem + 1.5vw)!important;
+
+}
+/* Nav Hover */
+nav ul li:hover{
+    border-radius: 5px;
+    background:#373b3e;
+}
+/* Productos */
+.tarjeta-producto img {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 25px;
+	height: 350px ;
+    object-fit:contain;
+    transition: all .5s;
+}
+.tarjeta-producto img:hover {
+	transform: scale(1.2);
+}
+
+/* Sucursales */
+.sucursales-disponibles .sucursales article {
+    border-left: 10px solid #025159;
+}
+
+.nueva-sucursal-form button, .editar-sucursal-form button {
+    background-color: #025159;
+    border: 2px solid transparent;
+    color: #fff;
+}
+
+.nueva-sucursal-form button:hover, .editar-sucursal-form button:hover {
+    border: 2px solid #025159;
+    color: #025159;
+}
+
+/* ACA COMENTE ESTE FORM POR QUE NO SE BIEN POR QUE SE LO USA */
+/*form {
+  border: 2px solid #007bff;
+  padding: 16px;
+}*/
+.mi-boton {
+  color: white;
+  background:gray;
+}
+#headingOne {
+	color:white;
+}
+/* Consejos */
+.sucursales-article{
+    border-left: 10px solid #025159;
+
 }
 /* Aside */
 aside{
     background: radial-gradient(#025159 0%, #35402D 100%);
+    border-radius: 5px;
+    margin-top: 5px;
 }
