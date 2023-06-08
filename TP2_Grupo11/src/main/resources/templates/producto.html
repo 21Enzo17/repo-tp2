@@ -27,6 +27,17 @@
 						<button class=" position-absolute end-0 boton-agregar my-0 p-0"><a class="text-white fs-3"
 								th:href="@{/producto/nuevo-producto}"><i class="bi bi-plus-circle"></i></a></button>
 					</div>
+					
+				</div>
+				
+				<form class="d-flex mt-2" role="search" th:action="@{/producto/buscar-producto}"  method="get">
+					<input name="nombre" class="form-control me-2" type="search"  placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+				<!-- ALERTA -->
+				<div th:if="${alerta}"  class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+					<p><strong>No hubo coincidencias. </strong>Se mas creativo!</p>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 				<div id="productos-container">
 					<div class="container-xl mx-auto my-2">
