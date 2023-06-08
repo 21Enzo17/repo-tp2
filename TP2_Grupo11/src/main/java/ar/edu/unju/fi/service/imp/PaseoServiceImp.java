@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.Listas.ListaHorario;
@@ -208,5 +210,25 @@ public class PaseoServiceImp implements IServicioService{
 		return listaOrdenada;
 	}
 
+	@Override
+	public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model) {
+		// TODO Auto-generated method stub
+		
+		 ModelAndView modelView = new ModelAndView("paseos");
+	        
+	        List<Turno> coincidenteList = new ArrayList<Turno>();
+	        for(Turno turno:listaDeHorarios.getHorarios()){
+	            if(turno.getDia().toLowerCase().contains(buscado.toLowerCase()) || turno.getPaseador1().toLowerCase().contains(buscado.toLowerCase()) 
+	            		|| turno.getPaseador2().toLowerCase().contains(buscado.toLowerCase())){
+	                coincidenteList.add(turno);
+	            }
+	        }
+	        modelView.addObject("listaDeHorarios", coincidenteList);
+	        if(coincidenteList.size()==0){
+	            modelView.addObject("alertaB",true);
+	        }
+	        return modelView;
+	}
+	
 }
  

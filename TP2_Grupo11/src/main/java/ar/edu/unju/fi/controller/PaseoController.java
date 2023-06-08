@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.model.Turno;
 import ar.edu.unju.fi.service.IServicioService;
@@ -104,5 +105,11 @@ public class PaseoController {
 			modelView.addObject("listaDeHorarios", paseosService.guardarCambios(modificado));    	    
     	}
         return modelView;	
-    }                                                                                
+    }               
+    
+    @GetMapping("buscarhorarios")
+    public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model) {
+    	return paseosService.buscarPorNombre(buscado, model);
+    }
+    
 }
