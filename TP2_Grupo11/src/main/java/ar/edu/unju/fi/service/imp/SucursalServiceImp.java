@@ -3,13 +3,12 @@ package ar.edu.unju.fi.service.imp;
 import ar.edu.unju.fi.Listas.ListaSucursal;
 import ar.edu.unju.fi.model.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
-import jakarta.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 @Service
@@ -27,6 +26,7 @@ public class SucursalServiceImp implements ISucursalService {
     @Override
     public String getSucursales(Model model){
         model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
+        // model.addAttribute("listaSucursales", queryResult);
         return "sucursales";
     }
 
@@ -48,7 +48,7 @@ public class SucursalServiceImp implements ISucursalService {
      * @return sucursales.html
      */
     @Override
-    public ModelAndView crearSucursal(@Valid @ModelAttribute("formSucursal") Sucursal formSucursal, BindingResult result){
+    public ModelAndView crearSucursal(Sucursal formSucursal, BindingResult result){
         ModelAndView modelView;
         if (result.hasErrors()){
             modelView = new ModelAndView("nueva-sucursal");
@@ -69,7 +69,7 @@ public class SucursalServiceImp implements ISucursalService {
      * @return sucursales.html
      */
     @Override
-    public String eliminarSucursal(@PathVariable(value="direccion")String direccion, Model model){
+    public String eliminarSucursal(String direccion, Model model){
         for(Sucursal sucursal:listaSucursales.getListaSucursales()){
             if(sucursal.getDireccion().equals(direccion)){
                 listaSucursales.getListaSucursales().remove(sucursal);
@@ -87,7 +87,7 @@ public class SucursalServiceImp implements ISucursalService {
      * @return modificar-sucursal.html
      */
     @Override
-    public String editarSucursal(@PathVariable(value="direccion")String direccion, Model model){
+    public String editarSucursal(String direccion, Model model){
         for(Sucursal sucursal:listaSucursales.getListaSucursales()){
             if(sucursal.getDireccion().equals(direccion)){
                 model.addAttribute("sucursalEditar", sucursal);
@@ -104,7 +104,7 @@ public class SucursalServiceImp implements ISucursalService {
      * @return sucursales.html
      */
     @Override
-    public ModelAndView modificarSucursal(@Valid @ModelAttribute("sucursalEditar") Sucursal sucursalEditado, BindingResult result){
+    public ModelAndView modificarSucursal(Sucursal sucursalEditado, BindingResult result){
         ModelAndView modelView;
         if (result.hasErrors()){
             modelView = new ModelAndView("modificar-sucursal");
@@ -124,4 +124,24 @@ public class SucursalServiceImp implements ISucursalService {
         }
         return modelView;
     }
+    /**
+     * Método que busca una sucursal de la lista según su dirección
+     * @param query
+     * @return sucursales.html
+     */
+    @Override
+    public ModelAndView buscarSucursal(String query){
+        System.out.println(query);
+        ModelAndView modelAndView = new ModelAndView("sucursales");
+        List<Sucursal> queryResult = new ArrayList<>();
+        for (Sucursal sucursal : listaSucursales.getListaSucursales()){
+            if(sucursal.getDireccion().toLowerCase().contains(query.toLowerCase())){
+                queryResult.add(sucursal);
+
+            }
+        }
+        modelAndView.addObject("queryResult", queryResult);
+        return modelAndView;
+    }
+
 }

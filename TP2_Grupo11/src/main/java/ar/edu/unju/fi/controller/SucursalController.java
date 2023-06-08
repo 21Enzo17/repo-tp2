@@ -45,4 +45,9 @@ public class SucursalController {
     public ModelAndView modificarSucursal(@Valid @ModelAttribute("sucursalEditar") Sucursal sucursalEditado, BindingResult result){
         return sucursalService.modificarSucursal(sucursalEditado, result);
     }
+
+    @GetMapping("/buscar-sucursal")
+    public ModelAndView buscarSucursal(@RequestParam String query){
+        return sucursalService.buscarSucursal(query);
+    }
 }
