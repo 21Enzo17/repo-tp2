@@ -24,6 +24,12 @@ public class ProductoServiceImp implements IProductoService {
     @Autowired
     private Producto formProducto;
 
+     /**
+     * Metodo que muestra la pagina de productos
+     * @param model
+     * @return producto.html
+
+     */
     @Override
     public ModelAndView getProductos(Model model ) {
         // TODO Auto-generated method stub
@@ -33,6 +39,11 @@ public class ProductoServiceImp implements IProductoService {
         return modelView;
     }
 
+    /**
+     * Metodo que muestra la pagina de agregar producto
+     * @param model
+     * @return nuevo-producto.html
+     */
     @Override
     public ModelAndView getNuevoProductoPage(Model model) {
         // TODO Auto-generated method stub
@@ -41,6 +52,11 @@ public class ProductoServiceImp implements IProductoService {
         return modelView;
     }
 
+    /**
+     * Metodo que crea un producto y lo agrega a la lista
+     * @param formProducto
+     * @return  nuevo-producto.html
+     */
     @Override
     public ModelAndView crearProducto(@Valid Producto formProducto, BindingResult result) {
         // TODO Auto-generated method stub
@@ -55,6 +71,12 @@ public class ProductoServiceImp implements IProductoService {
         return modelView;
     }
 
+    /**
+     * Metodo que elimina un producto de la lista
+     * @param codigo
+     * @param model
+     * @return producto.html
+     */
     @Override
     public ModelAndView eliminarProducto(int codigo, Model model) {
         // TODO Auto-generated method stub
@@ -69,6 +91,12 @@ public class ProductoServiceImp implements IProductoService {
         return modelView;
     }
 
+    /**
+     * Metodo que permite editar un producto
+     * @param codigo
+     * @param model
+     * @return modificar-producto.html
+     */
     @Override
     public ModelAndView editarProducto(int codigo, Model model) {
         // TODO Auto-generated method stub
@@ -83,6 +111,11 @@ public class ProductoServiceImp implements IProductoService {
         return modelView;
     }
 
+    /**
+     * Metodo que modifica el producto
+     * @param modificado
+     * @return producto.html
+     */
     @Override
     public ModelAndView modificarLista(@Valid Producto modificado, BindingResult result) {
         // TODO Auto-generated method stub
@@ -105,7 +138,11 @@ public class ProductoServiceImp implements IProductoService {
         }
         return modelView;
     }
-
+    /**
+     * Metodo que permite buscar productos
+     * @param nombre, model
+     * @return producto.html
+     */
     public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model){
         ModelAndView modelView = new ModelAndView("producto");
         
