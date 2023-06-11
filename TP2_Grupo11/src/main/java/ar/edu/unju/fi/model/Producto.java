@@ -13,7 +13,7 @@ public class Producto {
     private int cod;
     @Positive(message="El precio no puede ser menor a 1")
     private float precio;
-    @Size(min=5,max=30,message = "La categoria debe ser mayor a o igual 5 caracteres y menor a 30")
+    @Size(min=5,max=30,message = "Debe elegir una categoria valida")
     private String categoria;
     @Positive(message="El descuento debe ser un valor positivo o cero")
     @Max(value=100,message="Solo puede tener un descuento de hasta 100%")
