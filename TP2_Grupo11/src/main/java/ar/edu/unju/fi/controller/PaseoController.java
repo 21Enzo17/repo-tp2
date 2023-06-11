@@ -9,25 +9,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ar.edu.unju.fi.Listas.ListaHorario;
-import ar.edu.unju.fi.model.Dia;
 import ar.edu.unju.fi.model.Turno;
+import ar.edu.unju.fi.service.IServicioService;
 import jakarta.validation.Valid;
-import ar.edu.unju.fi.Listas.ListaSemana;
-import java.util.List;
-import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/paseos")
 public class PaseoController {
-	
 	@Autowired
-	ListaHorario listaDeHorarios ;
-
-	@Autowired
-	ListaSemana semana;
-	
+	private IServicioService paseosService;
     /**
      * retorna pagina paseos
      * @param model
@@ -35,15 +27,7 @@ public class PaseoController {
      */
     @GetMapping("/horarios")
     public String getPaseos(Model model){
-    	List<Turno> listaOrdenada=new ArrayList<Turno>();
-    	for(int i=1;i<=6;i++) {
-    		for(Turno turno: listaDeHorarios.getHorarios()) {
-    			if(turno.getCod()==i) {
-    				listaOrdenada.add(turno);
-    			}
-    		}
-    	}
-    	model.addAttribute("listaDeHorarios", listaOrdenada);
+    	model.addAttribute("listaDeHorarios", paseosService.getListaOrdenada());
         return "paseos" ;
     }
     /**
@@ -52,33 +36,16 @@ public class PaseoController {
      * @return formulario de Alta
      */
     @GetMapping("/nuevohorario")
-    public String getNuevoHorarioPage(Model model){
-    	List<String> disponibles = new ArrayList<>();
-    	
-        if(listaDeHorarios.getHorarios().size()<6){
-            Turno nuevoTurno = new Turno();
-            for(Dia dia: semana.getSemana()) {
-            		if(listaDeHorarios.existe(dia.getNombre())==false) {
-            			disponibles.add(dia.getNombre());
-            		}
-            }
-            model.addAttribute("formHorario", nuevoTurno);
-            model.addAttribute("diasDisponibles",disponibles);
+    public String getNuevoHorarioPage(Model model){	
+        if(paseosService.semanaCompleta()){
+            model.addAttribute("formHorario", paseosService.getTurno());
+            model.addAttribute("diasDisponibles",paseosService.getDisponibles());
             return "nuevohorario"; 
+        }else {
+        model.addAttribute("listaDeHorarios", paseosService.getListaOrdenada());
+        model.addAttribute("alerta", true);
+          return "paseos";
         }
-        boolean alerta=true;
-    	List<Turno> listaOrdenada=new ArrayList<Turno>();
-    	for(int i=1;i<=6;i++) {
-    		for(Turno turno: listaDeHorarios.getHorarios()) {
-    			if(turno.getCod()==i) {
-    				listaOrdenada.add(turno);
-    			}
-    		}
-    	}
-
-        model.addAttribute("listaDeHorarios", listaOrdenada);
-        model.addAttribute("alerta", alerta);
-        return "paseos";
     }
     /**
      * confirmar un Nuevo Horario cargado
@@ -87,60 +54,16 @@ public class PaseoController {
      */
     @PostMapping("/guardar")
     public ModelAndView ActualizarListadoHorariosPage(@Valid @ModelAttribute("formHorario")Turno formHorario,BindingResult result) {
-    	    	
+    	ModelAndView modelView;
     	if(result.hasErrors()) {
-    		System.out.println(result.getErrorCount());
-    		System.out.println(result.getObjectName());
-	    	ModelAndView modelView = new ModelAndView("nuevoHorario");
-	    	List<String> disponibles = new ArrayList<>();
-	    	
-	            for(Dia dia: semana.getSemana()) {
-	            		if(listaDeHorarios.existe(dia.getNombre())==false) {
-	            			disponibles.add(dia.getNombre());
-	            		}
-	            }
+	    	modelView = new ModelAndView("nuevoHorario");
 	    	modelView.addObject("formHorario", formHorario);
-	    	modelView.addObject("diasDisponibles", disponibles);
-	    	return modelView;
-
+	    	modelView.addObject("diasDisponibles", paseosService.getDisponibles());
     	}else {
-    	
-            switch(formHorario.getDia()) {
-	        case "Lunes":
-	        	formHorario.setCod(1);
-	            break;
-	        case "Martes":
-	        	formHorario.setCod(2);
-	            break;
-	        case "Miércoles":
-	        	formHorario.setCod(3);
-	            break;
-	        case "Jueves":
-	        	formHorario.setCod(4);
-	            break;
-	        case "Viernes":
-	        	formHorario.setCod(5);
-	            break;
-	        case "Sábado":
-	        	formHorario.setCod(6);
-	            break;
-	        default:
-	        	formHorario.setCod(0);
-	        	}
-            
-	    	 listaDeHorarios.getHorarios().add(formHorario);
-	    	 List<Turno> listaOrdenada=new ArrayList<Turno>();
-	     	for(int i=1;i<=6;i++) {
-	     		for(Turno turno: listaDeHorarios.getHorarios()) {
-	     			if(turno.getCod()==i) {
-	     				listaOrdenada.add(turno);
-	     			}
-	     		}
-	     	}
-	    	ModelAndView modelView = new ModelAndView("paseos");
-	    	modelView.addObject("listaDeHorarios", listaOrdenada);
-	    	return modelView;
+	    	modelView = new ModelAndView("paseos");
+	    	modelView.addObject("listaDeHorarios", paseosService.guardarTurno(formHorario));
     	}
+    	return modelView;
     }
     /**
      * Editar un dia de Horarios ya existente
@@ -150,20 +73,9 @@ public class PaseoController {
      */
     @GetMapping("/modificarHorarios/{dia}")
     public String getModificarPage(Model model, @PathVariable(value="dia")String dia) {
-    	Turno turnoDia = new Turno();
-
-        for(Turno lhora: listaDeHorarios.getHorarios()) {
-        	if(lhora.getDia().equals(dia)){
-        		turnoDia = lhora;
-        		System.out.println(turnoDia.toString());
-        		break;
-        	}
-        }
-        model.addAttribute("turnoDia",turnoDia);
+        model.addAttribute("turnoDia",paseosService.getTurno(dia));
         return "modificar-horarios";
- 
     }
-    
     /**
      * Dar de baja un dia de Horarios en la lista
      * @param model
@@ -171,13 +83,8 @@ public class PaseoController {
      * @return
      */
     @GetMapping("/eliminarHorarios/{dia}")
-    public String getEliminarPage(Model model, @PathVariable(value="dia")String dia) {
-        for(Turno lhora: listaDeHorarios.getHorarios()) {
-        	if(lhora.getDia().equals(dia)){
-        		listaDeHorarios.getHorarios().remove(lhora);
-        		break;
-        	}
-        }        
+    public String getEliminarPage(Model model, @PathVariable(value="dia")String dia) {       
+    	paseosService.eliminarHorario(dia);
         return "redirect:/paseos/horarios";
     } 
     /**
@@ -189,33 +96,20 @@ public class PaseoController {
     @PostMapping("/confirmarCambio")
     public ModelAndView confirmarCambios(@Valid @ModelAttribute("turnoDia")Turno modificado,BindingResult result) {
     	ModelAndView modelView;
-
     	if(result.hasErrors()) {
     		System.out.println(result.getErrorCount());
     		System.out.println(result.getObjectName());
 			modelView = new ModelAndView("modificar-horarios");
     	}else {
-			for(Turno lhora: listaDeHorarios.getHorarios()) {
-				if(modificado.getDia().equals(lhora.getDia())){
-					lhora.setPaseador1(modificado.getPaseador1());
-					lhora.setPaseador2(modificado.getPaseador2());
-					lhora.setTurnoA(modificado.getTurnoA());
-					lhora.setTurnoB(modificado.getTurnoB());
-					break;
-				}
-			}
 			modelView = new ModelAndView("paseos");
-			List<Turno> listaOrdenada=new ArrayList<Turno>();
-			for(int i=1;i<=6;i++) {
-				for(Turno turno: listaDeHorarios.getHorarios()) {
-					if(turno.getCod()==i) {
-						listaOrdenada.add(turno);
-					}
-				}
-			}
-			modelView.addObject("listaDeHorarios", listaOrdenada);    	    
+			modelView.addObject("listaDeHorarios", paseosService.guardarCambios(modificado));    	    
     	}
-        return modelView;
-    	
-    }                                                                                
+        return modelView;	
+    }               
+    
+    @GetMapping("buscarhorarios")
+    public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model) {
+    	return paseosService.buscarPorNombre(buscado, model);
+    }
+    
 }
