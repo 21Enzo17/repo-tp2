@@ -14,9 +14,9 @@ public class ListaProducto {
     public ListaProducto(){
         productos = new ArrayList<Producto>();
         //Productos precargados
-        productos.add(new Producto("Maintance Criadores", 0, 4500, "Alimento", 10, "https://www.baires-sa.com.ar/img_productos/11051359_BairesMaintenance-CriadoresPack01.png"));
-        productos.add(new Producto("Alimento Pro Plan Adulto", 1, 9005, "Alimento", 10, "https://cdn.shopify.com/s/files/1/0550/6252/8170/products/PurinaProPlanGatoAdulto7_45f40ee7-f964-4e9c-8e4f-3c04d9fda5f5_1024x.png?v=1672154260"));        
-        productos.add(new Producto("Hueso Nylon", 2, 3500, "Juguetes", 5, "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/145/238/products/963-730x7001-8592d33764e843dc5215870169313797-640-0.webp"));
+        productos.add(new Producto("Maintance Criadores", 1, 4500, "Alimento", 10, "https://www.baires-sa.com.ar/img_productos/11051359_BairesMaintenance-CriadoresPack01.png"));
+        productos.add(new Producto("Alimento Pro Plan Adulto", 2, 9005, "Alimento", 10, "https://cdn.shopify.com/s/files/1/0550/6252/8170/products/PurinaProPlanGatoAdulto7_45f40ee7-f964-4e9c-8e4f-3c04d9fda5f5_1024x.png?v=1672154260"));        
+        productos.add(new Producto("Hueso Nylon", 3, 3500, "Juguetes", 5, "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/145/238/products/963-730x7001-8592d33764e843dc5215870169313797-640-0.webp"));
     }
     public void addProductos(Producto nuevoProducto){
         this.productos.add(nuevoProducto);
