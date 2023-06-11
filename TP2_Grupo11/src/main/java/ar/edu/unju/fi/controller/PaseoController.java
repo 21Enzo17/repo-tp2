@@ -20,21 +20,12 @@ import jakarta.validation.Valid;
 public class PaseoController {
 	@Autowired
 	private IServicioService paseosService;
-    /**
-     * retorna pagina paseos
-     * @param model
-     * @return  paseos.html
-     */
+   
     @GetMapping("/horarios")
     public String getPaseos(Model model){
     	model.addAttribute("listaDeHorarios", paseosService.getListaOrdenada());
         return "paseos" ;
     }
-    /**
-     * agrega un nuevo horario de paseos
-     * @param model
-     * @return formulario de Alta
-     */
     @GetMapping("/nuevohorario")
     public String getNuevoHorarioPage(Model model){	
         if(paseosService.semanaCompleta()){
@@ -47,11 +38,6 @@ public class PaseoController {
           return "paseos";
         }
     }
-    /**
-     * confirmar un Nuevo Horario cargado
-     * @param formHorario
-     * @return paseos.html
-     */
     @PostMapping("/guardar")
     public ModelAndView ActualizarListadoHorariosPage(@Valid @ModelAttribute("formHorario")Turno formHorario,BindingResult result) {
     	ModelAndView modelView;
@@ -65,35 +51,17 @@ public class PaseoController {
     	}
     	return modelView;
     }
-    /**
-     * Editar un dia de Horarios ya existente
-     * @param model
-     * @param dia tomado automaticamente
-     * @return 
-     */
     @GetMapping("/modificarHorarios/{dia}")
     public String getModificarPage(Model model, @PathVariable(value="dia")String dia) {
         model.addAttribute("turnoDia",paseosService.getTurno(dia));
         return "modificar-horarios";
     }
-    /**
-     * Dar de baja un dia de Horarios en la lista
-     * @param model
-     * @param dia seleccionado automaticamente
-     * @return
-     */
     @GetMapping("/eliminarHorarios/{dia}")
     public String getEliminarPage(Model model, @PathVariable(value="dia")String dia) {       
     	paseosService.eliminarHorario(dia);
         return "redirect:/paseos/horarios";
     } 
-    /**
-     * Confirmar cambios de un Horario Editado
-     * @param modificado
-     * @param model
-     * @return paseos.html
-     */
-    @PostMapping("/confirmarCambio")
+       @PostMapping("/confirmarCambio")
     public ModelAndView confirmarCambios(@Valid @ModelAttribute("turnoDia")Turno modificado,BindingResult result) {
     	ModelAndView modelView;
     	if(result.hasErrors()) {
@@ -105,11 +73,9 @@ public class PaseoController {
 			modelView.addObject("listaDeHorarios", paseosService.guardarCambios(modificado));    	    
     	}
         return modelView;	
-    }               
-    
+    }                
     @GetMapping("buscarhorarios")
     public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model) {
     	return paseosService.buscarPorNombre(buscado, model);
     }
-    
 }
