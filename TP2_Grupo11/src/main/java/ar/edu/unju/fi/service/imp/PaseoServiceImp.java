@@ -210,6 +210,10 @@ public class PaseoServiceImp implements IServicioService{
 		return listaOrdenada;
 	}
 
+	/**
+	 * Método busca coincidencias dentro del contenido de la pagina
+	 * parámetro lo que se desea buscar tipo String.
+	 */
 	@Override
 	public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model) {
 		// TODO Auto-generated method stub
