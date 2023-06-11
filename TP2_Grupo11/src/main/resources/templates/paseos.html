@@ -33,8 +33,8 @@
 				</div>
 				
 				<form class="d-flex mt-2" role="search" th:action="@{/paseos/buscarhorarios}"  method="get">
-					<input name="nombre" class="form-control me-2" type="search"  placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
+					<input name="nombre" class="form-control me-2" type="search"  placeholder="Buscar por Nombre o Día" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Buscar</button>
 				</form>
 				<!-- ALERTA -->
 				<div th:if="${alerta}"  class="alert alert-warning alert-dismissible fade show mt-2" role="alert">

@@ -18,10 +18,10 @@
 	<div class="container-xxl my-4">
 		<div class ="row gap-4 justify-content-evenly">
 			<section class ="col-12 col-sm-11 col-lg-7 bg-light p-4 rounded-4">
-			<div class="titulares container mw-100">
-					<div class="align-items-center position-relative d-flex row gap-4 justify-content-evenly">
-						<h2 class="fw-bold col-11">Cuidados de la Mascota</h2>
-						<button class="btn col-1 position-absolute end-0 boton-agregar my-0 p-0"><a class="text-white fs-3" th:href="@{/consejos/nuevo-consejo}"><i class="bi bi-plus-circle"></i></a></button>
+			<div class="titulares container mw-100"> 
+					<div class="align-items-center position-relative d-flex"> 
+						<h2 class="fw-bold mx-auto my-0">Cuidados de la Mascota</h2>
+						<button class="position-absolute end-0 boton-agregar my-0 p-0"><a class="text-white fs-3" th:href="@{/consejos/nuevo-consejo}"><i class="bi bi-plus-circle"></i></a></button>
 					</div>
 			</div>
 			<form class="d-flex mt-2" role="search" th:action="@{/consejos/buscar-consejo}"  method="get">

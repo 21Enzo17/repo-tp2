@@ -25,11 +25,11 @@
 							<button class="position-absolute end-0 boton-agregar my-0 p-0"><a class="text-white fs-3" th:href="@{/sucursales/nueva-sucursal}"><i class="bi bi-plus-circle"></i></a></button>
 				</div>
 			</div>
-			<p class="mt-4">Actualmente hay <span th:if="${listaSucursales}" th:text="${listaSucursales.size()}"></span> locales y seguiremos creciendo con nuevas aperturas en el área.</p>
-			<form class="d-flex" role="search" th:action="@{/sucursales/buscar-sucursal}" method="get">
+			<form class="d-flex mt-2" role="search" th:action="@{/sucursales/buscar-sucursal}" method="get">
 				<input class="form-control me-2" type="search" name="query" id="query" placeholder="Buscar una sucursal por dirección">
-				<button class="btn btn-outline-success" type="submit">Search</button>
+				<button class="btn btn-outline-success" type="submit">Buscar</button>
 			</form>
+			<p class="mt-4">Actualmente hay <span th:if="${listaSucursales}" th:text="${listaSucursales.size()}"></span> locales y seguiremos creciendo con nuevas aperturas en el área.</p>
 			<div class="resultados-busqueda" th:if="${queryResult}">
 					<p class="bg-success bg-opacity-10 p-1 my-3 rounded text-success text-center fw-bold" th:if="${queryResult.size() != 0}">Se encontraron <span th:text="${queryResult.size()}"></span> resultados</p>
 					<article class="my-3 px-4" th:each="sucursal : ${queryResult}">
