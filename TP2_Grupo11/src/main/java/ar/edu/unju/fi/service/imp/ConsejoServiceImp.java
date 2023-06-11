@@ -97,7 +97,7 @@ public class ConsejoServiceImp implements IConsejoService {
          }
     	return modelView;
     }
-    
+  
     @Override
     public ModelAndView buscarPorTitulo(@RequestParam("titulo") String buscado, Model model){
         ModelAndView modelView = new ModelAndView("consejos");
@@ -114,4 +114,5 @@ public class ConsejoServiceImp implements IConsejoService {
         }
         return modelView;
     }
+
 }

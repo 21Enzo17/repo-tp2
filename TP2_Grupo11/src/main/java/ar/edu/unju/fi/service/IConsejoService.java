@@ -26,5 +26,6 @@ public interface IConsejoService {
     public ModelAndView modificarLista(@Valid @ModelAttribute("consejosEditar")Consejo modificado, BindingResult result);
 
     public ModelAndView buscarPorTitulo(@RequestParam("titulo") String buscado, Model model);
+
 }
 

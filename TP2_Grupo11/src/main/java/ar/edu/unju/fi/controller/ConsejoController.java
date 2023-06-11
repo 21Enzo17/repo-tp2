@@ -84,6 +84,7 @@ public class ConsejoController {
     public ModelAndView modificarLista(@Valid @ModelAttribute("consejosEditar")Consejo modificado, BindingResult result){
     	return consejoService.modificarLista(modificado, result);
     }
+
     
     /**
      * Metodo que permite buscar consejos
@@ -96,3 +97,4 @@ public class ConsejoController {
    }
   
  }
+

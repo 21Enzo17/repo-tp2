@@ -13,7 +13,7 @@ public class Sucursal {
     private String direccion;
     @NotBlank(message = "Debe ingresar un teléfono")
     @Size(min = 8, message = "El teléfono debe tener al menos 8 digitos")
-//    @Pattern(regexp = "[1-9]", message = "El teléfono debe tener numeros del 1 al 9")
+   @Pattern(regexp = "[+]?(?:[1-9]\\d*|0)(?:\\s[1-9]\\d*)*", message = "El teléfono debe tener numeros del 1 al 9")
     private String telefono;
     @NotBlank(message = "Debe ingresar un mail")
     @Email(message = "Debe ingresar un mail válido")
