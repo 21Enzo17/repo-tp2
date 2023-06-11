@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import ar.edu.unju.fi.Listas.ListaConsejo;
 import ar.edu.unju.fi.model.Consejo;
+import ar.edu.unju.fi.service.IConsejoService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.servlet.ModelAndView;
@@ -21,18 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class ConsejoController {
 
 	@Autowired
-	private ListaConsejo listaConsejos;
-	@Autowired
-	private Consejo formConsejo;
+    IConsejoService consejoService;
 	 /**
      * Método que muestra la página de consejos
      * @param model
      * @return consejos.html
      */
     @GetMapping("/listado")
-    public String getConsejos(Model model){
-    	model.addAttribute("listaConsejos", listaConsejos.getListaConsejos());
-        return "consejos";
+    public ModelAndView getConsejos(Model model){
+    	return consejoService.getConsejos(model);
     }
     
     /**
@@ -41,9 +41,8 @@ public class ConsejoController {
      * @return nuevo-consejo.html
      */
     @GetMapping("/nuevo-consejo")
-    public String getnuevoConsejo(Model model) { 	
-    	model.addAttribute("nuevoConsejo", formConsejo);
-    	return "nuevo-consejo";
+    public ModelAndView getnuevoConsejo(Model model) { 	
+    	return consejoService.getnuevoConsejo(model);
     }
     /**
      * Método que crea un nuevo consejo y lo agrega a la lista
@@ -52,17 +51,8 @@ public class ConsejoController {
      */
  
     @PostMapping("/nuevo-consejo")
-    public ModelAndView crearConsejo(@Valid @ModelAttribute("nuevoConsejo")Consejo nuevoConsejo, BindingResult result)
-    {
-    	ModelAndView modelView;
-    	if(result.hasErrors()) {
-    		modelView = new ModelAndView("nuevo-consejo");
-    	}else {
-    		modelView = new ModelAndView ("consejos");
-    		listaConsejos.getListaConsejos().add(nuevoConsejo);
-    		modelView.addObject("listaConsejos", listaConsejos.getListaConsejos());
-    	}
-    	return modelView;
+    public ModelAndView crearConsejo(@Valid @ModelAttribute("nuevoConsejo")Consejo nuevoConsejo, BindingResult result){
+        return consejoService.crearConsejo(nuevoConsejo, result);
     }
     
     /**
@@ -72,15 +62,8 @@ public class ConsejoController {
      * @return consejos.html
      */
     @GetMapping("/eliminar-consejos/{id}")
-    public String eliminarConsejo(@PathVariable(value="id")int id,Model model){
-        for(Consejo consejo:listaConsejos.getListaConsejos()){
-            if(consejo.getId()==id){
-                listaConsejos.getListaConsejos().remove(consejo);
-                break;
-            }
-        }
-        model.addAttribute("listaConsejos", listaConsejos.getListaConsejos());
-        return "redirect:/consejos/listado";
+    public ModelAndView eliminarConsejo(@PathVariable(value="id")int id,Model model){
+        return consejoService.eliminarConsejo(id, model);
     }
     /*
      * Metodo que permite editar un consejo por id
@@ -89,14 +72,8 @@ public class ConsejoController {
      * @return modificar-consejo.html
      */
     @GetMapping("/editar-consejos/{id}")
-    public String editarConsejos(@PathVariable(value="id")int id,Model model){
-        for(Consejo consejo:listaConsejos.getListaConsejos()){
-            if(consejo.getId()==id){
-                model.addAttribute("consejosEditar", consejo);
-                break;
-            }
-        }
-        return "modificar-consejo";
+    public ModelAndView editarConsejos(@PathVariable(value="id")int id,Model model){
+        return consejoService.editarConsejos(id, model);
     }
     /**
      * Metodo que permite guardar el consejo modificado
@@ -105,20 +82,7 @@ public class ConsejoController {
      */
     @PostMapping("modificar-consejo")
     public ModelAndView modificarLista(@Valid @ModelAttribute("consejosEditar")Consejo modificado, BindingResult result){
-    	 ModelAndView modelView;
-    	if(result.hasErrors()) {
-    	modelView = new ModelAndView("modificar-consejo");
-    	}else {
-    		for(Consejo consejo:listaConsejos.getListaConsejos()){
-    			if(modificado.getId()==consejo.getId()){
-    				consejo.setTitulo(modificado.getTitulo());
-    				consejo.setDescripcion(modificado.getDescripcion());
-    			break;
-            	}
-            }
-            modelView = new ModelAndView("consejos");
-            modelView.addObject("listaConsejos", listaConsejos.getListaConsejos());
-         }
-    	return modelView;
+    	return consejoService.modificarLista(modificado, result);
     }
   }
+
