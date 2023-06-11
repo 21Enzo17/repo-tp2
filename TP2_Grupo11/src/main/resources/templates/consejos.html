@@ -24,6 +24,15 @@
 						<button class="btn col-1 position-absolute end-0 boton-agregar my-0 p-0"><a class="text-white fs-3" th:href="@{/consejos/nuevo-consejo}"><i class="bi bi-plus-circle"></i></a></button>
 					</div>
 			</div>
+			<form class="d-flex mt-2" role="search" th:action="@{/consejos/buscar-consejo}"  method="get">
+				<input name="titulo" class="form-control me-2" type="search"  placeholder="Buscar Consejo por Titulo" aria-label="Search">
+				<button class="btn btn-outline-success" type="submit">Buscar</button>
+			</form>
+			<!-- ALERTA -->
+			<div th:if="${alerta}"  class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+				<p><strong>No hubo coincidencias. </strong>Prueba con otras palabras.</p>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
 			<div>
 				<article th:each="consejo:${listaConsejos}" class="col-12 articulo my-3 sucursales-article px-4">
 					<h3 class="fw-bold" th:text="${consejo.titulo}" ></h3>

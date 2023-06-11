@@ -84,5 +84,15 @@ public class ConsejoController {
     public ModelAndView modificarLista(@Valid @ModelAttribute("consejosEditar")Consejo modificado, BindingResult result){
     	return consejoService.modificarLista(modificado, result);
     }
-  }
-
+    
+    /**
+     * Metodo que permite buscar consejos
+     *	@param titulo, model
+     * @return consejo.html
+     */
+  @GetMapping("buscar-consejo")
+   public ModelAndView buscarPorTitulo(@RequestParam("titulo") String buscado, Model model){
+       return consejoService.buscarPorTitulo(buscado,model);
+   }
+  
+ }

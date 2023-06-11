@@ -97,4 +97,21 @@ public class ConsejoServiceImp implements IConsejoService {
          }
     	return modelView;
     }
+    
+    @Override
+    public ModelAndView buscarPorTitulo(@RequestParam("titulo") String buscado, Model model){
+        ModelAndView modelView = new ModelAndView("consejos");
+        
+        List<Consejo> coincidenteList = new ArrayList<Consejo>();
+        for(Consejo consejo:listaConsejos.getListaConsejos()){
+            if(consejo.getTitulo().toLowerCase().contains(buscado.toLowerCase())){
+                coincidenteList.add(consejo);
+            }
+        }
+        modelView.addObject("listaConsejos", coincidenteList);
+        if(coincidenteList.size()==0){
+            modelView.addObject("alerta",true);
+        }
+        return modelView;
+    }
 }
