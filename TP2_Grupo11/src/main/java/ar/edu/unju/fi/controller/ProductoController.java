@@ -62,4 +62,5 @@ public class ProductoController {
     public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model){
         return productoService.buscarPorNombre(buscado,model);
     }
-    }
+}
+   
