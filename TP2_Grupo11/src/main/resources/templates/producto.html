@@ -44,7 +44,7 @@
 						<div class="row row-cols-1 row-cols-xl-2 g-2">
 							<article th:each="prod : ${listaProductos}" class="col">
 								<div class="card tarjeta-producto overflow-hidden">
-									<img class="card-img-top" th:src="${prod.imagen}" alt="${prod.nombre}">
+									<img class="card-img-top" th:src="@{'/producto/uploads/'}+${prod.imagen}" th:alt="${prod.nombre}">
 									<div class="card-body align-items-center d-block">
 										<h3 class="card-title text-center fw-bold fs-5" th:text="${prod.nombre}" ></h3>
 										<p class="text-center">Precio: <b class="text-decoration-line-through">$<span th:text="${prod.precio}">500</span> </b></p>

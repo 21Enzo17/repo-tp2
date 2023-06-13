@@ -1,18 +1,27 @@
 package ar.edu.unju.fi.service.imp;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import ar.edu.unju.fi.Listas.ListaProducto;
 import ar.edu.unju.fi.model.Producto;
 import ar.edu.unju.fi.service.IProductoService;
+import ar.edu.unju.fi.util.UploadFile;
 
 import jakarta.validation.Valid;
 
@@ -24,6 +33,8 @@ public class ProductoServiceImp implements IProductoService {
     @Autowired
     private Producto formProducto;
 
+    @Autowired
+    private UploadFile uploadFile;
      /**
      * Metodo que muestra la pagina de productos
      * @param model
@@ -58,13 +69,15 @@ public class ProductoServiceImp implements IProductoService {
      * @return  nuevo-producto.html
      */
     @Override
-    public ModelAndView crearProducto(@Valid Producto formProducto, BindingResult result) {
+    public ModelAndView crearProducto(@Valid @ModelAttribute("formProducto")Producto formProducto,BindingResult result, @RequestParam("file") MultipartFile image) throws Exception {
         // TODO Auto-generated method stub
         ModelAndView modelView;
         if(result.hasErrors()){
             modelView = new ModelAndView("nuevo-producto");
         }else{
             modelView = new ModelAndView("producto");
+            String uniqueFileName = uploadFile.copy(image);
+            formProducto.setImagen(uniqueFileName);
             listaProductos.getProductos().add(formProducto);
             modelView.addObject("listaProductos", listaProductos.getProductos());
         }
@@ -83,6 +96,7 @@ public class ProductoServiceImp implements IProductoService {
         ModelAndView modelView = new ModelAndView("producto");
         for(Producto producto:listaProductos.getProductos()){
             if(producto.getCod()==codigo){
+                uploadFile.delete(producto.getImagen());
                 listaProductos.getProductos().remove(producto);
                 break;
             }
@@ -104,7 +118,6 @@ public class ProductoServiceImp implements IProductoService {
         for(Producto producto:listaProductos.getProductos()){
             if(producto.getCod()==codigo){
                 modelView.addObject("encontrado", producto);
-                System.out.println(producto.toString());
                 break;
             }
         }
@@ -117,7 +130,7 @@ public class ProductoServiceImp implements IProductoService {
      * @return producto.html
      */
     @Override
-    public ModelAndView modificarLista(@Valid Producto modificado, BindingResult result) {
+    public ModelAndView modificarLista(@Valid Producto modificado, BindingResult result, @RequestParam("file") MultipartFile image) throws Exception {
         // TODO Auto-generated method stub
         ModelAndView modelView;
         if(result.hasErrors()){
@@ -128,7 +141,9 @@ public class ProductoServiceImp implements IProductoService {
                     producto.setNombre(modificado.getNombre());
                     producto.setCategoria(modificado.getCategoria());
                     producto.setDescuento(modificado.getDescuento());
-                    producto.setImagen(modificado.getImagen());
+                    uploadFile.delete(producto.getImagen());
+                    String uniqueFileName = uploadFile.copy(image);
+                    producto.setImagen(uniqueFileName);
                     producto.setPrecio(modificado.getPrecio());
                     break;
                 }
@@ -143,6 +158,7 @@ public class ProductoServiceImp implements IProductoService {
      * @param nombre, model
      * @return producto.html
      */
+    @Override
     public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model){
         ModelAndView modelView = new ModelAndView("producto");
         
@@ -158,4 +174,17 @@ public class ProductoServiceImp implements IProductoService {
         }
         return modelView;
     }
+
+    @Override
+    public ResponseEntity<Resource> cargarImagen(@PathVariable String filename){
+        Resource resource = null;
+        try{
+            resource = uploadFile.load(filename);
+        }catch (MalformedURLException e ){
+            e.printStackTrace();
+        }return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+            .body(resource);
+    }
+   
 }

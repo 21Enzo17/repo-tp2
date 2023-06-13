@@ -18,8 +18,8 @@ public class Producto {
     @Positive(message="El descuento debe ser un valor positivo o cero")
     @Max(value=100,message="Solo puede tener un descuento de hasta 100%")
     private int descuento;
-    @NotBlank(message="El campo no puede estar vacio")
-    @Pattern(regexp="^(https?|ftp)://[^\s/$.?#].[^\s]*$",message="El link debe comenzar por http://, https://, o ftp://")
+    
+    
     private String imagen;
 
 

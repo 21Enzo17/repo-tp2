@@ -1,6 +1,9 @@
 package ar.edu.unju.fi.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,11 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.fi.model.Producto;
 import ar.edu.unju.fi.service.IProductoService;
+
 import jakarta.validation.Valid;
 /**
  * Esta clase es la clase controladora de la pagina productos
@@ -39,8 +44,8 @@ public class ProductoController {
     }
     
     @PostMapping("/nuevo-producto")
-    public ModelAndView crearProducto(@Valid @ModelAttribute("formProducto")Producto formProducto,BindingResult result){
-        return productoService.crearProducto(formProducto, result);
+    public ModelAndView crearProducto(@Valid @ModelAttribute("formProducto")Producto formProducto,BindingResult result, @RequestParam("file") MultipartFile image) throws Exception{
+        return productoService.crearProducto(formProducto, result, image);
     }
     
     @GetMapping("/eliminar-producto/{codigo}")
@@ -54,13 +59,19 @@ public class ProductoController {
     }
     
     @PostMapping("modificar-producto")
-    public ModelAndView modificarLista(@Valid @ModelAttribute("encontrado")Producto modificado, BindingResult result){
-        return productoService.modificarLista(modificado, result);
+    public ModelAndView modificarLista(@Valid Producto modificado, BindingResult result, @RequestParam("file") MultipartFile image) throws Exception{
+        return productoService.modificarLista(modificado, result,image);
     }
 
     @GetMapping("buscar-producto")
     public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model){
         return productoService.buscarPorNombre(buscado,model);
     }
+
+    @GetMapping("uploads/{filename}")
+    public ResponseEntity<Resource> cargarImagen(@PathVariable String filename){
+        return productoService.cargarImagen(filename);
+    }
+    
 }
    

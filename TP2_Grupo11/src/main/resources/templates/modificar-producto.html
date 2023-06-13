@@ -19,7 +19,7 @@
 					<h2 class="titulares fw-bold">Modificar Producto</h2>
 					<fieldset class="rounded-2 border border-2 border-success">
 						<legend style="float:none;width: fit-content;"> <b>Modificar Producto</b> </legend>
-						<form class="px-3 pt-3" th:action="@{/producto/modificar-producto}" th:object="${encontrado}" method="post">
+						<form class="px-3 pt-3" th:action="@{/producto/modificar-producto}" th:object="${encontrado}" method="post" enctype="multipart/form-data">
 							<div class="form-floating mb-3">
 								<input class="form-control" th:classappend="${#fields.hasErrors('nombre')} ?'is-invalid':'' " type="text" placeholder="Ingrese el producto" value="${encontrado.nombre}" th:field="*{nombre}">
 								<label>Nombre del Producto</label>
@@ -61,11 +61,17 @@
 								<label>Descuento</label>
 								<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('descuento')}" th:errors="*{descuento}"></p>
 							</div>
+							<div class="mb-3">
+							
+								<label for="file" class="form-label">Imagen del Producto</label>
+								<input type="file" accept="image/*" name="file" id="file" class="form-control" th:text="${encontrado.imagen}">
+							</div>
+							<!--
 							<div class="form-floating mb-3">
 								<input class="form-control" th:classappend="${#fields.hasErrors('imagen')} ?'is-invalid':'' " type="text" placeholder="Ingrese el url de la imagen" value="${encontrado.imagen}" th:field="*{imagen}">
 								<label>Imagen</label>
 								<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></p>
-							</div>
+							</div>-->
 							<button class="btn text-white mb-3" style="background: radial-gradient(#025159 0%, #35402D 100%);" type="submit">Modificar</button>
 						</form>
 					</fieldset>
