@@ -29,14 +29,15 @@
 				<input class="form-control me-2" type="search" name="query" id="query" placeholder="Buscar una sucursal por dirección">
 				<button class="btn btn-outline-success" type="submit">Buscar</button>
 			</form>
-			<p class="mt-4">Actualmente hay <span th:if="${listaSucursales}" th:text="${listaSucursales.size()}"></span> locales y seguiremos creciendo con nuevas aperturas en el área.</p>
+			<!-- <p class="mt-4">Actualmente hay <span th:text="${sucursalesDisponibles.size()}"></span> locales y seguiremos creciendo con nuevas aperturas en el área.</p> -->
 			<div class="resultados-busqueda" th:if="${queryResult}">
 					<p class="bg-success bg-opacity-10 p-1 my-3 rounded text-success text-center fw-bold" th:if="${queryResult.size() != 0}">Se encontraron <span th:text="${queryResult.size()}"></span> resultados</p>
 					<article class="my-3 px-4" th:each="sucursal : ${queryResult}">
 						<h3 class="fw-bold fs-4" th:text="${sucursal.direccion}"></h3>
 						<p th:text="${'Telefono: '} + ${sucursal.telefono}"></p>
 						<p th:text="${'Mail: '} + ${sucursal.mail}"></p>
-						<p th:text="${'Horarios: '} + ${sucursal.horarioAtencion}"></p>
+						<p th:text="'Horarios Apertura: ' + ${sucursal.horarioInicio}"></p>
+						<p th:text="'Horarios Clausura: ' + ${sucursal.horarioFin}"></p>
 						<div class="botones">
 							<button class=" px-0 py-1 btn btn-success "><a style="font-size:20px;" class="text-white" th:href="@{/sucursales/editar-sucursal/}+${sucursal.direccion}">
 								<i class="px-2 py-1 bi bi-pencil-square"></i></a></button>
@@ -48,15 +49,16 @@
 			</div>
 			<div class="sucursales-disponibles">
 				<div class="sucursales">
-					<article class="my-3 px-4" th:each="sucursal : ${listaSucursales}">
+					<article class="my-3 px-4" th:each="sucursal : ${listaSucursales}" th:if="${sucursal.getEstado()}">
 						<h3 class="fw-bold fs-4" th:text="${sucursal.direccion}"></h3>
 						<p th:text="${'Telefono: '} + ${sucursal.telefono}"></p>
 						<p th:text="${'Mail: '} + ${sucursal.mail}"></p>
-						<p th:text="${'Horarios: '} + ${sucursal.horarioAtencion}"></p>
+						<p th:text="'Horarios Apertura: ' + ${sucursal.horarioInicio}"></p>
+						<p th:text="'Horarios de cierre: ' + ${sucursal.horarioFin}"></p>
 						<div class="botones">
-							<button class=" px-0 py-1 btn btn-success "><a style="font-size:20px;" class="text-white" th:href="@{/sucursales/editar-sucursal/}+${sucursal.direccion}">
+							<button class=" px-0 py-1 btn btn-success "><a style="font-size:20px;" class="text-white" th:href="@{/sucursales/editar-sucursal/}+${sucursal.id}">
 								<i class="px-2 py-1 bi bi-pencil-square"></i></a></button>
-							<button class="px-0 py-1 btn btn-danger"><a style="font-size:20px;" class="text-white" th:href="@{/sucursales/eliminar-sucursal/}+${sucursal.direccion}">
+							<button class="px-0 py-1 btn btn-danger"><a style="font-size:20px;" class="text-white" th:href="@{/sucursales/eliminar-sucursal/}+${sucursal.id}">
 								<i class="px-2 py-1 bi bi-x-circle"></i></a></button>
 						</div>
 					</article>

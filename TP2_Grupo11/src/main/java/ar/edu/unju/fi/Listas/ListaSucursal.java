@@ -1,6 +1,6 @@
 package ar.edu.unju.fi.Listas;
 
-import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,9 +13,9 @@ public class ListaSucursal {
     public ListaSucursal() {
         this.listaSucursales = new ArrayList<Sucursal>();
         // Elementos precargados en la lista
-        listaSucursales.add(new Sucursal("Las Vicuñas 890, San Salvador de Jujuy, Jujuy", "+54 9 11 5587 5274", "vicuñas@vet.com.ar", "Lunes a viernes: 8 a 21 hs"));
+        /*listaSucursales.add(new Sucursal("Las Vicuñas 890, San Salvador de Jujuy, Jujuy", "+54 9 11 5587 5274", "vicuñas@vet.com.ar", "Lunes a viernes: 8 a 21 hs"));
         listaSucursales.add(new Sucursal("Av. España 1650, San Salvador de Jujuy, Jujuy", "+54 11 2259 4709", "avespaña@vet.com.ar", "Lunes a viernes: 8 a 21 hs"));
-        listaSucursales.add(new Sucursal("Juana Manuela Gorriti 315, San Salvador de Jujuy, Jujuy", "+54 9 11 6696 2038", "gorriti@vet.com.ar", "Lunes a viernes: 8 a 21 hs"));
+        listaSucursales.add(new Sucursal("Juana Manuela Gorriti 315, San Salvador de Jujuy, Jujuy", "+54 9 11 6696 2038", "gorriti@vet.com.ar", "Lunes a viernes: 8 a 21 hs"));*/
     }
 
     public ListaSucursal(List<Sucursal> listaSucursales) {

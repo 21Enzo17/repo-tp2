@@ -1,7 +1,9 @@
 package ar.edu.unju.fi.service.imp;
 
 import ar.edu.unju.fi.Listas.ListaSucursal;
-import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
+import ar.edu.unju.fi.repository.SucursalRepository;
+import ar.edu.unju.fi.service.IProvinciaService;
 import ar.edu.unju.fi.service.ISucursalService;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,11 @@ public class SucursalServiceImp implements ISucursalService {
     private ListaSucursal listaSucursales;
     @Autowired
     private Sucursal sucursal;
+    @Autowired
+    private SucursalRepository sucursalRepository;
+
+    @Autowired
+    IProvinciaService provinciaService;
 
     /**
      * Método que muestra la página de sucursales
@@ -25,8 +32,8 @@ public class SucursalServiceImp implements ISucursalService {
      */
     @Override
     public String getSucursales(Model model){
-        model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
-        // model.addAttribute("listaSucursales", queryResult);
+        model.addAttribute("listaSucursales", (List<Sucursal>) sucursalRepository.sucursalesDisponibles());
+        model.addAttribute("sucursalesDisponibles", (List<Sucursal>) sucursalRepository.sucursalesDisponibles());
         return "sucursales";
     }
 
@@ -37,6 +44,7 @@ public class SucursalServiceImp implements ISucursalService {
      */
     @Override
     public String getNuevaSucursalPage(Model model){
+        model.addAttribute("listaProvincias", provinciaService.obtenerProvincias());
         model.addAttribute("formSucursal", sucursal);
         return "nueva-sucursal";
     }
@@ -52,45 +60,48 @@ public class SucursalServiceImp implements ISucursalService {
         ModelAndView modelView;
         if (result.hasErrors()){
             modelView = new ModelAndView("nueva-sucursal");
-
+            modelView.addObject("listaProvincias", provinciaService.obtenerProvincias());
+            System.out.println("result = " + result.getFieldErrors().toString());
         }
         else{
             modelView = new ModelAndView("sucursales");
-            listaSucursales.getListaSucursales().add(formSucursal);
-            modelView.addObject("listaSucursales", listaSucursales.getListaSucursales());
+            sucursalRepository.save(formSucursal);
+            modelView.addObject("listaSucursales", sucursalRepository.findAll());
         }
         return modelView;
     }
 
     /**
      * Método que elimina una sucursal de la lista según su dirección
-     * @param direccion
+     * @param id
      * @param model
      * @return sucursales.html
      */
     @Override
-    public String eliminarSucursal(String direccion, Model model){
-        for(Sucursal sucursal:listaSucursales.getListaSucursales()){
-            if(sucursal.getDireccion().equals(direccion)){
-                listaSucursales.getListaSucursales().remove(sucursal);
+    public String eliminarSucursal(Long id, Model model){
+        for(Sucursal sucursal:sucursalRepository.findAll()){
+            if(sucursal.getId() == id){
+                sucursal.setEstado(false);
+                sucursalRepository.save(sucursal);
                 break;
             }
         }
-        model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
+        model.addAttribute("listaSucursales", sucursalRepository.findAll());
         return "redirect:/sucursales/listado";
     }
 
     /**
      * Método que muestra la página para editar una sucursal
-     * @param direccion
+     * @param id
      * @param model
      * @return modificar-sucursal.html
      */
     @Override
-    public String editarSucursal(String direccion, Model model){
-        for(Sucursal sucursal:listaSucursales.getListaSucursales()){
-            if(sucursal.getDireccion().equals(direccion)){
+    public String editarSucursal(Long id, Model model){
+        for(Sucursal sucursal:sucursalRepository.sucursalesDisponibles()){
+            if(sucursal.getId() == id){
                 model.addAttribute("sucursalEditar", sucursal);
+                model.addAttribute("listaProvincias", provinciaService.obtenerProvincias());
                 break;
             }
         }
@@ -107,20 +118,24 @@ public class SucursalServiceImp implements ISucursalService {
     public ModelAndView modificarSucursal(Sucursal sucursalEditado, BindingResult result){
         ModelAndView modelView;
         if (result.hasErrors()){
+            System.out.println("result = " + result);
             modelView = new ModelAndView("modificar-sucursal");
+            modelView.addObject("listaProvincias", provinciaService.obtenerProvincias());
         }
         else{
             modelView = new ModelAndView("sucursales");
-            for(Sucursal sucursal:listaSucursales.getListaSucursales()){
-                if(sucursal.getDireccion().equals(sucursalEditado.getDireccion())){
+            for(Sucursal sucursal:sucursalRepository.findAll()){
+                if(sucursal.getId() == sucursalEditado.getId()){
                     sucursal.setDireccion(sucursalEditado.getDireccion());
                     sucursal.setTelefono(sucursalEditado.getTelefono());
-                    sucursal.setHorarioAtencion(sucursalEditado.getHorarioAtencion());
+                    sucursal.setHorarioInicio(sucursalEditado.getHorarioInicio());
+                    sucursal.setHorarioFin(sucursalEditado.getHorarioFin());
                     sucursal.setMail(sucursalEditado.getMail());
+                    sucursalRepository.save(sucursalEditado);
                     break;
                 }
             }
-            modelView.addObject("listaSucursales", listaSucursales.getListaSucursales());
+            modelView.addObject("listaSucursales", sucursalRepository.findAll());
         }
         return modelView;
     }

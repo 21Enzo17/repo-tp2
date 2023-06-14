@@ -1,6 +1,6 @@
 package ar.edu.unju.fi.controller;
 
-import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.imp.SucursalServiceImp;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +31,14 @@ public class SucursalController {
         return sucursalService.crearSucursal(formSucursal, result);
     }
 
-    @GetMapping("/eliminar-sucursal/{direccion}")
-    public String eliminarSucursal(@PathVariable(value="direccion")String direccion, Model model){
-        return sucursalService.eliminarSucursal(direccion, model);
+    @GetMapping("/eliminar-sucursal/{id}")
+    public String eliminarSucursal(@PathVariable(value="id")Long id, Model model){
+        return sucursalService.eliminarSucursal(id, model);
     }
 
-    @GetMapping("/editar-sucursal/{direccion}")
-    public String editarSucursal(@PathVariable(value="direccion")String direccion, Model model){
-        return sucursalService.editarSucursal(direccion, model);
+    @GetMapping("/editar-sucursal/{id}")
+    public String editarSucursal(@PathVariable(value="id")Long id, Model model){
+        return sucursalService.editarSucursal(id, model);
     }
 
     @PostMapping("/editar-sucursal")
