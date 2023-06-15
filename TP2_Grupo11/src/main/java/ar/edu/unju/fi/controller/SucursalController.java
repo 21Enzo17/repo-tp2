@@ -2,19 +2,25 @@ package ar.edu.unju.fi.controller;
 
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.imp.SucursalServiceImp;
+import ar.edu.unju.fi.service.imp.SucursalServiceMysqlImp;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalTime;
+import java.util.Timer;
+
 @Controller
 @RequestMapping("/sucursales")
 public class SucursalController {
     @Autowired
-    private SucursalServiceImp sucursalService;
+    @Qualifier("sucursalServiceMysqlImp")
+    private SucursalServiceMysqlImp sucursalService;
 
     @GetMapping("/listado")
     public String getSucursales(Model model){
@@ -49,5 +55,10 @@ public class SucursalController {
     @GetMapping("/buscar-sucursal")
     public ModelAndView buscarSucursal(@RequestParam String query){
         return sucursalService.buscarSucursal(query);
+    }
+
+    @GetMapping("/filtrar-horario")
+    public ModelAndView filtrarSucursal(@RequestParam LocalTime horaInicio, @RequestParam LocalTime horaFin){
+        return sucursalService.filtrarSucursal(horaInicio, horaFin);
     }
 }

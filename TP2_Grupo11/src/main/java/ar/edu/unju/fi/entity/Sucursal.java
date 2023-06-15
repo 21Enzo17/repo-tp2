@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 
 @Component
 @Entity
