@@ -42,12 +42,12 @@
                         <p class="text-danger" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></p>
                     </div>
                     <div class="form-floating mb-3">
-						<input type="time" class="form-control" th:classappend="${#fields.hasErrors('horarioInicio')} ? 'is-invalid' : ''" placeholder="Ingrese el horario" th:value="sucursalEditar.horarioInicio" th:field="*{horarioInicio}">
+						<input type="time" class="form-control" th:classappend="${#fields.hasErrors('horarioInicio')} ? 'is-invalid' : ''" placeholder="Ingrese el horario" th:value="${#temporals.format(sucursalEditar.horarioInicio, 'HH:mm')}" th:field="*{horarioInicio}">
 						<label class="form-label">Horario Apertura</label>
 						<p class="text-danger" th:if="${#fields.hasErrors('horarioInicio')}" th:errors="*{horarioInicio}"></p>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="time" class="form-control" th:classappend="${#fields.hasErrors('horarioFin')} ? 'is-invalid' : ''" placeholder="Ingrese el horario" value="sucursalEditar.horarioFin" th:field="*{horarioFin}">
+						<input type="time" class="form-control" th:classappend="${#fields.hasErrors('horarioFin')} ? 'is-invalid' : ''" placeholder="Ingrese el horario" th:value="${sucursalEditar.horarioFin}" th:field="*{horarioFin}">
 						<label class="form-label">Horario Fin</label>
 						<p class="text-danger" th:if="${#fields.hasErrors('horarioFin')}" th:errors="*{horarioFin}"></p>
 					</div>

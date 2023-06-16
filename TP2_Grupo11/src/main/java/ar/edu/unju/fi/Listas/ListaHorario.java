@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Turno;
+import ar.edu.unju.fi.entity.Turno;
 
 @Component
 public class ListaHorario{

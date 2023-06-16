@@ -101,13 +101,8 @@ public class SucursalServiceMysqlImp implements ISucursalService {
      */
     @Override
     public String editarSucursal(Long id, Model model){
-        for(Sucursal sucursal:sucursalRepository.sucursalesDisponibles()){
-            if(sucursal.getId() == id){
-                model.addAttribute("sucursalEditar", sucursal);
-                model.addAttribute("listaProvincias", provinciaService.obtenerProvincias());
-                break;
-            }
-        }
+        model.addAttribute("sucursalEditar", sucursalRepository.findById(id).get());
+        model.addAttribute("listaProvincias", provinciaService.obtenerProvincias());
         return "modificar-sucursal";
     }
 
@@ -121,7 +116,6 @@ public class SucursalServiceMysqlImp implements ISucursalService {
     public ModelAndView modificarSucursal(Sucursal sucursalEditado, BindingResult result){
         ModelAndView modelView;
         if (result.hasErrors()){
-            System.out.println("result = " + result);
             modelView = new ModelAndView("modificar-sucursal");
             modelView.addObject("listaProvincias", provinciaService.obtenerProvincias());
         }

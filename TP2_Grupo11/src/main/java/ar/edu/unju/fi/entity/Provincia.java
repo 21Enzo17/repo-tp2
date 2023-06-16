@@ -64,4 +64,14 @@ public class Provincia {
     public void setListaSucursal(List<Sucursal> listaSucursal) {
         this.listaSucursal = listaSucursal;
     }
+
+    @Override
+    public String toString() {
+        return "Provincia{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", estado=" + estado +
+                ", listaSucursal=" + listaSucursal +
+                '}';
+    }
 }
