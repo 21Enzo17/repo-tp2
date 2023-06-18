@@ -19,22 +19,32 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import ar.edu.unju.fi.Listas.ListaProducto;
-import ar.edu.unju.fi.model.Producto;
+import ar.edu.unju.fi.entity.Categoria;
+import ar.edu.unju.fi.entity.Producto;
+import ar.edu.unju.fi.repository.IProductoRepository;
+import ar.edu.unju.fi.service.ICategoriaService;
 import ar.edu.unju.fi.service.IProductoService;
 import ar.edu.unju.fi.util.UploadFile;
 
 import jakarta.validation.Valid;
 
-@Service
+@Service("productoServiceImp")
 public class ProductoServiceImp implements IProductoService {
     @Autowired
     private ListaProducto listaProductos;
-
+    
     @Autowired
     private Producto formProducto;
 
     @Autowired
     private UploadFile uploadFile;
+
+    @Autowired
+    private IProductoRepository productoRepository;
+
+    @Autowired
+    private ICategoriaService categoriaService;
+
      /**
      * Metodo que muestra la pagina de productos
      * @param model
@@ -46,7 +56,8 @@ public class ProductoServiceImp implements IProductoService {
         // TODO Auto-generated method stub
         ModelAndView modelView = new ModelAndView("producto");
         modelView.addObject("buscado");
-        modelView.addObject("listaProductos", listaProductos.getProductos());
+        modelView.addObject("listaProductos", productoRepository.productosDisponibles());
+        modelView.addObject("listaCategorias", categoriaService.getDisponibles()); 
         return modelView;
     }
 
@@ -59,6 +70,7 @@ public class ProductoServiceImp implements IProductoService {
     public ModelAndView getNuevoProductoPage(Model model) {
         // TODO Auto-generated method stub
         ModelAndView modelView = new ModelAndView("nuevo-producto");
+        modelView.addObject("listaCategorias", categoriaService.getDisponibles());
         modelView.addObject("formProducto", formProducto);
         return modelView;
     }
@@ -78,45 +90,49 @@ public class ProductoServiceImp implements IProductoService {
             modelView = new ModelAndView("producto");
             String uniqueFileName = uploadFile.copy(image);
             formProducto.setImagen(uniqueFileName);
-            listaProductos.getProductos().add(formProducto);
-            modelView.addObject("listaProductos", listaProductos.getProductos());
+            formProducto.setEstado(true);
+            productoRepository.save(formProducto);
+            modelView.addObject("listaProductos", productoRepository.productosDisponibles());
         }
         return modelView;
     }
 
     /**
      * Metodo que elimina un producto de la lista
-     * @param codigo
+     * @param id
      * @param model
      * @return producto.html
      */
     @Override
-    public ModelAndView eliminarProducto(int codigo, Model model) {
+    public ModelAndView eliminarProducto(Long id, Model model) {
         // TODO Auto-generated method stub
         ModelAndView modelView = new ModelAndView("producto");
-        for(Producto producto:listaProductos.getProductos()){
-            if(producto.getCod()==codigo){
-                uploadFile.delete(producto.getImagen());
-                listaProductos.getProductos().remove(producto);
+        for(Producto producto:productoRepository.findAll()){
+            if(producto.getId()==id){
+                System.out.println("#### Encontrado ####" + producto.getId() + "###" + id);
+                producto.setEstado(false);
+                productoRepository.save(producto);
+                System.out.println("#### Guardado ####");
                 break;
             }
         }
-        modelView.addObject("listaProductos", listaProductos.getProductos());
+        modelView.addObject("listaProductos", productoRepository.productosDisponibles());
         return modelView;
     }
 
     /**
      * Metodo que permite editar un producto
-     * @param codigo
+     * @param id
      * @param model
      * @return modificar-producto.html
      */
     @Override
-    public ModelAndView editarProducto(int codigo, Model model) {
+    public ModelAndView editarProducto(Long id, Model model) {
         // TODO Auto-generated method stub
         ModelAndView modelView = new ModelAndView("modificar-producto");
-        for(Producto producto:listaProductos.getProductos()){
-            if(producto.getCod()==codigo){
+        modelView.addObject("listaCategorias", categoriaService.getDisponibles());
+        for(Producto producto:productoRepository.findAll()){
+            if(producto.getId()==id){
                 modelView.addObject("encontrado", producto);
                 break;
             }
@@ -136,20 +152,23 @@ public class ProductoServiceImp implements IProductoService {
         if(result.hasErrors()){
             modelView = new ModelAndView("modificar-producto");
         }else{
-            for(Producto producto:listaProductos.getProductos()){
-                if(modificado.getCod()==producto.getCod()){
+            for(Producto producto:productoRepository.findAll()){
+                if(modificado.getId()==producto.getId()){
                     producto.setNombre(modificado.getNombre());
                     producto.setCategoria(modificado.getCategoria());
                     producto.setDescuento(modificado.getDescuento());
-                    uploadFile.delete(producto.getImagen());
-                    String uniqueFileName = uploadFile.copy(image);
-                    producto.setImagen(uniqueFileName);
+                    if(!image.isEmpty()){
+                        uploadFile.delete(producto.getImagen());
+                        String uniqueFileName = uploadFile.copy(image);
+                        producto.setImagen(uniqueFileName);
+                    }
                     producto.setPrecio(modificado.getPrecio());
+                    productoRepository.save(producto);
                     break;
                 }
             }
             modelView = new ModelAndView("producto");
-            modelView.addObject("listaProductos", listaProductos.getProductos());
+            modelView.addObject("listaProductos", productoRepository.productosDisponibles());
         }
         return modelView;
     }
@@ -159,15 +178,23 @@ public class ProductoServiceImp implements IProductoService {
      * @return producto.html
      */
     @Override
-    public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model){
+    public ModelAndView buscar(@RequestParam("nombre") String buscado,@RequestParam("categoria") Long id, Model model){
         ModelAndView modelView = new ModelAndView("producto");
-        
         List<Producto> coincidenteList = new ArrayList<Producto>();
-        for(Producto producto:listaProductos.getProductos()){
+        if(id!=0){
+           for(Producto producto:productoRepository.buscaPorCategoria(categoriaService.findCategoriaById(id))){
             if(producto.getNombre().toLowerCase().contains(buscado.toLowerCase())){
                 coincidenteList.add(producto);
             }
         }
+        }else{
+            for(Producto producto:productoRepository.productosDisponibles()){
+            if(producto.getNombre().toLowerCase().contains(buscado.toLowerCase())){
+                coincidenteList.add(producto);
+            }
+        }
+        }
+        modelView.addObject("listaCategorias", categoriaService.getDisponibles());
         modelView.addObject("listaProductos", coincidenteList);
         if(coincidenteList.size()==0){
             modelView.addObject("alerta",true);
