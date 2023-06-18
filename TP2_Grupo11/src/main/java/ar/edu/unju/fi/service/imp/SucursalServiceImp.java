@@ -1,7 +1,7 @@
 package ar.edu.unju.fi.service.imp;
 
 import ar.edu.unju.fi.Listas.ListaSucursal;
-import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
 import java.util.ArrayList;
 import java.util.List;

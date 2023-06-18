@@ -20,33 +20,22 @@
 					<fieldset class="rounded-2 border border-2 border-success">
 						<legend style="float:none;width: fit-content;"> <b>Modificar Producto</b> </legend>
 						<form class="px-3 pt-3" th:action="@{/producto/modificar-producto}" th:object="${encontrado}" method="post" enctype="multipart/form-data">
+							<div class="form-floating mb-3 d-none">
+								<input class="form-control-plaintext"  type="number" readonly placeholder="Ingrese el código" value="${encontrado.id}" th:field="*{id}">
+								<label>Id del Producto</label>
+							</div>
 							<div class="form-floating mb-3">
 								<input class="form-control" th:classappend="${#fields.hasErrors('nombre')} ?'is-invalid':'' " type="text" placeholder="Ingrese el producto" value="${encontrado.nombre}" th:field="*{nombre}">
 								<label>Nombre del Producto</label>
 								<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
 							</div>
 							<div class="form-group">
-								<select value="${encontrado.categoria}" th:classappend="${#fields.hasErrors('categoria')} ?'is-invalid':'' " class="form-select form-select-lg mb-3" aria-label="Default select example" th:field="*{categoria}">
-									<option value="" selected>Categoria</option>
-									<option value="Alimento">Alimento</option>
-									<option value="Juguetes">Juguetes</option>
-									<option value="Collares">Collares</option>
-									<option value="Camas">Camas</option>
-									<option value="Vestimenta">Vestimenta</option>
-									<option value="Higiene">Higiene</option>
-									<option value="Arenero">Arenero</option>
-									<option value="Transportador">Transportador</option>
-									<option value="Acuarios">Acuarios</option>
+								<select th:classappend="${#fields.hasErrors('categoria')} ?'is-invalid':'' " class="form-select form-select-lg mb-3"  th:field="*{categoria}">
+									<option th:if="${listaCategorias.size() == 0}" th:value="null" selected>No hay categorias cargadas</option>
+									<option th:each="cat: ${listaCategorias}"  th:value="${cat.getId()}" th:text="${cat.getNombre()}" class="text-capitalize"></option>
 								</select>
 								<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></p>
 							</div>
-							<!--
-							<div class="form-floating mb-3">								
-								<input class="form-control" th:classappend="${#fields.hasErrors('categoria')} ?'is-invalid':'' " type="text" placeholder="Ingrese la categoria" value="${encontrado.categoria}" th:field="*{categoria}">
-								<label>Categoria</label>
-								<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></p>
-							</div>
-							-->
 							<div class="form-floating mb-3">
 								<input class="form-control-plaintext"  type="number" readonly placeholder="Ingrese el código" value="${encontrado.cod}" th:field="*{cod}">
 								<label>Código del Producto</label>

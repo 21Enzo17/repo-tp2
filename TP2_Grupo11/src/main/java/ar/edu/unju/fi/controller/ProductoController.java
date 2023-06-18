@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ar.edu.unju.fi.model.Producto;
+import ar.edu.unju.fi.entity.Producto;
 import ar.edu.unju.fi.service.IProductoService;
 
 import jakarta.validation.Valid;
@@ -49,12 +49,12 @@ public class ProductoController {
     }
     
     @GetMapping("/eliminar-producto/{codigo}")
-    public ModelAndView eliminarProducto(@PathVariable(value="codigo")int codigo,Model model){
+    public ModelAndView eliminarProducto(@PathVariable(value="codigo")Long codigo,Model model){
         return productoService.eliminarProducto(codigo,model);
     }
     
     @GetMapping("/editar-producto/{codigo}")
-    public ModelAndView editarProducto(@PathVariable(value="codigo")int codigo,Model model){
+    public ModelAndView editarProducto(@PathVariable(value="codigo")Long codigo,Model model){
         return productoService.editarProducto(codigo,model);
     }
     
@@ -64,8 +64,8 @@ public class ProductoController {
     }
 
     @GetMapping("buscar-producto")
-    public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model){
-        return productoService.buscarPorNombre(buscado,model);
+    public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado,@RequestParam("categoria") Long id, Model model){
+        return productoService.buscar(buscado,id,model);
     }
 
     @GetMapping("uploads/{filename}")

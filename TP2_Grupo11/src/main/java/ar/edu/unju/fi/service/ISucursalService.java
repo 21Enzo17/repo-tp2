@@ -1,9 +1,10 @@
 package ar.edu.unju.fi.service;
 
-import ar.edu.unju.fi.model.Sucursal;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
+
+import ar.edu.unju.fi.entity.Sucursal;
 
 public interface ISucursalService {
     public String getSucursales(Model model);
