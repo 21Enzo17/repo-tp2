@@ -11,15 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.Listas.ListaHorario;
 import ar.edu.unju.fi.Listas.ListaSemana;
-import ar.edu.unju.fi.model.Dia;
-import ar.edu.unju.fi.model.Turno;
+import ar.edu.unju.fi.entity.Dia;
+import ar.edu.unju.fi.entity.Empleado;
+import ar.edu.unju.fi.entity.Turno;
 import ar.edu.unju.fi.service.IServicioService;
 /**
- * 
  * @author JohanR.
  * Implementación de Servicios usando Datos generados en las Clases. 
  */
-@Service
+@Service("paseoService")
 public class PaseoServiceImp implements IServicioService{
 	
 	@Autowired
@@ -28,7 +28,6 @@ public class PaseoServiceImp implements IServicioService{
 	ListaSemana semana;
 	@Autowired
 	Turno turno;
-	
 
 	/**
 	 * Método que retorna Una lista de Horarios.
@@ -233,6 +232,49 @@ public class PaseoServiceImp implements IServicioService{
 	        }
 	        return modelView;
 	}
-	
+
+	@Override
+	public void guardar(Turno turno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modificar(Turno turno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminar(Turno turno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Empleado getEmpleado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void guardar(Empleado empleado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modificar(Empleado empleado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminar(Empleado empleado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
  
