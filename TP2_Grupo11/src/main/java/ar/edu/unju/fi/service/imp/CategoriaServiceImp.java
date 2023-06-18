@@ -12,8 +12,6 @@ import ar.edu.unju.fi.service.ICategoriaService;
 @Service
 public class CategoriaServiceImp implements ICategoriaService{
 
-    @Autowired
-    private Categoria categoria;
 
     @Autowired
     private ICategoriaRepository categoriaRepository;
