@@ -85,8 +85,14 @@ public class PaseoController {
 	}
 
 	@GetMapping("buscarhorarios")
-	public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model) {
-		return paseosService.buscarPorNombre(buscado, model);
+	public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado) {
+		ModelAndView modelView=new ModelAndView("paseos");
+		if(paseosService.buscarPorNombre(buscado).size()!=0) {
+			modelView.addObject("listaDeHorarios",paseosService.buscarPorNombre(buscado));
+		}else {
+			modelView.addObject("alertaB",true);			
+		}
+		return modelView;
 	}
 
 	@GetMapping("/modificarHorario")

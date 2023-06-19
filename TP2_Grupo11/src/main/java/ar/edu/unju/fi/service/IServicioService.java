@@ -31,7 +31,7 @@ public interface IServicioService {
 	void eliminarHorario(String dia);
 	public Turno getTurno(String dia);
 	
-	Model buscarPorNombre(@RequestParam("nombre") String buscado, Model model);
+	public List<Turno> buscarPorNombre( String buscado);
 	
 	public Turno getTurno();
 	public void guardar(Turno turno);

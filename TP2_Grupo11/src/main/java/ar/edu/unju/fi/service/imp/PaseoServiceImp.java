@@ -214,11 +214,8 @@ public class PaseoServiceImp implements IServicioService{
 	 * parámetro lo que se desea buscar tipo String.
 	 */
 	@Override
-	public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model) {
-		// TODO Auto-generated method stub
-		
-		 ModelAndView modelView = new ModelAndView("paseos");
-	        
+	public List<Turno> buscarPorNombre(String buscado) {
+		// TODO Auto-generated method stub	        
 	        List<Turno> coincidenteList = new ArrayList<Turno>();
 	        for(Turno turno:listaDeHorarios.getHorarios()){
 	            if(turno.getDia().toLowerCase().contains(buscado.toLowerCase()) || turno.getPaseador1().toLowerCase().contains(buscado.toLowerCase()) 
@@ -226,11 +223,7 @@ public class PaseoServiceImp implements IServicioService{
 	                coincidenteList.add(turno);
 	            }
 	        }
-	        modelView.addObject("listaDeHorarios", coincidenteList);
-	        if(coincidenteList.size()==0){
-	            modelView.addObject("alertaB",true);
-	        }
-	        return modelView;
+	        return coincidenteList;
 	}
 
 	@Override
@@ -274,7 +267,5 @@ public class PaseoServiceImp implements IServicioService{
 		// TODO Auto-generated method stub
 		
 	}
-
-
 }
  
