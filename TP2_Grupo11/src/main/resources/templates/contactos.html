@@ -42,7 +42,7 @@
 					</li>
 				</ul>
 				<hr>
-				<form>
+				<form th:action="@{/contactos/formContacto}" method="post" th:object="${formContacto}">
 				<!-- alerta -->
 				<div th:if="${alerta}"  class="alert alert-warning alert-dismissible fade show mt-2" role="alert">            
         				 <p><strong>Gracias por su mensaje.</strong>Nos contactaremos a la brevedad!</p>              
