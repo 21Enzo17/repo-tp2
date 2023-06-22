@@ -21,7 +21,7 @@
 			<h2 class="titulares fw-bold">EditarProvincia</h2>
 			<fieldset class="rounded-2 border border-2 border-success">
 				<legend style="float:none;width: fit-content;"><b>Modificar Provincia</b></legend>
-				<form class="nueva-sucursal-form p-3" th:action="@{/provincia/guardar-provincia}" th:object="${provinciaEditar}" method="post">
+				<form class="nueva-sucursal-form p-3" th:action="@{/provincia/modificar-provincia}" th:object="${provinciaEditar}" method="post">
 					<div class="form-floating mb-3">
                         <input type="number" hidden value="provinciaEditar.id" th:field="*{id}">
 						<input class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''" type="text" placeholder="Ingrese nombre" value="provinciaEditar.nombre" th:field="*{nombre}">

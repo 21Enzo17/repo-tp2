@@ -29,11 +29,13 @@
 								th:href="@{/provincia/nueva-provincia}"><i class="bi bi-plus-circle"></i></a></button>
 					</div>
 				</div>
-				<article class="provincias-disponibles d-flex flex-wrap justify-content-evenly gap-3">
-					<div class="provincia bg-secondary-subtle rounded-4 p-4 mt-2 d-flex gap-3 align-items-center" th:each="prov : ${listaProvincias}">
+				<article class="provincias-disponibles d-flex flex-wrap gap-3">
+					<div class="provincia w-100 bg-secondary-subtle rounded-4 p-3 mt-2 d-flex gap-3 align-items-center justify-content-between" th:each="prov : ${listaProvincias}">
                         <p class="fw-bold m-0" th:text="${prov.nombre}"></p>
-                        <button class=" px-0 py-1 btn btn-success"><a th:href="@{/provincia/editar-provincia/} + ${prov.id}" style="font-size:20px;" class="text-white"><i class="px-2 py-1 bi bi-pencil-square"></i></a></button>
-                        <button class="px-0 py-1 btn btn-danger"><a th:href="@{/provincia/eliminar-provincia/} + ${prov.id}" style="font-size:20px;" class="text-white"><i class="px-2 py-1 bi bi-x-circle"></i></a></button>
+						<div class="botones">
+							<button class=" px-0 py-1 btn btn-success"><a th:href="@{/provincia/editar-provincia/} + ${prov.id}" style="font-size:20px;" class="text-white"><i class="px-2 py-1 bi bi-pencil-square"></i></a></button>
+							<button class="px-0 py-1 btn btn-danger"><a th:href="@{/provincia/eliminar-provincia/} + ${prov.id}" style="font-size:20px;" class="text-white"><i class="px-2 py-1 bi bi-x-circle"></i></a></button>
+						</div>
                     </div>
                 </article>
 			</section>
