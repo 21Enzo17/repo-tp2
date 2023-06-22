@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.service;
 
+import java.util.List;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,20 +14,19 @@ import jakarta.validation.Valid;
 
 public interface IConsejoService {
 	
-	
-    public ModelAndView getConsejos(Model model);
+    List <Consejo> getConsejos();
 
-    public ModelAndView getnuevoConsejo(Model model);
+    List <Consejo> getnuevoConsejo();
 
-    public ModelAndView crearConsejo(@Valid @ModelAttribute("nuevoConsejo")Consejo nuevoConsejo, BindingResult result);
+    List <Consejo> crearConsejo(@Valid @ModelAttribute("nuevoConsejo")Consejo nuevoConsejo, BindingResult result);
 
-    public ModelAndView eliminarConsejo(@PathVariable(value="id")int id,Model model);
+    List <Consejo> eliminarConsejo();
 
-    public ModelAndView editarConsejos(@PathVariable(value="id")int id,Model model);
+    List <Consejo> editarConsejos(@PathVariable(value="id")int id,Model model);
 
-    public ModelAndView modificarLista(@Valid @ModelAttribute("consejosEditar")Consejo modificado, BindingResult result);
+    List <Consejo> modificarLista(@Valid @ModelAttribute("consejosEditar")Consejo modificado, BindingResult result);
 
-    public ModelAndView buscarPorTitulo(@RequestParam("titulo") String buscado, Model model);
+    List <Consejo> buscarPorTitulo(@RequestParam("titulo") String buscado, Model model);
 
 }
 
