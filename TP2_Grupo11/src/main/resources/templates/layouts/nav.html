@@ -20,8 +20,9 @@
 					<a th:href="@{/index}"><img th:src="@{/images/Mascotas-Barn(reducido).png}" style="max-height: 100%;" alt="logo"></a>
 				</div>-->
 			</div>
-			<button class="navbar-toggler border border-1 border-white text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler border border-1 border-white text-white" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
 				<i class="bi bi-list"></i>
 			</button>
 			<div class="collapse navbar-collapse w-100 justify-content-center" id="navbarNav">
@@ -45,12 +46,34 @@
 						<a class="nav-link text-white fw-bold" th:href="@{/contactos}">CONTACTO</a>
 					</li>
 				</ul>
-				<div class="social-links d-xl-none d-xl-flex gap-3">
-					<button class="btn btn-outline-secondary text-white">Login</button>
+				
+				<div class="dropdown d-xl-none d-xl-flex">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						Gestion
+					</button>
+					<ul class="dropdown-menu dropdown-menu-dark">
+						<li><a class="dropdown-item" th:href="@{/producto/listado}">Administrar Productos</a></li>
+						<li><a class="dropdown-item" th:href="@{/categoria/listado}">Administrar Categorias</a></li>
+						<li><a class="dropdown-item" th:href="@{/sucursales/listado}">Administrar Sucursales</a></li>
+						<li><a class="dropdown-item" th:href="@{/provincia/listado}">Administrar Provincias</a></li> 
+					</ul>
 				</div>
 			</div>
-			<div class="social-links d-none d-xl-flex gap-3">
+			<!--<div class="social-links d-none d-xl-flex gap-3">
 				<button class="btn btn-outline-secondary text-white">Login</button>
+			</div>-->
+			<div class="dropdown d-none d-xl-flex">
+				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+					aria-expanded="false">
+					Gestion
+				</button>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-menu-lg-end">
+					<li><a class="dropdown-item" th:href="@{/producto/listado}">Administrar Productos</a></li>
+					<li><a class="dropdown-item" th:href="@{/categoria/listado}">Administrar Categorias</a></li>
+					<li><a class="dropdown-item" th:href="@{/sucursales/listado}">Administrar Sucursales</a></li>
+					<li><a class="dropdown-item" th:href="@{/provincia/listado}">Administrar Provincias</a></li> 
+				</ul>
 			</div>
 		</div>
 	</nav>

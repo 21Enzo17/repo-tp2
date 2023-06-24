@@ -2,6 +2,7 @@ package ar.edu.unju.fi.entity;
 
 import org.springframework.stereotype.Component;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,6 +12,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Component
+
 @Entity
 @Table(name="Turno")
 public class Turno {
@@ -28,25 +30,29 @@ public class Turno {
 	@NotBlank(message="Debe ingresar turno")
 	@Size(min=3,max=30)
 	@Column
+
 	private String turnoB;
 	@NotBlank(message="Debe ingresar un nombre")
 	@Size(min=3,max=30)
 	@Pattern(regexp="[a-zA-Z ]+",message="Solo debe contener letras")
+
 	@Column
 	private String paseador1;
 	@NotBlank(message="Debe ingresar un nombre")
 	@Size(min=3,max=30)
 	@Pattern(regexp="[a-zA-Z ]+",message="Solo debe contener letras")
+
 	@Column
 	private String paseador2;
 	@Column
 	private boolean estado;
+
 	
 	
 	public Turno() {
 		super();
 	}
-	
+
 	public Turno(Long cod, String dia, String turnoA, String turnoB, String paseador1, String paseador2) {
 		super();
 		this.cod = cod;
@@ -55,6 +61,7 @@ public class Turno {
 		this.turnoB = turnoB;
 		this.paseador1 = paseador1;
 		this.paseador2 = paseador2;
+
 		this.estado = true;
 	}
 	

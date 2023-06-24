@@ -2,6 +2,7 @@ package ar.edu.unju.fi.entity;
 
 import org.springframework.stereotype.Component;
 
+
 import jakarta.persistence.Column;
 
 @Component
@@ -26,7 +27,9 @@ public class Dia {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public long getCod() {
+
 		return cod;
 	}
 	public void setCod(int cod) {

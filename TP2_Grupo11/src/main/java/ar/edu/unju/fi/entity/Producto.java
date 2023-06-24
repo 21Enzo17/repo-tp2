@@ -1,39 +1,86 @@
 package ar.edu.unju.fi.entity;
 
+
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 @Component
+@Entity
+@Table(name="PRODUCTO")
 public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    
+    @Column(name="cod")
+    @Positive(message="El codigo debe ser mayor a 1")
+    private Long cod;
+
+    @Column(name="nombre")
     @NotBlank(message="El nombre no puede estar vacio")
     @Size(min=5,max=25,message = "El nombre debe ser mayor o igual a 5 caracteres y menor a 25")
     private String nombre;
-    @Positive(message="El codigo debe ser mayor a 1")
-    private int cod;
+
+    @Column(name="precio")
     @Positive(message="El precio no puede ser menor a 1")
     private float precio;
-    @Size(min=5,max=30,message = "La categoria debe ser mayor a o igual 5 caracteres y menor a 30")
-    private String categoria;
+    
+    @Column(name="descuento")
     @Positive(message="El descuento debe ser un valor positivo o cero")
     @Max(value=100,message="Solo puede tener un descuento de hasta 100%")
     private int descuento;
-    @NotBlank(message="El campo no puede estar vacio")
-    @Pattern(regexp="^(https?|ftp)://[^\s/$.?#].[^\s]*$",message="El link debe comenzar por http://, https://, o ftp://")
+    
+    @Column(name="imagen")
     private String imagen;
+
+    @Autowired
+    @JoinColumn(name="cat_id")
+    @ManyToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+    @NotNull(message = "Debe seleccionar una categoria")
+    private Categoria categoria;
+
+    @Column(name="estado")
+    private boolean estado;
+
 
 
 
     public Producto() {
     }
 
-    public Producto(String nombre, int cod, float precio, String categoria, int descuento, String imagen) {
-        this.nombre = nombre;
+
+
+    public Producto(Long id, Long cod, String nombre, float precio, int descuento, String imagen, Categoria categoria, boolean estado) {
+        this.id = id;
         this.cod = cod;
+        this.nombre = nombre;
         this.precio = precio;
-        this.categoria = categoria;
         this.descuento = descuento;
         this.imagen = imagen;
+        this.categoria = categoria;
+        this.estado = estado;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getCod() {
+        return this.cod;
+    }
+
+    public void setCod(Long cod) {
+        this.cod = cod;
+
     }
 
     public String getNombre() {
@@ -44,12 +91,21 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getCod() {
-        return this.cod;
+    public float getPrecio() {
+        return this.precio;
     }
 
-    public void setCod(int cod) {
-        this.cod = cod;
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
+    public int getDescuento() {
+        return this.descuento;
+    }
+
+    public void setDescuento(int descuento) {
+        this.descuento = descuento;
+
     }
 
     public String getImagen() {
@@ -60,23 +116,47 @@ public class Producto {
         this.imagen = imagen;
     }
 
+
+    public Categoria getCategoria() {
+        return this.categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public boolean isEstado() {
+        return this.estado;
+    }
+
+    public boolean getEstado() {
+        return this.estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Producto id(Long id) {
+        setId(id);
+        return this;
+    }
+
+    public Producto cod(Long cod) {
+
+        setCod(cod);
+        return this;
+    }
+
+
     public Producto nombre(String nombre) {
         setNombre(nombre);
         return this;
     }
 
-    public Producto cod(int cod) {
-        setCod(cod);
-        return this;
-    }
-
     public Producto precio(float precio) {
         setPrecio(precio);
-        return this;
-    }
 
-    public Producto categoria(String categoria) {
-        setCategoria(categoria);
         return this;
     }
 
@@ -89,31 +169,17 @@ public class Producto {
         setImagen(imagen);
         return this;
     }
-   
 
-    public float getPrecio() {
-        return this.precio;
+    public Producto categoria(Categoria categoria) {
+        setCategoria(categoria);
+        return this;
     }
 
-    public void setPrecio(float precio) {
-        this.precio = precio;
+    public Producto estado(boolean estado) {
+        setEstado(estado);
+        return this;
     }
 
-    public String getCategoria() {
-        return this.categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public int getDescuento() {
-        return this.descuento;
-    }
-
-    public void setDescuento(int descuento) {
-        this.descuento = descuento;
-    }
     /**
      * Este metodo permite calcular el desceunto total y retornar un precio
      * @return precio
@@ -133,7 +199,5 @@ public class Producto {
             "}";
     }
     
-    public boolean validarProducto(){
-        return this.nombre.length()>0 && this.categoria.length()>0 && this.cod!=0 && this.precio!=0;
-    }
+
 }
