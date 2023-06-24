@@ -79,6 +79,7 @@ public class ProductoController {
         ModelAndView modelView;
         if(result.hasErrors()){
             modelView = new ModelAndView("nuevo-producto");
+            modelView.addObject("listaCategorias",categoriaService.getDisponibles());
         }else{
             modelView = new ModelAndView("producto");
             String uniqueFileName = uploadFile.copy(image);
@@ -162,7 +163,6 @@ public class ProductoController {
         }else{
             categoriaList=productoService.getDisponibles();
         }
-        System.out.println(coincidenteList.toString());
         for(Producto producto:categoriaList){
             if(producto.getNombre().toLowerCase().contains(buscado.toLowerCase())){
                 coincidenteList.add(producto);
