@@ -1,8 +1,11 @@
 package ar.edu.unju.fi.service;
 
+
 import ar.edu.unju.fi.entity.Sucursal;
 import java.time.LocalTime;
 import java.util.List;
+
+import ar.edu.unju.fi.entity.Sucursal;
 
 public interface ISucursalService {
     public List<Sucursal> getSucursales();
