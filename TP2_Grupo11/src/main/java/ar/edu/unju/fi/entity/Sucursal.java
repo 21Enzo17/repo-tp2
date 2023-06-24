@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.entity;
 
 
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.springframework.stereotype.Component;
@@ -56,6 +57,7 @@ public class Sucursal {
         this.horarioFin = horarioFin;
         this.estado = estado;
 
+
     }
 
     public String getDireccion() {
@@ -81,6 +83,7 @@ public class Sucursal {
     public void setMail(String mail) {
         this.mail = mail;
     }
+
 
 
     public Long getId() {
@@ -127,7 +130,6 @@ public class Sucursal {
     @Override
     public String toString() {
         return "Sucursal{" +
-
                 "id=" + id +
                 ", direccion='" + direccion + '\'' +
                 ", telefono='" + telefono + '\'' +

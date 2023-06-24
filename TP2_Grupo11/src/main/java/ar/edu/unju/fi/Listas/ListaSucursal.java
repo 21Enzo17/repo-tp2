@@ -1,6 +1,5 @@
 package ar.edu.unju.fi.Listas;
 
-
 import org.springframework.stereotype.Component;
 
 import ar.edu.unju.fi.entity.Sucursal;

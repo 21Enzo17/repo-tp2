@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 import ar.edu.unju.fi.entity.Categoria;
 import ar.edu.unju.fi.entity.Producto;
 import ar.edu.unju.fi.repository.IProductoRepository;
+
 
 import ar.edu.unju.fi.service.IProductoService;
 

@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.entity;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -49,9 +50,9 @@ public class Producto {
 
 
 
-
     public Producto() {
     }
+
 
 
     public Producto(Long id, Long cod, String nombre, float precio, int descuento, String imagen, Categoria categoria, boolean estado) {
@@ -104,6 +105,7 @@ public class Producto {
 
     public void setDescuento(int descuento) {
         this.descuento = descuento;
+
     }
 
     public String getImagen() {
@@ -113,6 +115,7 @@ public class Producto {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
 
     public Categoria getCategoria() {
         return this.categoria;
@@ -166,6 +169,7 @@ public class Producto {
         setImagen(imagen);
         return this;
     }
+
     public Producto categoria(Categoria categoria) {
         setCategoria(categoria);
         return this;
@@ -195,4 +199,5 @@ public class Producto {
             "}";
     }
     
+
 }
