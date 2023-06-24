@@ -6,7 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unju.fi.entity.Turno;
-
 @Repository
 public interface ITurnoRepository extends CrudRepository<Turno,Long>{
 	

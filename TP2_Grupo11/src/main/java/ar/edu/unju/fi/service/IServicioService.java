@@ -4,6 +4,7 @@
 package ar.edu.unju.fi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,7 @@ public interface IServicioService {
 	List<String> getDisponibles();	
 	List<Turno> guardarTurno(Turno formHorario);
 	List<Turno> guardarCambios(Turno modificado);
+	List<Empleado> getlistEmpleados();
 	
 	boolean existe(String dia);
 	boolean semanaCompleta();
@@ -41,12 +43,9 @@ public interface IServicioService {
 	public Empleado getEmpleado();
 	public void guardar(Empleado empleado);
 	public void modificar(Empleado empleado);
-	public void eliminar(Empleado empleado);
-	
-	
-	
-	
-	
-	
+	public void eliminar(Long id);
+	void eliminar(Empleado empleado);
+	public Empleado getEmpleado(Long cod);
+
 
 }

@@ -1,15 +1,19 @@
 package ar.edu.unju.fi.entity;
 
-import java.util.Date;
-
+import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -18,9 +22,9 @@ import jakarta.validation.constraints.Size;
 @Table
 public class Empleado {
 
-	@Id
 	@Column
-	@GeneratedValue()
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 	private Long cod;
 	
 	@NotBlank(message="Debe ingresar Nombre")
@@ -40,22 +44,25 @@ public class Empleado {
 	private long dni;
 	
 	@Column
-	private Date fecha_nacimiento;
+	@Past(message="No puede ser posterior a la actualidad")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@NotNull(message="Debe ingresar fecha de Nacimiento válida")
+	private LocalDate fecha_nacimiento;
 	
-	@NotBlank(message="Debe ingresar correo electronico")
-	@Size(min=3,max=30)
-	@Pattern(regexp="[a-zA-Z ]+",message="Solo debe contener letras")
 	@Column
+	@Email
+	@NotBlank(message="Debe ingresar correo electronico")
+	@Pattern(regexp="[a-zA-Z0-9]*+@+[a-zA-Z ]*+.+[a-zA-Z ]*",message="debe seguir el formato xxx@xxx.xxx")
 	private String email;
 	
+	@Column
 	@NotBlank(message="Debe ingresar direccion")
 	@Size(min=3,max=30)
-	@Column
 	private String direccion;
 	
+	@Column
 	@NotBlank(message="Debe ingresar especialidad")
 	@Size(min=3,max=30)
-	@Column
 	private String especialidad ;
 	
 	@Column
@@ -68,7 +75,7 @@ public class Empleado {
 
 	public Empleado(Long cod, @NotBlank(message = "Debe ingresar Nombre") @Size(min = 3, max = 15) String nombre,
 			@NotBlank(message = "Debe ingresar Apellido") @Size(min = 3, max = 30) String apellido, int edad, long dni,
-			Date fecha_nacimiento,
+			@Past(message = "No puede ser posterior a la actualidad") @NotNull(message = "Debe ingresar fecha de Nacimiento válida") @Past(message = "No puede ser posterior a la actualidad") @NotNull(message = "Debe ingresar fecha de Nacimiento válida") @Past(message = "No puede ser posterior a la actualidad") @NotNull(message = "Debe ingresar fecha de Nacimiento válida") LocalDate fecha_nacimiento,
 			@NotBlank(message = "Debe ingresar correo electronico") @Size(min = 3, max = 30) @Pattern(regexp = "[a-zA-Z ]+", message = "Solo debe contener letras") String email,
 			@NotBlank(message = "Debe ingresar direccion") @Size(min = 3, max = 30) String direccion,
 			@NotBlank(message = "Debe ingresar especialidad") @Size(min = 3, max = 30) String especialidad) {
@@ -124,11 +131,11 @@ public class Empleado {
 		this.dni = dni;
 	}
 
-	public Date getFecha_nacimiento() {
+	public @Past(message = "No puede ser posterior a la actualidad") @NotNull(message = "Debe ingresar fecha de Nacimiento válida") LocalDate getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
 
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
+	public void setFecha_nacimiento(@Past(message = "No puede ser posterior a la actualidad") @NotNull(message = "Debe ingresar fecha de Nacimiento válida") LocalDate fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 

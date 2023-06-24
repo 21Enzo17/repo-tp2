@@ -35,6 +35,7 @@ public class PaseoController {
 		if (paseosService.semanaCompleta()) {
 			model.addAttribute("formHorario", paseosService.getTurno());
 			model.addAttribute("diasDisponibles", paseosService.getDisponibles());
+			model.addAttribute("paseadoresDisponibles", paseosService.getlistEmpleados());
 			return "nuevohorario";
 		} else {
 			model.addAttribute("listaDeHorarios", paseosService.getListaOrdenada());
@@ -51,6 +52,7 @@ public class PaseoController {
 			modelView = new ModelAndView("nuevoHorario");
 			modelView.addObject("formHorario", formHorario);
 			modelView.addObject("diasDisponibles", paseosService.getDisponibles());
+			modelView.addObject("empleadosDisponibles",paseosService.getlistEmpleados());
 		} else {
 			modelView = new ModelAndView("paseos");
 			modelView.addObject("listaDeHorarios", paseosService.guardarTurno(formHorario));
@@ -61,6 +63,7 @@ public class PaseoController {
 	@GetMapping("/modificarHorarios/{dia}")
 	public String getModificarPage(Model model, @PathVariable(value = "dia") String dia) {
 		model.addAttribute("turnoDia", paseosService.getTurno(dia));
+		model.addAttribute("empleadosDisponibles",paseosService.getlistEmpleados());
 		return "modificar-horarios";
 	}
 

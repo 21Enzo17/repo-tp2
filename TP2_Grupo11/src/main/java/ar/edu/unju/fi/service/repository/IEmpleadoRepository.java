@@ -10,5 +10,6 @@ import ar.edu.unju.fi.entity.Empleado;
 public interface IEmpleadoRepository extends CrudRepository<Empleado,Long> {
 	
 	public List<Empleado> findByEstado(Boolean estado);
+	public Empleado findByCod(Long cod);
 
 }

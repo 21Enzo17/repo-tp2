@@ -2,6 +2,7 @@ package ar.edu.unju.fi.service.imp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -210,10 +211,38 @@ public class ServicioServiceMySqlImp implements IServicioService {
 	}
 
 	@Override
+	public void eliminar(Long id) {
+		// TODO Auto-generated method stub
+		List<Empleado> encargados=empleadoRepository.findByEstado(true);
+		Empleado emple=new Empleado();
+		for(Empleado emp: encargados) {
+        	if(emp.getCod()==id){
+        		emple=emp;
+        		break;
+        	}
+        }
+		emple.setEstado(false);
+		empleadoRepository.save(emple);
+	}
+
+	@Override
+	public List<Empleado> getlistEmpleados() {
+		// TODO Auto-generated method stub
+		List<Empleado> listempleados = empleadoRepository.findByEstado(true);
+
+		return listempleados;
+	}
+
+	@Override
 	public void eliminar(Empleado empleado) {
 		// TODO Auto-generated method stub
-		empleado.setEstado(false);
-		empleadoRepository.save(empleado);
+		
+	}
+
+	@Override
+	public Empleado getEmpleado(Long cod) {
+		// TODO Auto-generated method stub		
+		return empleadoRepository.findByCod(cod);
 	}
 
 }

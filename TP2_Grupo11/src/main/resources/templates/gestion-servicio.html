@@ -60,7 +60,7 @@
 										<li><a class="dropdown-item"
 											th:href="@{/paseos/nuevohorario}">Alta de un Horario</a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="#">Consultar
+										<li><a class="dropdown-item" th:href="@{/gestion/consultarServicio}">Consultar
 												servicio</a></li>
 										<li><hr class="dropdown-divider"></li>
 										<li><a class="dropdown-item"
@@ -75,9 +75,9 @@
 										<li><a class="dropdown-item" th:href="@{/gestion/nuevoEmpleado}">Alta de un
 												Empleado</a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="#">Consultas</a></li>
+										<li><a class="dropdown-item" th:href="@{/gestion/consultaEmpleado}">Consultas</a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="#">Modificar/Eliminar</a></li>
+										<li><a class="dropdown-item" th:href="@{/gestion/modificarEliminarEmpleado}">Modificar/Eliminar</a></li>
 									</ul></li>
 							</ul>
 							<form class="d-flex" role="search">
@@ -107,6 +107,14 @@
 				<button type="button" class="btn-close" data-bs-dismiss="alert"
 					aria-label="Close"></button>
 			</div>
+			<!-- INFORMACION PARA REALIZAR BUSQUEDAS -->
+			<div th:if="${alertaInfo}"
+				class="alert alert-warning alert-dismissible fade show mt-2"
+				role="alert">
+				<strong>Intentas Buscar! </strong> Puedes usar la barra de Busqueda .
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+					aria-label="Close"></button>
+			</div>
 			<!-- IMAGEN DE GATO -->
 			<img class="col img-fluid w-auto " th:src="@{/images/gato.JPG}"
 				alt="nena-con-su-gato">
@@ -114,7 +122,7 @@
 			<!-- SECCION DE MODIFICACION -->
 			<div  th:if="${modificar}">
 				<div class="alert alert-warning" role="alert"><h5> Modificar y/o eliminar</h5>
-					<p>Selecciona el dia, presiona  modificar ó eliminar, haz cambios ,aplícalos</div>
+					<p>Selecciona el dia, presiona  modificar ó eliminar, haz cambios y aplícalos</div>
 				<div class="table-responsive">
 					<table
 						class="table table-light table-striped text-center table-over my-4">
@@ -172,8 +180,27 @@
 					</table>
 				</div>
 			</div>
-		</section>
-	</div>
+			<!-- SECCION DE CONSULTA DE HORARIOS-->
+			<div  th:if="${consultaInfo}">
+				<div class="alert alert-warning" role="alert"><h5> Consulta un Servicio por dia</h5>
+					<p> Presiona sobre el dia y obtendras los respectivos turnos asignados </p>
+					
+					<div class="row">
+						<div class="col position-relative" th:each="Disp: ${dias}">
+						
+							<button class="btn text-white mb-3"
+									style="background: radial-gradient(#025159 0%, #35402d 100%)"
+									th:href="@{/gestion/consulta/}+${Disp.nombre}" th:text="${Disp.nombre}"></button>
+							
+						</div>
+					
+					</div>
+					
+				</div>
+				
+			</div>
+		</section>					
+		</div>
 </div>
 <!-- FOOTER -->
 <footer th:replace="~{layouts/footer :: footer}"></footer>

@@ -27,23 +27,36 @@
 	<div class="container-xxl my-4">
 		<div class="row justify-content-evenly gap-4 my-4">
 			<section class="col-12 col-sm-11 col-lg-7 bg-light p-4 rounded-4">
-				<h2 class="titulares fw-bold">Nuevo Encargado</h2>
+				<h2 class="titulares fw-bold">Modificar Encargado</h2>
 				<fieldset class="rounded-2 border border-2 border-success">
 					<legend style="float: none; width: fit-content">
 						<b>Registrar datos Personales</b>
-					</legend>
-					<form class="px-3 pt-3" th:action="@{/gestion/guardarEmpleado}"
-						th:object="${formEmpleado}" method="post">
+					</legend>			
+					<form class="px-3 pt-3"
+						th:action="@{/gestion/guardarCambiosEmpleado}" th:object="${Emod}"
+						method="post">
 						<div class="form-group">
 							<div class="alert alert-warning" role="alert">
 								<h4>¡En esta Sección!</h4>
 								<hr>
-								<p>Sgrega un nuevo miembro a nuestra lista de Empleados</p>
+								<p>
+									Puedes modificar los datos personales del Empleado que haz
+									Seleccionado </span>
+								</p>
 							</div>
-							<div class="row g-3">
-								<div class="col">
+
+							<div class="row g-3 form-floating mb-3">
+								<div class="col input-group flex-nowrap">
+									<span class="input-group-text" id="addon-wrapping">
+										Id-Empleado</span> <input type="number" class="form-control"
+										placeholder="Edad" readonly aria-label="Edad"
+										th:field="*{cod}" value="${Emod.cod}">
+
+								</div>
+								<div class="col ">
 									<input type="text" class="form-control" placeholder="Nombre"
 										aria-label="Nombre" th:field="*{nombre}"
+										value="${Emod.nombre}"
 										th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
 									<p class="text-danger p-2 my-2"
 										th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
@@ -51,6 +64,7 @@
 								<div class="col">
 									<input type="text" class="form-control" placeholder="Apellido"
 										aria-label="Apellido" th:field="*{apellido}"
+										value="${Emod.apellido}"
 										th:classappend="${#fields.hasErrors('apellido')} ? 'is-invalid' : ''">
 									<p class="text-danger p-2 my-2"
 										th:if="${#fields.hasErrors('apellido')}"
@@ -58,10 +72,10 @@
 								</div>
 							</div>
 							<br>
-							<div class="row g-3">
+							<div class="row g-3 form-floating mb-3">
 								<div class="col input-group flex-nowrap">
 									<input type="number" class="form-control" placeholder="Edad"
-										aria-label="Edad" th:field="*{edad}"
+										aria-label="Edad" th:field="*{edad}" value="${Emod.edad}"
 										th:classappend="${#fields.hasErrors('edad')} ? 'is-invalid' : ''">
 									<span class="input-group-text" id="addon-wrapping">años</span>
 									<p class="text-danger p-2 my-2"
@@ -69,17 +83,16 @@
 								</div>
 								<div class="col">
 									<input type="number" class="form-control" placeholder="Dni"
-										aria-label="Dni" th:field="*{dni}"
+										aria-label="Dni" th:field="*{dni}" value="${Emod.dni}"
 										th:classappend="${#fields.hasErrors('dni')} ? 'is-invalid' : ''">
 									<p class="text-danger p-2 my-2"
 										th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></p>
 								</div>
 								<div class="col">
 									<input type="date" class="form-control"
-										placeholder="Fecha de Nacimiento"
-										aria-label="Fecha de nacimiento"
+										th:classappend="${#fields.hasErrors('fecha_nacimiento')} ? 'is-invalid' : ''"
 										th:field="*{fecha_nacimiento}"
-										th:classappend="${#fields.hasErrors('fecha_nacimiento')} ? 'is-invalid' : ''">
+										value="${Emod.fecha_nacimiento}">
 									<p class="text-danger p-2 my-2"
 										th:if="${#fields.hasErrors('fecha_nacimiento')}"
 										th:errors="*{fecha_nacimiento}"></p>
@@ -91,17 +104,18 @@
 									email</span> <input type="email" class="form-control"
 									placeholder="Correo Electrónico"
 									aria-label="Correo Electrónico"
-									aria-describedby="addon-wrapping"
+									aria-describedby="addon-wrapping" value="${Emod.email}"
 									th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''"
 									th:field="*{email}">
 								<p class="text-danger p-2 my-2"
 									th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 							</div>
 							<br>
-							<div class="row g-3">
+							<div class="row g-3 form-floating mb-3">
 								<div class="col">
 									<input type="text" class="form-control" placeholder="Domicilio"
 										aria-label="Domicilio" th:field="*{direccion}"
+										value="${Emod.direccion}"
 										th:classappend="${#fields.hasErrors('direccion')} ? 'is-invalid' : ''">
 									<p class="text-danger p-2 my-2"
 										th:if="${#fields.hasErrors('direccion')}"
@@ -110,7 +124,7 @@
 								<div class="col">
 									<input type="text" class="form-control"
 										placeholder="Especialidad" aria-label="Especialidad"
-										th:field="*{especialidad}"
+										th:field="*{especialidad}" value="${Emod.especialidad}"
 										th:classappend="${#fields.hasErrors('especialidad')} ? 'is-invalid' : ''">
 									<p class="text-danger p-2 my-2"
 										th:if="${#fields.hasErrors('especialidad')}"
@@ -123,7 +137,7 @@
 							<button type="button" class="btn text-white mb-3"
 								data-bs-toggle="modal" data-bs-target="#exampleModal"
 								style="background: radial-gradient(#025159 0%, #35402d 100%)">
-								Agregar</button>
+								Modificar</button>
 
 							<!--  Modal -->
 							<div class="modal fade" id="exampleModal" tabindex="-1"
@@ -132,16 +146,16 @@
 									<div class="modal-content">
 										<div class="modal-header">
 											<h5 class="modal-title" id="exampleModalLabel">Confirmar
-												Nuevo Empleado</h5>
+												cambios en Empleado</h5>
 											<button type="button" class="btn-close"
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
-										<div class="modal-body">Se agregará a la lista de
-											Empleados actual</div>
+										<div class="modal-body">Se Modificarán sus datos
+											Personales</div>
 										<div class="modal-footer">
 											<button type="button" class="btn text-white mb-3"
 												style="background: gray" data-bs-dismiss="modal">cancelar</button>
-											<button class="btn text-white mb-3" th:text="Agregar"
+											<button class="btn text-white mb-3" th:text="Modificar"
 												style="background: radial-gradient(#025159 0%, #35402d 100%)"
 												type="submit"></button>
 										</div>
@@ -149,8 +163,6 @@
 								</div>
 							</div>
 					</form>
-
-
 				</fieldset>
 			</section>
 		</div>

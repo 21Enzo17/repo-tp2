@@ -35,7 +35,7 @@
 					
 					<!-- FORMULARIO -->
 					<form class="px-3 pt-3" th:action="@{/paseos/guardar}"
-						th:object="${formHorario}" method="post">
+						th:object="${formHorario}" method="post" >
 						<div class="form-group">
 							<div class="alert alert-light" role="alert">
 								<h4>¡Recuerda!</h4>
@@ -59,7 +59,17 @@
 							<p class="text-danger p-2  my-2 "
 								th:if="${#fields.hasErrors('turnoA')}" th:errors="*{turnoA}"></p>
 						</div>
-						<div class="form-floating mb-3">
+						<div>							
+							<label> Seleccione uno de los encargados</label><select
+								class="form-select" type="text" th:field="*{paseador1}">
+								<option th:each="Disp: ${paseadoresDisponibles}"
+									th:value="${Disp.nombre}"
+									th:text="${Disp.nombre}+'/'+${Disp.especialidad}"></option>
+									</select><br>
+									<p class="text-danger p-2  my-2 "
+								th:if="${#fields.hasErrors('paseador1')}" th:errors="*{paseador1}"></p>								
+						</div>
+						<div class="form-floating mb-3">						
 							<input
 								th:classappend="${#fields.hasErrors('turnoB')} ? 'is-invalid' : ''"
 								class="form-control" type="text" placeholder=" Ingrese horario"
@@ -67,37 +77,26 @@
 								turno tarde</label>
 							<p class="text-danger p-2  my-2 "
 								th:if="${#fields.hasErrors('turnoB')}" th:errors="*{turnoB}"></p>
-						</div>
-						<div class="form-floating mb-3">
-							<input
-								th:classappend="${#fields.hasErrors('paseador1')} ? 'is-invalid' : ''"
-								class="form-control" type="text" placeholder=" nombre paseador"
-								value="${turnoDia.paseador1}" th:field="*{paseador1}">
-							<label>Paseador turno mañana</label>
-							<p class="text-danger p-2  my-2 "
-								th:if="${#fields.hasErrors('paseador1')}"
-								th:errors="*{paseador1}"></p>
-						</div>
-						<div class="form-floating mb-3">
-							<input
-								th:classappend="${#fields.hasErrors('paseador2')} ? 'is-invalid' : ''"
-								class="form-control" type="text" placeholder=" nombre paseador"
-								value="${turnoDia.paseador2}" th:field="*{paseador2}">
-							<label>Paseador turno tarde</label>
-							<p class="text-danger p-2  my-2 "
-								th:if="${#fields.hasErrors('paseador2')}"
-								th:errors="*{paseador2}"></p>
+						</div> 
+						<div>
+						<label> Seleccione uno de los encargados </label> <select
+								class="form-select" type="text" th:field="*{paseador2}">
+								<option th:each="Disp: ${paseadoresDisponibles}"
+									th:value="${Disp.nombre}"
+									th:text="${Disp.nombre}+'/'+${Disp.especialidad}"></option></select><br>
+									<p class="text-danger p-2  my-2 "
+								th:if="${#fields.hasErrors('paseador2')}" th:errors="*{paseador2}"></p>							
 						</div>
 						<!-- Button trigger modal -->
 						<button type="button" class="btn text-white mb-3"
 							data-bs-toggle="modal" data-bs-target="#exampleModal"
 							style="background: radial-gradient(#025159 0%, #35402d 100%)">
 							Agregar</button>
-
+						
 						<!-- Modal -->
 						<div class="modal fade" id="exampleModal" tabindex="-1"
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
+							<div class="modal-dialog modal-dialog-centered">
 								<div class="modal-content">
 									<div class="modal-header">
 										<h5 class="modal-title" id="exampleModalLabel">Confirmar
@@ -106,7 +105,8 @@
 											data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">Se agregará a la lista de
-										Horarios actual</div>
+										Horarios actual
+										</div>
 									<div class="modal-footer">
 										<button type="button" class="btn text-white mb-3"
 											style="background: gray" data-bs-dismiss="modal">cancelar</button>
