@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,13 +35,24 @@ public class ContactoController {
         }
         else{
             contactoService.crearContacto(formContacto);
-            modelView = new ModelAndView("contactos");
+            modelView = new ModelAndView("mensajes");
+            modelView.addObject("contactoGuardar", contactoService.getListaDeContactos());
             modelView.addObject("alerta",true);
+            
         }
         return modelView;
     }
-   }
+       
+    @GetMapping("/eliminar/{id}")
+    public String getListaActualizada (Model model, @PathVariable(value="id")Long id) {
+    	contactoService.eliminarContacto(id);
+    	model.addAttribute("contactoGuardar", contactoService.getListaDeContactos());
+    	if (contactoService.getListaDeContactos().size()==0) {
+    		model.addAttribute("MensajeAlertaVacio", true);
+    	}	
+    	return "mensajes";
+    }
 	
-	
+}
 
 	
