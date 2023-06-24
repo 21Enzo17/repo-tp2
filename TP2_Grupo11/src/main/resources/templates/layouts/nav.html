@@ -45,9 +45,6 @@
 					<li class="nav-item px-2">
 						<a class="nav-link text-white fw-bold" th:href="@{/contactos}">CONTACTO</a>
 					</li>
-					<li class="nav-item px-2">
-						<a class="nav-link text-white fw-bold" th:href="@{/datos/gestion}">DATOS</a>
-					</li>
 				</ul>
 				
 				<div class="dropdown d-xl-none d-xl-flex">
@@ -55,10 +52,11 @@
 						aria-expanded="false">
 						Gestion
 					</button>
-					<ul class="dropdown-menu ">
+					<ul class="dropdown-menu dropdown-menu-dark">
 						<li><a class="dropdown-item" th:href="@{/producto/listado}">Administrar Productos</a></li>
 						<li><a class="dropdown-item" th:href="@{/categoria/listado}">Administrar Categorias</a></li>
-						<li><a class="dropdown-item" th:href="@{/categoria/listado}">...</a></li>
+						<li><a class="dropdown-item" th:href="@{/sucursales/listado}">Administrar Sucursales</a></li>
+						<li><a class="dropdown-item" th:href="@{/provincia/listado}">Administrar Provincias</a></li> 
 					</ul>
 				</div>
 			</div>
@@ -70,10 +68,11 @@
 					aria-expanded="false">
 					Gestion
 				</button>
-				<ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-menu-lg-end">
 					<li><a class="dropdown-item" th:href="@{/producto/listado}">Administrar Productos</a></li>
 					<li><a class="dropdown-item" th:href="@{/categoria/listado}">Administrar Categorias</a></li>
-					<li><a class="dropdown-item" th:href="@{/categoria/listado}">...</a></li>
+					<li><a class="dropdown-item" th:href="@{/sucursales/listado}">Administrar Sucursales</a></li>
+					<li><a class="dropdown-item" th:href="@{/provincia/listado}">Administrar Provincias</a></li> 
 				</ul>
 			</div>
 		</div>
