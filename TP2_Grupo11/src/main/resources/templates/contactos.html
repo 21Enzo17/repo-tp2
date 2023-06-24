@@ -42,33 +42,37 @@
 					</li>
 				</ul>
 				<hr>
-				<form th:action="@{/contactos/formContacto}" method="post" th:object="${formContacto}">
+				<form th:action="@{/contacto/contactoGuardar}" method="post" th:object="${formContactos}">
 				<!-- alerta -->
 				<div th:if="${alerta}"  class="alert alert-warning alert-dismissible fade show mt-2" role="alert">            
         				 <p><strong>Gracias por su mensaje.</strong>Nos contactaremos a la brevedad!</p>              
       				 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>               
 				</div>
 					<div class="form-floating mb-3">
-						<input type="text" class="form-control" placeholder="Ingrese su nombre">
+						<input th:classappend="${#fields.hasErrors('nombre')} ?'is-invalid':''" th:field="*{nombre}" type="text" class="form-control" placeholder="Ingrese su nombre">
 						<label>
 							Nombre
 						</label>
+						<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>	
 					</div>
 					<div class="form-floating mb-3">
-					<input type="email" class="form-control" placeholder="Ingrese un email valido">
+					<input th:classappend="${#fields.hasErrors('email')} ?'is-invalid':''" th:field="*{email}" type="email" class="form-control" placeholder="Ingrese un email valido">
 						<label>
 							Email
 						</label>
+						<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>	
 					</div>
 					<div class="form-floating mb-3">
-					<input type="text" class="form-control" placeholder="Ingrese su ciudad">
+					<input th:classappend="${#fields.hasErrors('ciudad')} ?'is-invalid':''" th:field="*{ciudad}" type="text" class="form-control" placeholder="Ingrese su ciudad">
 						<label>
 							Ciudad
 						</label>
+						<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></p>	
 					</div>
 					<div class="form-floating mb-3">
-						<textarea class="form-control" placeholder="Mensaje"></textarea>
+						<textarea th:classappend="${#fields.hasErrors('mensaje')} ?'is-invalid':'' " th:field="*{mensaje}" class="form-control" placeholder="Mensaje"></textarea>
 						<label>Mensaje</label>
+						<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}"></p>	
 					</div>
 					<button class="btn text-white mt-2" style="background: radial-gradient(#025159 0%, #35402D 100%);" type="submit">Enviar</button>
 				</form>

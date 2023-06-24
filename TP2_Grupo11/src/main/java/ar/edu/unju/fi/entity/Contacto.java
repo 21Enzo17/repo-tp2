@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 @Component
 @Entity
-@Table(name="Contacto")
+@Table(name="CONTACTO")
 public class Contacto {
 	 	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
