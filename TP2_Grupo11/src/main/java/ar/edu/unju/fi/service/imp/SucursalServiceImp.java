@@ -1,15 +1,14 @@
 package ar.edu.unju.fi.service.imp;
 
 import ar.edu.unju.fi.Listas.ListaSucursal;
-import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
+
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.servlet.ModelAndView;
 
 @Service
 public class SucursalServiceImp implements ISucursalService {
@@ -19,120 +18,30 @@ public class SucursalServiceImp implements ISucursalService {
     private Sucursal sucursal;
 
     /**
-     * Método que muestra la página de sucursales
-     * @param model
-     * @return sucursales.html
+     * Método que devuelve la lista de sucursales
+     * @return listaSucursales
      */
     @Override
-    public String getSucursales(Model model){
-        model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
-        // model.addAttribute("listaSucursales", queryResult);
-        return "sucursales";
+    public List<Sucursal> getSucursales() {
+        return listaSucursales.getListaSucursales();
     }
 
     /**
-     * Método que muestra la página para crear una nueva sucursal
-     * @param model
-     * @return nueva-sucursal.html
+     * Método que guarda una sucursal en la lista
+     * @param sucursal
      */
     @Override
-    public String getNuevaSucursalPage(Model model){
-        model.addAttribute("formSucursal", sucursal);
-        return "nueva-sucursal";
+    public void guardarSucursal(Sucursal sucursal) {
+        listaSucursales.getListaSucursales().add(sucursal);
     }
 
     /**
-     * Método que crea una nueva sucursal y la agrega a la lista
-     * @param formSucursal
-     * @param result
-     * @return sucursales.html
-     */
-    @Override
-    public ModelAndView crearSucursal(Sucursal formSucursal, BindingResult result){
-        ModelAndView modelView;
-        if (result.hasErrors()){
-            modelView = new ModelAndView("nueva-sucursal");
-
-        }
-        else{
-            modelView = new ModelAndView("sucursales");
-            listaSucursales.getListaSucursales().add(formSucursal);
-            modelView.addObject("listaSucursales", listaSucursales.getListaSucursales());
-        }
-        return modelView;
-    }
-
-    /**
-     * Método que elimina una sucursal de la lista según su dirección
-     * @param direccion
-     * @param model
-     * @return sucursales.html
-     */
-    @Override
-    public String eliminarSucursal(String direccion, Model model){
-        for(Sucursal sucursal:listaSucursales.getListaSucursales()){
-            if(sucursal.getDireccion().equals(direccion)){
-                listaSucursales.getListaSucursales().remove(sucursal);
-                break;
-            }
-        }
-        model.addAttribute("listaSucursales", listaSucursales.getListaSucursales());
-        return "redirect:/sucursales/listado";
-    }
-
-    /**
-     * Método que muestra la página para editar una sucursal
-     * @param direccion
-     * @param model
-     * @return modificar-sucursal.html
-     */
-    @Override
-    public String editarSucursal(String direccion, Model model){
-        for(Sucursal sucursal:listaSucursales.getListaSucursales()){
-            if(sucursal.getDireccion().equals(direccion)){
-                model.addAttribute("sucursalEditar", sucursal);
-                break;
-            }
-        }
-        return "modificar-sucursal";
-    }
-
-    /**
-     * Método que modifica una sucursal de la lista según su dirección
-     * @param sucursalEditado
-     * @param result
-     * @return sucursales.html
-     */
-    @Override
-    public ModelAndView modificarSucursal(Sucursal sucursalEditado, BindingResult result){
-        ModelAndView modelView;
-        if (result.hasErrors()){
-            modelView = new ModelAndView("modificar-sucursal");
-        }
-        else{
-            modelView = new ModelAndView("sucursales");
-            for(Sucursal sucursal:listaSucursales.getListaSucursales()){
-                if(sucursal.getDireccion().equals(sucursalEditado.getDireccion())){
-                    sucursal.setDireccion(sucursalEditado.getDireccion());
-                    sucursal.setTelefono(sucursalEditado.getTelefono());
-                    sucursal.setHorarioAtencion(sucursalEditado.getHorarioAtencion());
-                    sucursal.setMail(sucursalEditado.getMail());
-                    break;
-                }
-            }
-            modelView.addObject("listaSucursales", listaSucursales.getListaSucursales());
-        }
-        return modelView;
-    }
-    /**
-     * Método que busca una sucursal de la lista según su dirección
+     * Método que devuelve una lista de sucursales que coinciden con la búsqueda
      * @param query
-     * @return sucursales.html
+     * @return queryResult
      */
     @Override
-    public ModelAndView buscarSucursal(String query){
-        System.out.println(query);
-        ModelAndView modelAndView = new ModelAndView("sucursales");
+    public List<Sucursal> getSucursalByDireccion(String query) {
         List<Sucursal> queryResult = new ArrayList<>();
         for (Sucursal sucursal : listaSucursales.getListaSucursales()){
             if(sucursal.getDireccion().toLowerCase().contains(query.toLowerCase())){
@@ -140,8 +49,57 @@ public class SucursalServiceImp implements ISucursalService {
 
             }
         }
-        modelAndView.addObject("queryResult", queryResult);
-        return modelAndView;
+        return queryResult;
     }
 
+    @Override
+    public Sucursal getSucursalById(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<Sucursal> filtrarSucursal(LocalTime horaInicio, LocalTime horaFin) {
+        return null;
+    }
+
+    /**
+     * Método que modifica una sucursal de la lista
+     * @param sucursalEditado
+     */
+    @Override
+    public void modificarSucursal(Sucursal sucursalEditado){
+        for(Sucursal sucursal:getSucursales()){
+            if(sucursal.getDireccion().equals(sucursalEditado.getDireccion())){
+                sucursal.setDireccion(sucursalEditado.getDireccion());
+                sucursal.setTelefono(sucursalEditado.getTelefono());
+                sucursal.setHorarioInicio(sucursalEditado.getHorarioInicio());
+                sucursal.setHorarioFin(sucursalEditado.getHorarioFin());
+                sucursal.setMail(sucursalEditado.getMail());
+                break;
+            }
+        }
+    }
+
+    /**
+     * Método que elimina una sucursal de la lista
+     * @param id
+     */
+    @Override
+    public void eliminarSucursal(Long id) {
+        for(Sucursal sucursal:listaSucursales.getListaSucursales()){
+            if(sucursal.getId()==id){
+                listaSucursales.getListaSucursales().remove(sucursal);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Método que devuelve una sucursal
+     * @return sucursal
+     */
+    @Override
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
 }
