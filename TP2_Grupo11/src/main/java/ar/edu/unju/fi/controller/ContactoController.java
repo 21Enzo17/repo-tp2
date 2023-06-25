@@ -35,10 +35,9 @@ public class ContactoController {
         }
         else{
             contactoService.crearContacto(formContacto);
-            modelView = new ModelAndView("mensajes");
+            modelView = new ModelAndView("contactos");
             modelView.addObject("contactoGuardar", contactoService.getListaDeContactos());
             modelView.addObject("alerta",true);
-            
         }
         return modelView;
     }
@@ -53,6 +52,18 @@ public class ContactoController {
     	return "mensajes";
     }
 	
+    @GetMapping("/mensajes")
+    public String getListaMensajes (Model model) {
+    	model.addAttribute("contactoGuardar", contactoService.getListaDeContactos() );
+    	if (contactoService.getListaDeContactos().size()==0) {
+    		model.addAttribute("MensajeAlertaVacio", true);
+    	}
+    	return "mensajes";
+    }
+    
+    
+    
+    
 }
 
 	
