@@ -48,6 +48,7 @@ public class ProvinciaController {
         else{
             provinciaService.guardarProvincia(formProvincia);
             modelView = new ModelAndView("provincias");
+            modelView.addObject("listaProvincias", provinciaService.obtenerProvincias());
         }
         return modelView;
     }
