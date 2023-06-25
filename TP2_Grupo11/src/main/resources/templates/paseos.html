@@ -75,7 +75,7 @@
 							<td class="table-light">Paseador</td>
 							<td class="table-light" th:each="lhora: ${listaDeHorarios}" th:text="${lhora.paseador2}"></td>
 						</tr>						
-						<tr class="table-light">
+						<!-- <tr class="table-light">
 							<td class="table-light">Opciones</td>
 							<td class="table-light" th:each="lhora: ${listaDeHorarios}">
 								<div class="modificar-eliminar d-flex gap-2 mt-2 justify-content-center">
@@ -86,10 +86,12 @@
 								</div>
 								
 							</td>
-						</tr>
+						</tr> -->
 						</tbody>	
 					</table>
-				</div>
+				
+					
+			
 				<!-- IMAGEN PASEADOR -->
 				<img th:src="@{/images/paseo.JPG}" class="img-fluid w-100" alt="paseadores">
 			</section>
@@ -97,7 +99,7 @@
 			<aside th:replace="~{layouts/aside :: aside}"></aside>
 		</div>
 	</div>
-
+		
 
 	<!-- FOOTER -->
 	<footer th:replace="~{layouts/footer :: footer}"></footer>

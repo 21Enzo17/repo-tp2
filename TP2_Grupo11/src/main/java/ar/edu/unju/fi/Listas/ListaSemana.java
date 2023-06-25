@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Dia;
+import ar.edu.unju.fi.entity.Dia;
 
 @Component
 public class ListaSemana {

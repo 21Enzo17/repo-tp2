@@ -1,12 +1,17 @@
-package ar.edu.unju.fi.model;
+package ar.edu.unju.fi.entity;
 
 import org.springframework.stereotype.Component;
 
+
+import jakarta.persistence.Column;
+
 @Component
 public class Dia {
-
-String nombre;
-	int cod;
+	
+	@Column(name="dia")
+    String nombre;
+	@Column(name="id_dia")
+	long cod;
 	
 	public Dia() {
 		super();
@@ -22,7 +27,9 @@ String nombre;
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getCod() {
+
+	public long getCod() {
+
 		return cod;
 	}
 	public void setCod(int cod) {

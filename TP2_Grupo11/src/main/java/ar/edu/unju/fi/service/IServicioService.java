@@ -5,12 +5,11 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import ar.edu.unju.fi.entity.Dia;
 
-import ar.edu.unju.fi.model.Dia;
-import ar.edu.unju.fi.model.Turno;
+import ar.edu.unju.fi.entity.Empleado;
+
+import ar.edu.unju.fi.entity.Turno;
 
 /**
  * @author JohanR 
@@ -19,26 +18,31 @@ import ar.edu.unju.fi.model.Turno;
 public interface IServicioService {
 	
 	List<Turno> getHorarios();
+	List<Dia> getSemana();
+	List<Turno> getListaOrdenada();
+	List<String> getDisponibles();	
+	List<Turno> guardarTurno(Turno formHorario);
+	List<Turno> guardarCambios(Turno modificado);
+	List<Empleado> getlistEmpleados();
 	
 	boolean existe(String dia);
-	
-	List<Dia> getSemana();
-	
-	List<Turno> getListaOrdenada();
-	
-	Turno getTurno();
-	
-	List<String> getDisponibles();	
-	
 	boolean semanaCompleta();
-	
-	List<Turno> guardarTurno(Turno formHorario);
-		
-	Turno getTurno(String dia);
-	
 	void eliminarHorario(String dia);
+	public Turno getTurno(String dia);
 	
-	List<Turno> guardarCambios(Turno modificado);
+	public List<Turno> buscarPorNombre( String buscado);
 	
-	ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado, Model model);
+	public Turno getTurno();
+	public void guardar(Turno turno);
+	public void modificar(Turno turno);
+	public void eliminar(Turno turno);
+		
+	public Empleado getEmpleado();
+	public void guardar(Empleado empleado);
+	public void modificar(Empleado empleado);
+	public void eliminar(Long id);
+	void eliminar(Empleado empleado);
+	public Empleado getEmpleado(Long cod);
+
+
 }

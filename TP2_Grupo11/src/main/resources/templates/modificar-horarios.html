@@ -34,23 +34,47 @@
 							<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('turnoA')}" th:errors="*{turnoA}"></p>
 						</div>
 						<div class="form-floating mb-3">
+							<div class="border bg-white rounded-2">
+								<label class="text-secondary">Seleccione un
+										encargado para este Turno</label> <select class="form-select"
+									type="text" th:field="*{paseador1}">
+									<option th:each="Disp: ${empleadosDisponibles}"
+										th:value="${Disp.nombre}" class="border border-none"
+										th:text="${Disp.nombre}+'/'+${Disp.especialidad}"></option>
+								</select>
+								<p class="text-danger p-2  my-2 "
+									th:if="${#fields.hasErrors('paseador1')}"
+									th:errors="*{paseador1}"></p>
+							</div>
+						</div>
+						<div class="form-floating mb-3">
 							<input th:classappend="${#fields.hasErrors('turnoB')} ? 'is-invalid' : ''" class="form-control" type="text" placeholder=" Ingrese horario" value="${turnoDia.turnoB}" th:field="*{turnoB}">
 							<label>Nuevo turno tarde</label>
 							<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('turnoB')}" th:errors="*{turnoB}"></p>
 						</div>
 						<div class="form-floating mb-3">
-							<input th:classappend="${#fields.hasErrors('paseador1')} ? 'is-invalid' : ''" class="form-control" type="text" placeholder=" nombre paseador" value="${turnoDia.paseador1}" th:field="*{paseador1}">
-							<label>Paseador turno mañana</label>
-							<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('paseador1')}" th:errors="*{paseador1}"></p>
+							<div class="border bg-white rounded-2">
+								<label class="text-secondary">Seleccione un
+										encargado para este Turno</label> <select class="form-select"
+									type="text" th:field="*{paseador2}">
+									<option th:each="Disp: ${empleadosDisponibles}"
+										th:value="${Disp.nombre}" class="border border-none"
+										th:text="${Disp.nombre}+'/'+${Disp.especialidad}"></option>
+								</select>
+								<p class="text-danger p-2  my-2 "
+									th:if="${#fields.hasErrors('paseador2')}"
+									th:errors="*{paseador2}"></p>
+							</div>
 						</div>
-						<div class="form-floating mb-3">
-							<input th:classappend="${#fields.hasErrors('paseador2')} ? 'is-invalid' : ''" class="form-control" type="text" placeholder=" nombre paseador" value="${turnoDia.paseador2}" th:field="*{paseador2}">
-							<label>Paseador turno tarde</label>
-							<p class="text-danger p-2  my-2 " th:if="${#fields.hasErrors('paseador2')}" th:errors="*{paseador2}"></p>
-						</div>
+						
+						<br>
+					
 						<button type="button" class="btn text-white mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background:radial-gradient(#025159 0%, #35402d 100%)" >
 						  Modificar
-						</button>
+						  </button>
+						<button class="btn text-white mb-3" style="background: radial-gradient(#025159 0%, #35402D 100%)" type="submit">volver</button>
+						  
+						
 					
 					<!-- Modal -->
 					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -73,7 +97,6 @@
 					</form>
 				</fieldset>
 			</section>
-			<aside th:replace="~{layouts/aside :: aside}"></aside>
 		</div>
 	</div>
 
