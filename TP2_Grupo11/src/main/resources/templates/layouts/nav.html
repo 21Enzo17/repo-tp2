@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<nav th:fragment="nav" class="navbar navbar-expand-xl bg-dark">
+	<nav th:fragment="nav" class="navbar navbar-expand-xxl bg-dark">
 		<div class="container-fluid">
 			<div class="d-flex gap-2">
 				<img th:src="@{/images/dog-running.png}" class="img-fluid" alt="">
@@ -36,52 +36,54 @@
 					</li>
 					<li class="nav-item px-2"><a
 						class="nav-link text-white fw-bold" th:href="@{/producto/listado}">PRODUCTOS</a>
+
+					<li class="nav-item px-2">
+						<a class="nav-link text-white fw-bold" th:href="@{/consejos/listado}">CONSEJOS DE SALUD</a>
 					</li>
-					<li class="nav-item px-2"><a
-						class="nav-link text-white fw-bold" th:href="@{/consejos/listado}">CONSEJOS
-							DE SALUD</a></li>
-					<li class="nav-item px-2"><a
-						class="nav-link text-white fw-bold" th:href="@{/paseos/horarios}">SERVICIO
-							DE PASEOS</a></li>
-					<li class="nav-item px-2"><a
-						class="nav-link text-white fw-bold"
-						th:href="@{/sucursales/listado}">SUCURSALES</a></li>
-					<li class="nav-item px-2"><a
-						class="nav-link text-white fw-bold" th:href="@{/contactos}">CONTACTO</a>
+					<li class="nav-item px-2">
+						<a class="nav-link text-white fw-bold" th:href="@{/paseos/horarios}">SERVICIO DE PASEOS</a>
+					</li>
+					<li class="nav-item px-2">
+						<a class="nav-link text-white fw-bold" th:href="@{/sucursales/listado}">SUCURSALES</a>
+					</li>
+					<li class="nav-item px-2">
+						<a class="nav-link text-white fw-bold" th:href="@{/contacto/formulario}">CONTACTO</a>
 					</li>
 				</ul>
-
-				<div class="dropdown d-xl-none d-xl-flex">
-					<button class="btn btn-secondary dropdown-toggle" type="button"
-						data-bs-toggle="dropdown" aria-expanded="false">Gestion</button>
+				
+				<div class="dropdown d-xxl-none d-xxl-flex z-3">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						Gestion
+					</button>
 					<ul class="dropdown-menu dropdown-menu-dark">
-						<li><a class="dropdown-item" th:href="@{/producto/listado}">Administrar
-								Productos</a></li>
-						<li><a class="dropdown-item" th:href="@{/categoria/listado}">Administrar
-								Categorias</a></li>
-						<li><a class="dropdown-item" th:href="@{/sucursales/listado}">Administrar
-								Sucursales</a></li>
-						<li><a class="dropdown-item" th:href="@{/provincia/listado}">Administrar
-								Provincias</a></li>
+						<li><a class="dropdown-item" th:href="@{/producto/listado}">Administrar Productos</a></li>
+						<li><a class="dropdown-item" th:href="@{/categoria/listado}">Administrar Categorias</a></li>
+						<li><a class="dropdown-item" th:href="@{/sucursales/listado}">Administrar Sucursales</a></li>
+						<li><a class="dropdown-item" th:href="@{/provincia/listado}">Administrar Provincias</a></li>
+						<li><a class="dropdown-item" th:href="@{/gestion}">Administrar Servicios de Paseo</a></li>
+						<li><a class="dropdown-item" th:href="@{/contacto/mensajes}">Administrar Contactos</a></li>
+
 					</ul>
 				</div>
 			</div>
 			<!--<div class="social-links d-none d-xl-flex gap-3">
 				<button class="btn btn-outline-secondary text-white">Login</button>
 			</div>-->
-			<div class="dropdown d-none d-xl-flex">
-				<button class="btn btn-secondary dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">Gestion</button>
-				<ul
-					class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-menu-lg-end">
-					<li><a class="dropdown-item" th:href="@{/producto/listado}">Administrar
-							Productos</a></li>
-					<li><a class="dropdown-item" th:href="@{/categoria/listado}">Administrar
-							Categorias</a></li>
-					<li><a class="dropdown-item" th:href="@{/sucursales/listado}">Administrar
-							Sucursales</a></li>
-					<li><a class="dropdown-item" th:href="@{/provincia/listado}">Administrar
-							Provincias</a></li>
+
+			<div class="dropdown d-none d-xxl-flex z-3">
+				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+					aria-expanded="false">
+					Gestion
+				</button>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-menu-lg-end">
+					<li><a class="dropdown-item" th:href="@{/producto/listado}">Administrar Productos</a></li>
+					<li><a class="dropdown-item" th:href="@{/categoria/listado}">Administrar Categorias</a></li>
+					<li><a class="dropdown-item" th:href="@{/sucursales/listado}">Administrar Sucursales</a></li>
+					<li><a class="dropdown-item" th:href="@{/provincia/listado}">Administrar Provincias</a></li>
+					<li><a class="dropdown-item" th:href="@{/gestion}">Administrar Servicios</a></li> 
+					<li><a class="dropdown-item" th:href="@{/contacto/mensajes}">Administrar Contactos</a></li>
+
 				</ul>
 			</div>
 		</div>
