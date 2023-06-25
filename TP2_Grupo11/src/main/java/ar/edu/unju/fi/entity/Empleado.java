@@ -29,43 +29,43 @@ public class Empleado {
 	
 	@NotBlank(message="Debe ingresar Nombre")
 	@Size(min=3,max=15)
-	@Column
+	@Column(name="NOMBRE")
 	private String nombre;
 	
 	@NotBlank(message="Debe ingresar Apellido")
 	@Size(min=3,max=30)
-	@Column
+	@Column(name="APELLIDO")
 	private String apellido;
 
-	@Column
+	@Column(name="EDAD")
 	private int edad;
 	
-	@Column
+	@Column(name="DOCUMENTO")
 	private long dni;
 	
-	@Column
+	@Column(name="F.NACIMIENTO")
 	@Past(message="No puede ser posterior a la actualidad")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@NotNull(message="Debe ingresar fecha de Nacimiento válida")
 	private LocalDate fecha_nacimiento;
 	
-	@Column
+	@Column(name="CORREO")
 	@Email
 	@NotBlank(message="Debe ingresar correo electronico")
 	@Pattern(regexp="[a-zA-Z0-9]*+@+[a-zA-Z ]*+.+[a-zA-Z ]*",message="debe seguir el formato xxx@xxx.xxx")
 	private String email;
 	
-	@Column
+	@Column(name="DIRECCION")
 	@NotBlank(message="Debe ingresar direccion")
 	@Size(min=3,max=30)
 	private String direccion;
 	
-	@Column
+	@Column(name="ESPECIALIZACION")
 	@NotBlank(message="Debe ingresar especialidad")
 	@Size(min=3,max=30)
 	private String especialidad ;
 	
-	@Column
+	@Column(name="ESTADO")
 	private boolean estado;
 		
 

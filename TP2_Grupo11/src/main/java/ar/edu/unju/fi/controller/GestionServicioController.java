@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.entity.Empleado;
@@ -110,7 +111,29 @@ public class GestionServicioController {
 	}
 	@GetMapping("/consulta/{dia}")
 	public String getConsultaDiaPage(Model model, @PathVariable(value = "dia") String dia) {
-		model.addAttribute("resultados", paseosService.getTurno(dia));
-		return "modificar-Empleado";
+		if(paseosService.buscarPorNombre(dia).size()==0) {
+			model.addAttribute("sinResultados",true);
+			model.addAttribute("dias",paseosService.getSemana());
+			model.addAttribute("consultaInfo", true);
+		}else {
+			model.addAttribute("dias",paseosService.getSemana());
+			model.addAttribute("consultaInfo", true);
+			model.addAttribute("resultados", paseosService.buscarPorNombre(dia));
+			model.addAttribute("Result",true);
+		}
+		return "gestion-servicio";
 	}
+	
+	@GetMapping("buscar")
+	public ModelAndView buscarPorNombre(@RequestParam("nombre") String buscado) {
+		ModelAndView modelView=new ModelAndView("gestion-servicio");
+		if(paseosService.buscarPorNombre(buscado).size()!=0) {
+			modelView.addObject("modificar",true);
+			modelView.addObject("listaDeHorarios",paseosService.buscarPorNombre(buscado));
+		}else {
+			modelView.addObject("alertaB",true);			
+		}
+		return modelView;
+	}
+
 }
