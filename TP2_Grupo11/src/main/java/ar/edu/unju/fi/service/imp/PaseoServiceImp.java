@@ -269,4 +269,10 @@ public class PaseoServiceImp implements IServicioService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Turno> getLista(String dia) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

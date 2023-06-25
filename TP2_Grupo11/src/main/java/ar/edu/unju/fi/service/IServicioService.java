@@ -25,10 +25,12 @@ public interface IServicioService {
 	List<Turno> getHorarios();
 	List<Dia> getSemana();
 	List<Turno> getListaOrdenada();
+	List<Turno> getLista(String dia);
 	List<String> getDisponibles();	
 	List<Turno> guardarTurno(Turno formHorario);
 	List<Turno> guardarCambios(Turno modificado);
 	List<Empleado> getlistEmpleados();
+	
 	
 	boolean existe(String dia);
 	boolean semanaCompleta();

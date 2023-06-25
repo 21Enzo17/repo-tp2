@@ -245,4 +245,17 @@ public class ServicioServiceMySqlImp implements IServicioService {
 		return empleadoRepository.findByCod(cod);
 	}
 
+	@Override
+	public List<Turno> getLista(String dia) {
+		// TODO Auto-generated method stub
+		List<Turno> disponibles=turnoRepository.findByEstado(true);
+		List<Turno> listaOrdenada=new ArrayList<>();		
+    		for(Turno turno: disponibles) {
+    			if(turno.getDia().equals(dia)) {
+    				listaOrdenada.add(turno);
+    			}
+    		}		
+		return listaOrdenada;
+	}
+
 }
