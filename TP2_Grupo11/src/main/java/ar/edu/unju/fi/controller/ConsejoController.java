@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import ar.edu.unju.fi.entity.Consejo;
+import ar.edu.unju.fi.service.IAutorService;
 import ar.edu.unju.fi.service.IConsejoService;
 import jakarta.validation.Valid;
 
@@ -24,15 +28,24 @@ import org.springframework.web.servlet.ModelAndView;
 public class ConsejoController {
 
 	@Autowired
-    IConsejoService consejoService;
+    private IConsejoService consejoService;
+	
+	@Autowired
+	private IAutorService autorService;
+	
+    @Autowired
+    private Consejo formConsejo;
 	 /**
      * Método que muestra la página de consejos
      * @param model
      * @return consejos.html
      */
     @GetMapping("/listado")
-    public ModelAndView getConsejos(Model model){
-    	return consejoService.getConsejos(model);
+    public String getConsejos(Model model){
+    	model.addAttribute("buscado");
+    	model.addAttribute("listaConsejo", consejoService.getConsejos());
+    	model.addAttribute("listaAutores", autorService.getDisponibles());
+    	return "consejos";
     }
     
     /**
@@ -41,8 +54,14 @@ public class ConsejoController {
      * @return nuevo-consejo.html
      */
     @GetMapping("/nuevo-consejo")
-    public ModelAndView getnuevoConsejo(Model model) { 	
-    	return consejoService.getnuevoConsejo(model);
+    public String getnuevoConsejo(Model model) { 	
+    	model.addAttribute("listaAutor", consejoService.getConsejos());
+    	model.addAttribute("listaAutores", autorService.getDisponibles());
+        model.addAttribute("formConsejo",formConsejo);
+        if (autorService.getDisponibles().size() == 0) {
+      	  model.addAttribute("alerta", true);
+        }
+    	return "nuevo-consejo";
     }
     /**
      * Método que crea un nuevo consejo y lo agrega a la lista
@@ -51,8 +70,21 @@ public class ConsejoController {
      */
  
     @PostMapping("/nuevo-consejo")
-    public ModelAndView crearConsejo(@Valid @ModelAttribute("nuevoConsejo")Consejo nuevoConsejo, BindingResult result){
-        return consejoService.crearConsejo(nuevoConsejo, result);
+    public ModelAndView crearConsejo(@Valid @ModelAttribute("formConsejo")Consejo nuevoConsejo, BindingResult result){
+    	  ModelAndView modelView;
+          if(result.hasErrors()) {
+              modelView = new ModelAndView("nuevo-consejo");
+              modelView.addObject("listaAutores",autorService.getDisponibles());
+          }else {
+              modelView = new ModelAndView ("consejos");
+              consejoService.addConsejo(nuevoConsejo);
+              modelView.addObject("listaConsejos", consejoService.getDisponibles());
+              modelView.addObject("listaAutores",autorService.getDisponibles());
+              if (autorService.getDisponibles().size() == 0) {
+            	  modelView.addObject("alerta", true);
+              }
+          }
+          return modelView;
     }
     
     /**
@@ -62,8 +94,12 @@ public class ConsejoController {
      * @return consejos.html
      */
     @GetMapping("/eliminar-consejos/{id}")
-    public ModelAndView eliminarConsejo(@PathVariable(value="id")int id,Model model){
-        return consejoService.eliminarConsejo(id, model);
+    public String eliminarConsejo(@PathVariable(value="id")long id,Model model){
+        Consejo consejo = consejoService.findConsejoById(id);
+    	consejoService.eliminarConsejo(consejo);
+    	model.addAttribute("listaConsejos", consejoService.getDisponibles());
+    	model.addAttribute("listaAutores", autorService.getDisponibles());
+    	return "consejos";
     }
     /*
      * Metodo que permite editar un consejo por id
@@ -72,8 +108,10 @@ public class ConsejoController {
      * @return modificar-consejo.html
      */
     @GetMapping("/editar-consejos/{id}")
-    public ModelAndView editarConsejos(@PathVariable(value="id")int id,Model model){
-        return consejoService.editarConsejos(id, model);
+    public String editarConsejos(@PathVariable(value="id")long id,Model model){
+        model.addAttribute("listaAutores", autorService.getDisponibles());
+    	model.addAttribute("encontrado", consejoService.findConsejoById(id));
+    	return "modificar-consejo";
     }
     /**
      * Metodo que permite guardar el consejo modificado
@@ -82,7 +120,19 @@ public class ConsejoController {
      */
     @PostMapping("modificar-consejo")
     public ModelAndView modificarLista(@Valid @ModelAttribute("consejosEditar")Consejo modificado, BindingResult result){
-    	return consejoService.modificarLista(modificado, result);
+    	ModelAndView modelView;
+        if(result.hasErrors()){
+            modelView = new ModelAndView("modificar-producto");
+        }else{
+        	Consejo consejo = consejoService.findConsejoById(modificado.getId());
+        	consejo.setTitulo(modificado.getTitulo());
+        	consejo.setDescripcion(modificado.getDescripcion());
+        	consejo.setAutor(modificado.getAutor());
+        	modelView = new ModelAndView("consejo");
+        	modelView.addObject("listaConsejos", consejoService.getDisponibles());
+        	modelView.addObject("listaAutores", autorService.getDisponibles());
+        }
+    	return modelView;
     }
 
     
@@ -92,8 +142,26 @@ public class ConsejoController {
      * @return consejo.html
      */
   @GetMapping("buscar-consejo")
-   public ModelAndView buscarPorTitulo(@RequestParam("titulo") String buscado, Model model){
-       return consejoService.buscarPorTitulo(buscado,model);
+   public ModelAndView buscarByNombreAutor(@RequestParam("nombre") String buscado,@RequestParam("autor") Long id, Model model){
+      ModelAndView modelView = new ModelAndView("consejo");
+      List<Consejo> coincidenteList = new ArrayList<Consejo>();
+      List<Consejo> autorList = new ArrayList<Consejo>();
+      if(id!=0) {
+    	  autorList=consejoService.findByAutor(autorService.findAutorById(id));
+      }else {
+    	  autorList=consejoService.getDisponibles();
+      }
+      System.out.println(coincidenteList.toString());
+      for(Consejo consejo : autorList) {
+    	  if(consejo.getAutor().getNombre().toLowerCase().contains(buscado.toLowerCase())) {
+    		  coincidenteList.add(consejo); 		  
+    	  }
+      }
+      modelView.addObject("listaAutores", autorService.getDisponibles());
+      modelView.addObject("listaConsejos", coincidenteList);
+      if(coincidenteList.size()==0)
+    	  modelView.addObject("alerta", true);
+	  return modelView;
    }
   
  }

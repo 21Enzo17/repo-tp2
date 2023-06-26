@@ -23,53 +23,32 @@
 	<header th:replace="~{layouts/header :: header}"></header>
 	<nav th:replace="~{layouts/nav :: nav}"></nav>
 
-	<div class="p-1 m-2">
-					<div class="row rounded-2 border p-2"
-						th:each="lEmp: ${listaDeEmpleados}">
-						<div class="col">
-							<div class="row">
-								<div class="col bg-secondary text-white ">
-									Nombre : <span th:text="${lEmp.nombre}+' '+${lEmp.apellido}"></span>
-								</div>
-								<div class="col bg-secondary text-white ">
-									Id-Empleado : <span th:text="${lEmp.cod}"></span>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col bg-gray">
-									Especialidad <span th:text="${lEmp.especialidad}"></span>
-								</div>
-								<div class="col bg-gray">
-									Direccion : <span th:text="${lEmp.direccion}"></span>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col bg-gray">
-									Email : <span th:text="${lEmp.email}"></span>
-								</div>
-								<div class="col bg-gray">
-									F.Nacimiento : <span th:text="${lEmp.fecha_nacimiento}"></span>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 position-relative">
-							<button
-								class="btn btn-success position-absolute top-50 start-50 translate-middle p-2">
-								<a style="font-size: 20px;" class="text-white "
-									th:href="@{/gestion/modificarEmpleado/}+${lEmp.cod}"> <i
-									class="px-2 py-1 bi bi-pencil-square"></i>
-								</a>
-							</button>
-						</div>
-						<div class="col-1 position-relative">
-							<button
-								class="btn btn-danger position-absolute top-50 start-50 translate-middle p-2">
-								<a style="font-size: 20px;" class="text-white"
-									th:href="@{/gestion/eliminarEmpleado/}+${lEmp.cod}"> <i
-									class="px-2 py-1 bi bi-x-circle"></i></a>
-							</button>
-						</div>
+	<div class="container-xxl my-4">
+		<div class ="row gap-4 justify-content-evenly">
+			<section class ="col-12 col-sm-11 col-lg-7 bg-light p-4 rounded-4">
+			<div class="titulares container mw-100"> 
+					<div class="align-items-center position-relative d-flex"> 
+						<h2 class="fw-bold mx-auto my-0">Cuidados de la Mascota</h2>
+						<button class="position-absolute end-0 boton-agregar my-0 p-0"><a class="text-white fs-3" th:href="@{/consejos/nuevo-consejo}"><i class="bi bi-plus-circle"></i></a></button>
+					</div>
+			</div>
+			<form class="d-flex mt-2" role="search" th:action="@{/consejos/buscar-consejo}"  method="get">
+				<input name="titulo" class="form-control me-2" type="search"  placeholder="Buscar Consejo por Titulo" aria-label="Search">
+				<button class="btn btn-outline-success" type="submit">Buscar</button>
+			</form>
+			<!-- ALERTA -->
+			<div th:if="${alerta}"  class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+				<p><strong>No hubo coincidencias. </strong>Prueba con otras palabras.</p>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			<div>
+				<article th:each="consejo:${listaConsejos}" class="col-12 articulo my-3 sucursales-article px-4">
+					<h3 class="fw-bold" th:text="${consejo.titulo}" ></h3>
+					<p class="text-break" style="text-align: justify;" th:text="${consejo.getAutor().getNombre}"></p>
+					<p class="text-break" style="text-align: justify;" th:text="${consejo.descripcion}"><br>
+					<div class="botones">
+						<button class="px-0 py-1 btn btn-success"><a style="font-size:20px" class="text-white" th:href="@{/consejos/editar-consejos/}+${consejo.id}"><i class="px-2 py-1 bi bi-pencil-square"></i></a></button>
+						<button class="px-0 py-1 btn btn-danger"><a style="font-size:20px" class="text-white" th:href="@{/consejos/eliminar-consejos/}+${consejo.id}"><i class="px-2 py-1 bi bi-x-circle"></i></a></button>
 					</div>
 				</div>
 	<footer th:replace="~{layouts/footer :: footer}"></footer>

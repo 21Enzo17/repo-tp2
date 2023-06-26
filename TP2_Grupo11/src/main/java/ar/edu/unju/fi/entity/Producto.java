@@ -12,6 +12,7 @@ import jakarta.validation.constraints.*;
 @Entity
 @Table(name="PRODUCTO")
 public class Producto {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -46,9 +47,6 @@ public class Producto {
 
     @Column(name="estado")
     private boolean estado;
-
-
-
 
     public Producto() {
     }

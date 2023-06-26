@@ -11,108 +11,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.Listas.ListaConsejo;
+import ar.edu.unju.fi.entity.Autor;
 import ar.edu.unju.fi.entity.Consejo;
+import ar.edu.unju.fi.repository.IConsejoRepository;
 import ar.edu.unju.fi.service.IConsejoService;
 import jakarta.validation.Valid;
 
 @Service
 public class ConsejoServiceImp implements IConsejoService {
-
-    @Autowired
-	private ListaConsejo listaConsejos;
+	
 	@Autowired
-	private Consejo formConsejo;
+    private IConsejoRepository consejoRepository;
+	
+	@Override
+	public List<Consejo> getConsejos() {
+		return (List<Consejo>) consejoRepository.findAll();
+	}
 
-    public ModelAndView getConsejos(Model model){
-        ModelAndView modelView = new ModelAndView("consejos");
-        modelView.addObject("listaConsejos", listaConsejos.getListaConsejos());
-        return modelView;
-    }
+	@Override
+	public List<Consejo> getDisponibles() {
+		return consejoRepository.consejosDisponibles();
+	}
 
-    @Override
-    public ModelAndView getnuevoConsejo(Model model) {
-        // TODO Auto-generated method stub
-        ModelAndView modelView = new ModelAndView("nuevo-consejo");
-        modelView.addObject("nuevoConsejo", formConsejo);
-        return modelView;
-    }
-    
-    @Override
-    public ModelAndView crearConsejo(@Valid Consejo nuevoConsejo, BindingResult result) {
-        // TODO Auto-generated method stub
-        ModelAndView modelView;
-    	if(result.hasErrors()) {
-    		modelView = new ModelAndView("nuevo-consejo");
-    	}else {
-    		modelView = new ModelAndView ("consejos");
-    		listaConsejos.getListaConsejos().add(nuevoConsejo);
-    		modelView.addObject("listaConsejos", listaConsejos.getListaConsejos());
-    	}
-    	return modelView;
-    }
+	@Override
+	public void addConsejo(Consejo consejo) {
+		consejo.setEstado(true);
+		consejoRepository.save(consejo);
+	}
 
-    @Override
-    public ModelAndView eliminarConsejo(int id, Model model) {
-        // TODO Auto-generated method stub
-        ModelAndView modelView = new ModelAndView("consejos");
-        for(Consejo consejo:listaConsejos.getListaConsejos()){
-            if(consejo.getId()==id){
-                listaConsejos.getListaConsejos().remove(consejo);
-                break;
-            }
-        }
-        modelView.addObject("listaConsejos", listaConsejos.getListaConsejos());
-        return modelView;
-    }
+	@Override
+	public void eliminarConsejo(Consejo consejo) {
+		consejo.setEstado(false);
+		consejoRepository.save(consejo);
+	}
 
-    @Override
-    public ModelAndView editarConsejos(int id, Model model) {
-        // TODO Auto-generated method stub
-        ModelAndView modelView = new ModelAndView("modificar-consejo");
-        for(Consejo consejo:listaConsejos.getListaConsejos()){
-            if(consejo.getId()==id){
-                modelView.addObject("consejosEditar", consejo);
-                break;
-            }
-        }
-        return modelView;
-    }
+	@Override
+	public Consejo findConsejoById(Long id) {
+		return consejoRepository.findById(id).orElse(null);
+	}
 
-    @Override
-    public ModelAndView modificarLista(@Valid Consejo modificado, BindingResult result) {
-        // TODO Auto-generated method stub
-        ModelAndView modelView;
-    	if(result.hasErrors()) {
-    	modelView = new ModelAndView("modificar-consejo");
-    	}else {
-    		for(Consejo consejo:listaConsejos.getListaConsejos()){
-    			if(modificado.getId()==consejo.getId()){
-    				consejo.setTitulo(modificado.getTitulo());
-    				consejo.setDescripcion(modificado.getDescripcion());
-    			break;
-            	}
-            }
-            modelView = new ModelAndView("consejos");
-            modelView.addObject("listaConsejos", listaConsejos.getListaConsejos());
-         }
-    	return modelView;
-    }
-  
-    @Override
-    public ModelAndView buscarPorTitulo(@RequestParam("titulo") String buscado, Model model){
-        ModelAndView modelView = new ModelAndView("consejos");
-        
-        List<Consejo> coincidenteList = new ArrayList<Consejo>();
-        for(Consejo consejo:listaConsejos.getListaConsejos()){
-            if(consejo.getTitulo().toLowerCase().contains(buscado.toLowerCase())){
-                coincidenteList.add(consejo);
-            }
-        }
-        modelView.addObject("listaConsejos", coincidenteList);
-        if(coincidenteList.size()==0){
-            modelView.addObject("alerta",true);
-        }
-        return modelView;
-    }
+	@Override
+	public List<Consejo> findByAutor(Autor autor) {
+		return consejoRepository.buscarPorAutor(autor);
+	}
+
 
 }
+
