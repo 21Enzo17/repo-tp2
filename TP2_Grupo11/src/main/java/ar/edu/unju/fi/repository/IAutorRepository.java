@@ -13,4 +13,8 @@ public interface IAutorRepository extends CrudRepository<Autor, Long>{
 
     @Query(value="SELECT a FROM Autor a WHERE a.estado=true")
     public List<Autor> autoresDisponibles();
+
+    
+
+
 }

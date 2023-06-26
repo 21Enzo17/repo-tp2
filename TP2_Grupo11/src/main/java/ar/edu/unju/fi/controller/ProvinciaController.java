@@ -44,6 +44,7 @@ public class ProvinciaController {
         ModelAndView modelView;
         if (result.hasErrors()){
             modelView = new ModelAndView("nueva-provincia");
+            
         }
         else{
             provinciaService.guardarProvincia(formProvincia);

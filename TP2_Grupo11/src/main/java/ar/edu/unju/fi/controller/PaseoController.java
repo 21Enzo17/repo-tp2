@@ -52,7 +52,8 @@ public class PaseoController {
 			modelView = new ModelAndView("nuevoHorario");
 			modelView.addObject("formHorario", formHorario);
 			modelView.addObject("diasDisponibles", paseosService.getDisponibles());
-			modelView.addObject("empleadosDisponibles",paseosService.getlistEmpleados());
+			modelView.addObject("paseadoresDisponibles",paseosService.getlistEmpleados());
+			
 		} else {
 			modelView = new ModelAndView("paseos");
 			modelView.addObject("listaDeHorarios", paseosService.guardarTurno(formHorario));
@@ -80,6 +81,7 @@ public class PaseoController {
 			System.out.println(result.getErrorCount());
 			System.out.println(result.getObjectName());
 			modelView = new ModelAndView("modificar-horarios");
+			modelView.addObject("empleadosDisponibles",paseosService.getlistEmpleados());
 		} else {
 			modelView = new ModelAndView("paseos");
 			modelView.addObject("listaDeHorarios", paseosService.guardarCambios(modificado));

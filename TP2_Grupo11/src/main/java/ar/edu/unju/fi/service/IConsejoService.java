@@ -18,7 +18,7 @@ public interface IConsejoService {
 
     public Consejo findConsejoById(Long id);
     
-    public List<Consejo> findByAutor(Autor autor);
+    public List<Consejo> findByAutor(String nombre);
 
 }
 

@@ -143,12 +143,12 @@ public class ConsejoController {
      * @return consejo.html
      */
   @GetMapping("buscar-consejo")
-   public ModelAndView buscarByNombreAutor(@RequestParam("nombre") String buscado,@RequestParam("autor") Long id, Model model){
-      ModelAndView modelView = new ModelAndView("consejo");
+   public ModelAndView buscarByNombreAutor(@RequestParam("nombre") String buscado, Model model){
+      ModelAndView modelView = new ModelAndView("consejos");
       List<Consejo> coincidenteList = new ArrayList<Consejo>();
       List<Consejo> autorList = new ArrayList<Consejo>();
-      if(id!=0) {
-    	  autorList=consejoService.findByAutor(autorService.findAutorById(id));
+      if(!buscado.isEmpty()) {
+    	  autorList=consejoService.findByAutor(buscado);
       }else {
     	  autorList=consejoService.getDisponibles();
       }

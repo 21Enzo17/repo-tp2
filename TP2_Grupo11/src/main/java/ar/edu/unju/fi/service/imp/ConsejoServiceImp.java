@@ -51,7 +51,7 @@ public class ConsejoServiceImp implements IConsejoService {
 	}
 
 	@Override
-	public List<Consejo> findByAutor(Autor autor) {
+	public List<Consejo> findByAutor(String autor) {
 		return consejoRepository.buscarPorAutor(autor);
 	}
 

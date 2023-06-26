@@ -15,4 +15,5 @@ public interface IAutorService {
     public void eliminarAutor(Autor autor);
     
     public Autor findAutorById(Long id); // Buscar por ID
+
 }
