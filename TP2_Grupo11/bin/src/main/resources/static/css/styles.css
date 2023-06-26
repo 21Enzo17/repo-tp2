@@ -4,21 +4,24 @@
 	margin: 0px;
 	padding: 0px;
 }
+
 select {
-    width: 100%;
-    color: #025159;
-    background-color: white;
-    font-size: 12px;
-    border-radius: 5px;
-    padding: 5px;   
+	width: 100%;
+	color: #025159;
+	background-color: white;
+	font-size: 12px;
+	border-radius: 5px;
+	padding: 5px;
 }
-#bt{
-    width: 100%;
-    color:white;
+
+#bt {
+	width: 100%;
+	color: white;
 }
-.bi-bag-plus{
-  width: 60px;
-  height: 50px;
+
+.bi-bag-plus {
+	width: 60px;
+	height: 50px;
 }
 
 button {
@@ -29,7 +32,7 @@ button {
 	background: radial-gradient(#025159 0%, #35402D 100%);
 	color: #fff;
 	margin: 0 auto;
-	border-radius:5px;
+	border-radius: 5px;
 }
 /* BODY */
 
@@ -85,7 +88,8 @@ nav li a {
 	padding: 14px 16px;
 	text-decoration: inherit;
 }
-nav li a:hover{
+
+nav li a:hover {
 	background-color: #363a3c;
 }
 
@@ -114,12 +118,12 @@ h2 {
 }
 
 /* PRODUCTOS */
-
-.titulo-h2{
+.titulo-h2 {
 	background: none;
 	padding: 0;
 }
-.productos-nav{
+
+.productos-nav {
 	display: flex;
 	background: radial-gradient(#025159 0%, #35402D 100%);
 	padding: 10px;
@@ -127,13 +131,14 @@ h2 {
 	text-align: center;
 	position: relative;
 	align-items: center;
-	
 }
-.productos-nav h2{
+
+.productos-nav h2 {
 	width: fit-content;
 	margin: 0 auto;
 }
-.productos-nav button{
+
+.productos-nav button {
 	font-size: 25px;
 	background: none;
 	text-align: start;
@@ -142,15 +147,17 @@ h2 {
 	margin: 0;
 	right: 0;
 }
-.productos-nav button a{
+
+.productos-nav button a {
 	color: #fff;
 }
-.productos-principal{
+
+.productos-principal {
 	background: #fff;
 	padding: 20px;
 	border-radius: 10px;
-	
 }
+
 #productos-container {
 	max-width: 1200px;
 	display: grid;
@@ -167,7 +174,7 @@ h2 {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border:2px solid #000;
+	border: 2px solid #000;
 }
 
 .tarjeta img {
@@ -216,13 +223,15 @@ h2 {
 	cursor: pointer;
 	font-family: 'Poppins', sans-serif;
 }
-.modificar-eliminar{
+
+.modificar-eliminar {
 	display: flex;
 	width: 100%;
 	justify-content: center;
 	gap: 10px;
 }
-.modificar{
+
+.modificar {
 	width: 40px;
 	font-size: 20px;
 	padding: 5px;
@@ -232,10 +241,12 @@ h2 {
 	margin: 0;
 	margin-bottom: 10px;
 }
-.modificar a{
+
+.modificar a {
 	color: #fff;
 }
-.eliminar{
+
+.eliminar {
 	width: 40px;
 	font-size: 20px;
 	padding: 5px;
@@ -244,11 +255,12 @@ h2 {
 	border-radius: 5px;
 	margin: 0;
 }
-.eliminar a{
+
+.eliminar a {
 	color: #fff;
 }
 /* CONSEJOS DE SALUD */
-.consejos-nav{
+.consejos-nav {
 	display: flex;
 	background: radial-gradient(#025159 0%, #35402D 100%);
 	padding: 10px;
@@ -256,13 +268,14 @@ h2 {
 	text-align: center;
 	position: relative;
 	align-items: center;
-
 }
-.consejos-nav h2{
+
+.consejos-nav h2 {
 	width: fit-content;
 	margin: 0 auto;
 }
-.consejos-nav button{
+
+.consejos-nav button {
 	font-size: 25px;
 	background: none;
 	text-align: start;
@@ -271,14 +284,14 @@ h2 {
 	margin: 0;
 	right: 0;
 }
-.consejos-nav button a{
+
+.consejos-nav button a {
 	color: #fff;
 }
 
 #contenedor-consejos {
 	display: flex;
 	margin: 20px auto;
-
 }
 
 #content {
@@ -305,11 +318,9 @@ h2 {
 	border-left: 10px solid #3F7373;
 }
 
-.articulo ul,
-.articulo ol {
+.articulo ul, .articulo ol {
 	padding: 20px;
 }
-
 
 #titulo-banner {
 	position: absolute;
@@ -332,7 +343,6 @@ h2 {
 }
 
 /* CONTACTO */
-
 #fieldset-form {
 	width: fit-content;
 	padding: 20px;
@@ -352,18 +362,18 @@ fieldset ul {
 	justify-content: center;
 }
 
-
-
 input {
 	width: 350px;
 	height: 30px;
 	margin-bottom: 10px;
-    font-family: 'Poppins', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
-input::placeholder{
+
+input::placeholder {
 	padding: 10px;
 }
-textarea{
+
+textarea {
 	resize: none;
 	width: 350px;
 	height: 60px;
@@ -372,7 +382,7 @@ textarea{
 }
 
 /* SUCURSAL */
-.sucursal-nav{
+.sucursal-nav {
 	display: flex;
 	background: radial-gradient(#025159 0%, #35402D 100%);
 	padding: 10px;
@@ -380,13 +390,14 @@ textarea{
 	text-align: center;
 	position: relative;
 	align-items: center;
-
 }
-.sucursal-nav h2{
+
+.sucursal-nav h2 {
 	width: fit-content;
 	margin: 0 auto;
 }
-.sucursal-nav button{
+
+.sucursal-nav button {
 	font-size: 25px;
 	background: none;
 	text-align: start;
@@ -395,9 +406,11 @@ textarea{
 	margin: 0;
 	right: 0;
 }
-.sucursal-nav button a{
+
+.sucursal-nav button a {
 	color: #fff;
 }
+
 .seccion-sucursales {
 	max-width: 1200px;
 	background-color: #fff;
@@ -427,26 +440,27 @@ textarea{
 }
 
 .sucursales .sucursal .botones {
-    display: flex;
-    gap: 20px;
+	display: flex;
+	gap: 20px;
 }
 
 /* PASEOS */
-.paseo-general{
+.paseo-general {
 	background: #fff;
 	border-radius: 10px;
 	padding: 20px;
 }
-#horario-paseo{
+
+#horario-paseo {
 	margin-bottom: 10px;
 }
+
 .paseo {
 	max-width: 100%;
 	height: 25%;;
 	border-radius: 10px;
 	object-fit: cover;
 }
-
 
 /*table {
 	text-align: center;

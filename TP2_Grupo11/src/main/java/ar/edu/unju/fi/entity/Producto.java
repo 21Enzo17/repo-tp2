@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.entity;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -49,6 +51,8 @@ public class Producto {
     public Producto() {
     }
 
+
+
     public Producto(Long id, Long cod, String nombre, float precio, int descuento, String imagen, Categoria categoria, boolean estado) {
         this.id = id;
         this.cod = cod;
@@ -74,6 +78,7 @@ public class Producto {
 
     public void setCod(Long cod) {
         this.cod = cod;
+
     }
 
     public String getNombre() {
@@ -98,6 +103,7 @@ public class Producto {
 
     public void setDescuento(int descuento) {
         this.descuento = descuento;
+
     }
 
     public String getImagen() {
@@ -107,6 +113,7 @@ public class Producto {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
 
     public Categoria getCategoria() {
         return this.categoria;
@@ -134,9 +141,11 @@ public class Producto {
     }
 
     public Producto cod(Long cod) {
+
         setCod(cod);
         return this;
     }
+
 
     public Producto nombre(String nombre) {
         setNombre(nombre);
@@ -145,6 +154,7 @@ public class Producto {
 
     public Producto precio(float precio) {
         setPrecio(precio);
+
         return this;
     }
 
@@ -168,9 +178,6 @@ public class Producto {
         return this;
     }
 
-    
- 
-    
     /**
      * Este metodo permite calcular el desceunto total y retornar un precio
      * @return precio
@@ -190,4 +197,5 @@ public class Producto {
             "}";
     }
     
+
 }

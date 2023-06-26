@@ -1,3 +1,4 @@
+
 package ar.edu.unju.fi.service;
 
 import ar.edu.unju.fi.entity.Autor;
@@ -20,4 +21,5 @@ public interface IConsejoService {
     public List<Consejo> findByAutor(Autor autor);
 
 }
+
 

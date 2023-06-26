@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.fi.entity.Producto;
+
 import ar.edu.unju.fi.service.ICategoriaService;
 import ar.edu.unju.fi.service.IProductoService;
 import ar.edu.unju.fi.util.UploadFile;
@@ -79,6 +80,7 @@ public class ProductoController {
         ModelAndView modelView;
         if(result.hasErrors()){
             modelView = new ModelAndView("nuevo-producto");
+            modelView.addObject("listaCategorias",categoriaService.getDisponibles());
         }else{
             modelView = new ModelAndView("producto");
             String uniqueFileName = uploadFile.copy(image);
@@ -162,7 +164,6 @@ public class ProductoController {
         }else{
             categoriaList=productoService.getDisponibles();
         }
-        System.out.println(coincidenteList.toString());
         for(Producto producto:categoriaList){
             if(producto.getNombre().toLowerCase().contains(buscado.toLowerCase())){
                 coincidenteList.add(producto);
