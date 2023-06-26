@@ -36,6 +36,7 @@
 			<div>
 				<article th:each="consejo:${listaConsejos}" class="col-12 articulo my-3 sucursales-article px-4">
 					<h3 class="fw-bold" th:text="${consejo.titulo}" ></h3>
+					<p class="text-break" style="text-align: justify;" th:text="${consejo.getAutor().getNombre}"></p>
 					<p class="text-break" style="text-align: justify;" th:text="${consejo.descripcion}"><br>
 					<div class="botones">
 						<button class="px-0 py-1 btn btn-success"><a style="font-size:20px" class="text-white" th:href="@{/consejos/editar-consejos/}+${consejo.id}"><i class="px-2 py-1 bi bi-pencil-square"></i></a></button>

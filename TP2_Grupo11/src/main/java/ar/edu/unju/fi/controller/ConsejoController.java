@@ -76,7 +76,7 @@ public class ConsejoController {
               modelView.addObject("listaAutores",autorService.getDisponibles());
           }else {
               modelView = new ModelAndView ("consejos");
-              consejoService.addConsejo(formConsejo);
+              consejoService.addConsejo(nuevoConsejo);
               modelView.addObject("listaConsejos", consejoService.getDisponibles());
               modelView.addObject("listaAutores",autorService.getDisponibles());
               if (autorService.getDisponibles().size() == 0) {
