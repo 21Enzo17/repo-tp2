@@ -53,13 +53,13 @@
 					<form th:action="@{/sucursales/filtrar-horario}"
 						class="d-flex gap-3" method="get">
 						<div class="form-floating mb-3">
-							<input type="time" class="form-control px-5"
+							<input type="time" class="form-control px-5" required
 								placeholder="Ingrese el horario" name="horaInicio"
 								id="horaInicio"> <label class="form-label">Horario
 								Apertura</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input type="time" class="form-control px-5"
+							<input type="time" class="form-control px-5" required
 							placeholder="Ingrese el horario" name="horaFin" id="horaFin">
 							<label class="form-label">Horario de Cierre</label>
 						</div>
@@ -75,7 +75,8 @@
 						resultados
 					</p>
 					<article class="my-3 px-4" th:each="sucursal : ${queryResult}">
-						<h3 class="fw-bold fs-4" th:text="${sucursal.direccion}"></h3>
+						
+						<h3 class="fw-bold fs-4" th:text="${sucursal.direccion}+ ', ' + ${sucursal.provi.nombre}"></h3>
 						<p th:text="${'Telefono: '} + ${sucursal.telefono}"></p>
 						<p th:text="${'Mail: '} + ${sucursal.mail}"></p>
 

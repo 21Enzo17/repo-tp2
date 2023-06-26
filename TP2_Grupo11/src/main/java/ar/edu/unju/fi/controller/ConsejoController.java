@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import ar.edu.unju.fi.entity.Consejo;
 import ar.edu.unju.fi.service.IAutorService;
 import ar.edu.unju.fi.service.IConsejoService;
@@ -43,7 +42,7 @@ public class ConsejoController {
     @GetMapping("/listado")
     public String getConsejos(Model model){
     	model.addAttribute("buscado");
-    	model.addAttribute("listaConsejo", consejoService.getConsejos());
+    	model.addAttribute("listaConsejos", consejoService.getConsejos());
     	model.addAttribute("listaAutores", autorService.getDisponibles());
     	return "consejos";
     }
@@ -110,7 +109,7 @@ public class ConsejoController {
     @GetMapping("/editar-consejos/{id}")
     public String editarConsejos(@PathVariable(value="id")long id,Model model){
         model.addAttribute("listaAutores", autorService.getDisponibles());
-    	model.addAttribute("encontrado", consejoService.findConsejoById(id));
+    	model.addAttribute("consejosEditar", consejoService.findConsejoById(id));
     	return "modificar-consejo";
     }
     /**
@@ -122,13 +121,15 @@ public class ConsejoController {
     public ModelAndView modificarLista(@Valid @ModelAttribute("consejosEditar")Consejo modificado, BindingResult result){
     	ModelAndView modelView;
         if(result.hasErrors()){
-            modelView = new ModelAndView("modificar-producto");
+            modelView = new ModelAndView("modificar-consejo");
+            modelView.addObject("listaAutores", autorService.getDisponibles());
         }else{
         	Consejo consejo = consejoService.findConsejoById(modificado.getId());
         	consejo.setTitulo(modificado.getTitulo());
         	consejo.setDescripcion(modificado.getDescripcion());
         	consejo.setAutor(modificado.getAutor());
-        	modelView = new ModelAndView("consejo");
+            consejoService.addConsejo(consejo);
+        	modelView = new ModelAndView("consejos");
         	modelView.addObject("listaConsejos", consejoService.getDisponibles());
         	modelView.addObject("listaAutores", autorService.getDisponibles());
         }
